@@ -23,6 +23,7 @@ namespace AnyReadOnline.Controllers
         // GET: Genre/Create
         public ActionResult Create()
         {
+
             return View();
         }
 

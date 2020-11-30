@@ -1,11 +1,10 @@
-﻿using ANYREAD.Models.Interfaces;
-using AnyReadOnline.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AnyReadOnline.Models.Interfaces;
 
-namespace ANYREAD.Models
+namespace AnyReadOnline.Models
 {
     public class Order : Audit, IOrder
     {
