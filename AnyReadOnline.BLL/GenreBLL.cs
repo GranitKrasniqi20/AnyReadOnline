@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AnyReadOnline.Models;
+using AnyReadOnline.DAL;
 
-namespace AnyReadOnline.Models
+namespace AnyReadOnline.BLL
 {
-    public enum Gender
+    class GenreBLL
     {
-        Male =1,
-        Female =2
     }
 }

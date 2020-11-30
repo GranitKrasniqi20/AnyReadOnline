@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnyReadOnline.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 namespace ANYREAD.Models
 {
 
-    public class Factory
+    public class Factory : Audit
     {
 
         public static IBook GetBook()

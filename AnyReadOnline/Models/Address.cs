@@ -1,12 +1,13 @@
-﻿using ANYREAD.Models.Interfaces;
+﻿using AnyReadOnline.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace ANYREAD.Models
+namespace AnyReadOnline.Models
 {
-    public class Address : IAddress
+    public class Address : Audit, IAddress
     {
         public int AddressID { get; set; }
         public int ClientID { get; set; }

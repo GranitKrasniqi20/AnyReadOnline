@@ -1,11 +1,12 @@
-﻿using System;
+﻿using AnyReadOnline.Models.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ANYREAD.Models
+namespace AnyReadOnline.Models
 {
-    public class Genre : IGenre
+    public class Genre : Audit, IGenre
     {
         public int GenreID { get; set; }
         public int _GenreName { get; set; }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AnyReadOnline.Models
 {
-    public class ExternalLoginConfirmationViewModel
+    public class ExternalLoginConfirmationViewModel:Audit
     {
         [Required]
         [Display(Name = "Email")]

@@ -1,4 +1,5 @@
 ﻿using ANYREAD.Models.Interfaces;
+using AnyReadOnline.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ANYREAD.Models
 {
-    public class Order : IOrder
+    public class Order : Audit, IOrder
     {
         public int OrderID { get; set; }
         public virtual IClient Client { get; set; }

@@ -43,8 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CountryDAL.cs" />
     <Compile Include="DbHelper.cs" />
+    <Compile Include="GenreDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnyReadOnline\AnyReadOnline.csproj">
+      <Project>{455eb097-030c-4385-bb55-cc2f20e842cb}</Project>
+      <Name>AnyReadOnline</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

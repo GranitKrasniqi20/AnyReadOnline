@@ -1,11 +1,12 @@
-﻿using System;
+﻿using AnyReadOnline.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ANYREAD.Models
 {
-    public class User : IUser
+    public class User : Audit, IUser
     {
         public int UserID { get; set; }
         public string UserName { get; set; }

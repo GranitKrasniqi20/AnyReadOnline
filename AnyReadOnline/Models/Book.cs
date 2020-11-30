@@ -1,11 +1,12 @@
-﻿using System;
+﻿using AnyReadOnline.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ANYREAD.Models
+namespace AnyReadOnline.Models
 {
-    public class Book : IBook
+    public class Book : Audit , IBook
     {
 
         public int BookID { get; set; }
