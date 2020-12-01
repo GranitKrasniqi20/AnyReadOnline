@@ -72,6 +72,7 @@ namespace AnyReadOnline.Controllers
             catch
             {
                 return View(genre);
+
             }
         }
 
