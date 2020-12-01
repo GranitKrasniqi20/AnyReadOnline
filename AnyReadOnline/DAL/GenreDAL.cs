@@ -7,32 +7,32 @@ using AnyReadOnline.Models;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
+using AnyReadOnline.Models.Interfaces;
 
 namespace AnyReadOnline.DAL
 {
-    class GenreDAL
+    class GenreDAL : ICreate<Genre>, IRead<Genre>, IUpdate<Genre>, IDelete, IConvertToObject<Genre>
     {
         private Genre genre;
 
         public int Add(Genre genre)
         {
-            int isInserted;
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.Command(sqlConnection, "usp_CreateGenre", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.Command(sqlConnection, "usp_InsertGenre", CommandType.StoredProcedure))
                     {
                         sqlCommand.Parameters.AddWithValue("genreName", genre.GenreName);
-                        //sqlCommand.Parameters.AddWithValue("insBy", genre.InsBy);
-                        //sqlCommand.Parameters.AddWithValue("insDate", genre.InsDate);
-                        //sqlCommand.Parameters.AddWithValue("updBy", genre.UpdBy);
-                        //sqlCommand.Parameters.AddWithValue("updDate", genre.UpdDate);
-                        //sqlCommand.Parameters.AddWithValue("updNo", genre.UpdNo);
+                        sqlCommand.Parameters.AddWithValue("insBy", genre.InsBy);
+                        sqlCommand.Parameters.AddWithValue("insDate", genre.InsDate);
+                        sqlCommand.Parameters.AddWithValue("updBy", genre.UpdBy);
+                        sqlCommand.Parameters.AddWithValue("updDate", genre.UpdDate);
+                        sqlCommand.Parameters.AddWithValue("updNo", genre.UpdNo);
 
-                        isInserted = sqlCommand.ExecuteNonQuery();
+                        int rowsInserted = sqlCommand.ExecuteNonQuery();
 
-                        if (isInserted > 0)
+                        if (rowsInserted > 0)
                         {
                             return 1;
                         }
@@ -146,7 +146,6 @@ namespace AnyReadOnline.DAL
 
         public int Update(Genre genre)
         {
-            int rowsAffected;
             try
             {
                 using (var sqlConnection = DbHelper.GetConnection())
@@ -155,7 +154,13 @@ namespace AnyReadOnline.DAL
                     {
                         sqlCommand.Parameters.AddWithValue("genreID", genre.GenreID);
                         sqlCommand.Parameters.AddWithValue("genreName", genre.GenreName);
-                        rowsAffected = sqlCommand.ExecuteNonQuery();
+                        sqlCommand.Parameters.AddWithValue("insBy", genre.InsBy);
+                        sqlCommand.Parameters.AddWithValue("insDate", genre.InsDate);
+                        sqlCommand.Parameters.AddWithValue("updBy", genre.UpdBy);
+                        sqlCommand.Parameters.AddWithValue("updDate", genre.UpdDate);
+                        sqlCommand.Parameters.AddWithValue("updNo", genre.UpdNo);
+
+                        int rowsAffected = sqlCommand.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
                         {
@@ -176,26 +181,17 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public Genre ConvertToObject(SqlDataReader reader)
+        public Genre ConvertToObject(SqlDataReader sqlDataReader)
         {
             genre = new Genre();
 
-            genre.GenreID = int.Parse(reader["GenreID"].ToString());
-            genre.GenreName = reader["Genre"].ToString();
-
-            //genre.InsBy = int.Parse(sqlDataReader["InsBy"].ToString());
-            //genre.InsDate = (DateTime)sqlDataReader["InsDate"];
-
-            //if (sqlDataReader["UpdBy"] != DBNull.Value)
-            //{
-            //genre.UpdBy = int.Parse(sqlDataReader["UpdBy"].ToString());
-            //}
-            //if (sqlDataReader["UpdDate"] != DBNull.Value)
-            //{
-            //genre.UpdDate = DateTime.Parse(sqlDataReader["UpdDate"].ToString());
-            //}
-
-            //genre.UpdNo = int.Parse(sqlDataReader["UpdNo"].ToString());
+            genre.GenreID = int.Parse(sqlDataReader["GenreID"].ToString());
+            genre.GenreName = sqlDataReader["Genre"].ToString();
+            genre.InsBy = int.Parse(sqlDataReader["InsBy"].ToString());
+            genre.InsDate = (DateTime)sqlDataReader["InsDate"];
+            genre.UpdBy = int.Parse(sqlDataReader["UpdBy"].ToString());
+            genre.UpdDate = DateTime.Parse(sqlDataReader["UpdDate"].ToString());
+            genre.UpdNo = int.Parse(sqlDataReader["UpdNo"].ToString());
 
             return genre;
         }
