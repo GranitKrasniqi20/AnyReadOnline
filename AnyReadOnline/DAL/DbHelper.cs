@@ -8,11 +8,11 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
 
-namespace AnyReadOnline
+namespace AnyReadOnline.DAL
 {
     class DbHelper
     {
-        private static string ConnectionString = ConfigurationManager.ConnectionStrings["DbAnyReadConnection"].ConnectionString;
+        private static string ConnectionString = ConfigurationManager.ConnectionStrings["DbConnectionGranit"].ConnectionString;
 
         public static SqlConnection GetConnection()
         {
