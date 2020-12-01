@@ -45,10 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AnyReadOnline.DAL\AnyReadOnline.DAL.csproj">
-      <Project>{383c8b7e-9898-42ab-b6aa-367df071e087}</Project>
-      <Name>AnyReadOnline.DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AnyReadOnline\AnyReadOnline.csproj">
       <Project>{455eb097-030c-4385-bb55-cc2f20e842cb}</Project>
       <Name>AnyReadOnline</Name>

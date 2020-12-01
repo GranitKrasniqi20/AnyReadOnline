@@ -8,7 +8,7 @@ namespace AnyReadOnline.Models.Interfaces
 {
     public interface IGenre
     {
-        int _GenreName { get; set; }
         int GenreID { get; set; }
+        string GenreName { get; set; }
     }
 }

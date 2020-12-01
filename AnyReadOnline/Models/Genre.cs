@@ -9,6 +9,6 @@ namespace AnyReadOnline.Models
     public class Genre : Audit, IGenre
     {
         public int GenreID { get; set; }
-        public int _GenreName { get; set; }
+        public string GenreName { get; set; }
     }
 }

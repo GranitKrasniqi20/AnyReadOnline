@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AnyReadOnline.Models;
 
-namespace AnyReadOnline.BLL
+namespace AnyReadOnline.BOL
 {
-    class GenreBLL
+    public class Class1
     {
+        public int MyProperty { get; set; }
     }
 }

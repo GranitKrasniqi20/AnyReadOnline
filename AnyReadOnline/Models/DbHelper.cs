@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
 
-namespace AnyReadOnline.DAL
+namespace AnyReadOnline
 {
     class DbHelper
     {
@@ -24,7 +24,7 @@ namespace AnyReadOnline.DAL
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Cannot connect to Data Base server, please contact your administrator", "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cannot connect to Data Base server, please contact your administrator" +ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }

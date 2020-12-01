@@ -1,0 +1,57 @@
+﻿@model IEnumerable<AnyReadOnline.Models.Genre>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.InsBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GenreName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GenreName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.GenreID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.GenreID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.GenreID })
+        </td>
+    </tr>
+}
+
+</table>
