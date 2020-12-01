@@ -12,6 +12,10 @@ namespace AnyReadOnline.Controllers
         {
             return View();
         }
+        public ActionResult Test()
+        {
+            return View();
+        }
 
         public ActionResult About()
         {
