@@ -1,11 +1,13 @@
-﻿using System;
+﻿using AnyReadOnline.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AnyReadOnline.Models.Interfaces;
 
-namespace ANYREAD.Models
+namespace AnyReadOnline.Models
 {
-    public class Payment
+    public class Payment : Audit
     {
         public int PaymentID { get; set; }
         public int OrderID { get; set; }

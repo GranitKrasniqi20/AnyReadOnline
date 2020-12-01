@@ -1,12 +1,12 @@
-﻿using ANYREAD.Models.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AnyReadOnline.Models.Interfaces;
 
-namespace ANYREAD.Models
+namespace AnyReadOnline.Models
 {
-    public class Order : IOrder
+    public class Order : Audit, IOrder
     {
         public int OrderID { get; set; }
         public virtual IClient Client { get; set; }

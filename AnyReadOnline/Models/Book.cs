@@ -1,11 +1,13 @@
-﻿using System;
+﻿using AnyReadOnline.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AnyReadOnline.Models.Interfaces;
 
-namespace ANYREAD.Models
+namespace AnyReadOnline.Models
 {
-    public class Book : IBook
+    public class Book : Audit , IBook
     {
 
         public int BookID { get; set; }
@@ -26,7 +28,8 @@ namespace ANYREAD.Models
         public double Length { get; set; }
         public double Width { get; set; }
         public double Height { get; set; }
-       
+        public int MyProperty { get; set; }
+
 
         public Book(Language language, IAuthor author, IPublishHouse publishHouse)
         {
