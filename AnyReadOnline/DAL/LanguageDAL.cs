@@ -11,19 +11,19 @@ using AnyReadOnline.Models.Interfaces;
 
 namespace AnyReadOnline.DAL
 {
-    class GenreDAL : ICreate<Genre>, IRead<Genre>, IUpdate<Genre>, IDelete, IConvertToObject<Genre>
+    public class LanguageDAL : ICrud<Language>, IConvertToObject<Language>
     {
-        private Genre genre;
+        private Language language;
 
-        public int Add(Genre obj)
+        public int Add(Language obj) 
         {
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_InsertGenre", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_InsertLanguage", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("genreName", obj.GenreName);
+                        sqlCommand.Parameters.AddWithValue("languageName", obj.LanguageName);
                         sqlCommand.Parameters.AddWithValue("insBy", 1);// obj.InsBy);//Dergojme 1 derisa te krijojme User
 
                         int rowsInserted = sqlCommand.ExecuteNonQuery();
@@ -45,39 +45,39 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public Genre ConvertToObject(SqlDataReader sqlDataReader)
+        public Language ConvertToObject(SqlDataReader sqlDataReader)
         {
-            genre = new Genre();
+            language = new Language();
 
-            if (sqlDataReader["GenreID"] != DBNull.Value)
+            if (sqlDataReader["LanguageID"] != DBNull.Value)
             {
-                genre.GenreID = int.Parse(sqlDataReader["GenreID"].ToString());
+                language.LanguageID = int.Parse(sqlDataReader["LanguageID"].ToString());
             }
-            if (sqlDataReader["Genre"] != DBNull.Value)
+            if (sqlDataReader["Language"] != DBNull.Value)
             {
-                genre.GenreName = sqlDataReader["Genre"].ToString();
+                language.LanguageName = sqlDataReader["Language"].ToString();
             }
             if (sqlDataReader["InsBy"] != DBNull.Value)
             {
-                genre.InsBy = (int)sqlDataReader["InsBy"];
+                language.InsBy = (int)sqlDataReader["InsBy"];
             }
             if (sqlDataReader["InsDate"] != DBNull.Value)
             {
-                genre.InsDate = (DateTime)sqlDataReader["InsDate"];
+                language.InsDate = (DateTime)sqlDataReader["InsDate"];
             }
             if (sqlDataReader["UpdBy"] != DBNull.Value)
             {
-                genre.UpdBy = (int)sqlDataReader["UpdBy"];
+                language.UpdBy = (int)sqlDataReader["UpdBy"];
             }
             if (sqlDataReader["UpdDate"] != DBNull.Value)
             {
-                genre.UpdDate = (DateTime)sqlDataReader["UpdDate"];
+                language.UpdDate = (DateTime)sqlDataReader["UpdDate"];
             }
             if (sqlDataReader["UpdNo"] != DBNull.Value)
             {
-                genre.UpdNo = (int)sqlDataReader["UpdNo"];
+                language.UpdNo = (int)sqlDataReader["UpdNo"];
             }
-            return genre;
+            return language;
         }
 
         public int Delete(int id)
@@ -88,7 +88,7 @@ namespace AnyReadOnline.DAL
                 {
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteGenre", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("GenreID", id);
+                        sqlCommand.Parameters.AddWithValue("LanguageID", id);
                         int Affected = sqlCommand.ExecuteNonQuery();
 
                         if (Affected > 0)
@@ -108,23 +108,23 @@ namespace AnyReadOnline.DAL
                 return -1;
             }
         }
-
-        public Genre Get(int id)
+        
+        public Language Get(int id)
         {
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetByIDGenre", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetByIDLangugae", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("GenreID", id);
+                        sqlCommand.Parameters.AddWithValue("LanguageID", id);
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
                             if (sqlDataReader.Read())
                             {
-                                genre = new Genre();
-                                genre=ConvertToObject(sqlDataReader);
-                                return genre;
+                                language = new Language();
+                                language = ConvertToObject(sqlDataReader);
+                                return language;
 
                                 //or only: return ConvertToObject(sqlDataReader);
                             }
@@ -142,9 +142,9 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public List<Genre> GetAll()
+        public List<Language> GetAll()
         {
-            List<Genre> Genres = new List<Genre>();
+            List<Language> Languages = new List<Language>();
 
             using (SqlConnection sqlConnection = DbHelper.GetConnection())
             {
@@ -156,32 +156,32 @@ namespace AnyReadOnline.DAL
                         {
                             while (sqlDataReader.Read())
                             {
-                                genre = new Genre();
-                                genre = ConvertToObject(sqlDataReader);
+                                language = new Language();
+                                language = ConvertToObject(sqlDataReader);
 
-                                if (genre == null)
+                                if (language == null)
                                 {
                                     throw new Exception();
                                 }
-                                Genres.Add(genre);
+                                Languages.Add(language);
                             }
                         }
-                        return Genres;
+                        return Languages;
                     }
                 }
             }
         }
 
-        public int Update(Genre obj)
+        public int Update(Language obj)
         {
             try
             {
                 using (var sqlConnection = DbHelper.GetConnection())
                 {
-                    using (var sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_UpdateGenre", CommandType.StoredProcedure))
+                    using (var sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_UpdateLanguage", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("genreID", obj.GenreID);
-                        sqlCommand.Parameters.AddWithValue("genreName", obj.GenreName);
+                        sqlCommand.Parameters.AddWithValue("languageID", obj.LanguageID);
+                        sqlCommand.Parameters.AddWithValue("languageName", obj.LanguageName);
                         sqlCommand.Parameters.AddWithValue("updBy", 1);//obj.UpdBy);//Dergojme 1 derisa te krijojme User
 
                         int rowsAffected = sqlCommand.ExecuteNonQuery();

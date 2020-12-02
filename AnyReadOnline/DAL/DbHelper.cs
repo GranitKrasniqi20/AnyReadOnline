@@ -12,15 +12,15 @@ namespace AnyReadOnline.DAL
 {
     class DbHelper
     {
-        private static string ConnectionString = ConfigurationManager.ConnectionStrings["DbConnectionGranit"].ConnectionString;
+        private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["DbConnectionGranit"].ConnectionString;
 
         public static SqlConnection GetConnection()
         {
             try
             {
-                SqlConnection conn = new SqlConnection(ConnectionString);
-                conn.Open();
-                return conn;
+                SqlConnection sqlConnection = new SqlConnection(ConnectionString);
+                sqlConnection.Open();
+                return sqlConnection;
             }
             catch (Exception ex)
             {
@@ -29,23 +29,21 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public static SqlCommand Command(SqlConnection connection, string cmdText, CommandType commandType)
+        public static SqlCommand SqlCommand(SqlConnection sqlConnection, string cmdText, CommandType commandType)
         {
             try
             {
-                SqlCommand command = new SqlCommand(cmdText, connection);
-                command.CommandType = commandType;
-                return command;
+                SqlCommand sqlCommand = new SqlCommand(cmdText, sqlConnection)
+                {
+                    CommandType = commandType
+                };
+                return sqlCommand;
             }
             catch (Exception)
             {
                 return null;
             }
         }
-
-
-
-
     }
 }
 

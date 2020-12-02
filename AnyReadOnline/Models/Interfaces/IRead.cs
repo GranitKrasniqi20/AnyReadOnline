@@ -8,7 +8,7 @@ namespace AnyReadOnline.Models.Interfaces
 {
     interface IRead<T>
     {
-        T GetByID(int Id);
+        T Get(int id);
         List<T> GetAll();
     }
 }

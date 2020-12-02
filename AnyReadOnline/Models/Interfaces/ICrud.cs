@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnyReadOnline.Models.Interfaces
 {
-    interface IDelete
+    interface ICrud<T> : ICreate<T>, IRead<T>, IUpdate<T>, IDelete
     {
-        int Delete(int id);
     }
 }

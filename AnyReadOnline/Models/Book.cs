@@ -28,7 +28,6 @@ namespace AnyReadOnline.Models
         public double Length { get; set; }
         public double Width { get; set; }
         public double Height { get; set; }
-        public int MyProperty { get; set; }
 
 
         public Book(Language language, IAuthor author, IPublishHouse publishHouse)

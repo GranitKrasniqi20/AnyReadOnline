@@ -8,7 +8,7 @@ namespace AnyReadOnline.Models.Interfaces
 {
     public interface ILanguage
     {
-        string language { get; set; }
         int LanguageID { get; set; }
+        string LanguageName { get; set; }
     }
 }

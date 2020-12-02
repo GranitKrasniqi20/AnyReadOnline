@@ -8,100 +8,100 @@ using System.Web.Mvc;
 
 namespace AnyReadOnline.Controllers
 {
-    public class GenresController : Controller
+    public class LanguagesController : Controller
     {
-        readonly GenreDAL genreDAL = new GenreDAL();
+        readonly LanguageDAL languageDAL = new LanguageDAL();
 
-        // GET: Genres
+        // GET: Languages
         public ActionResult Index()
         {
-            return View(genreDAL.GetAll());
+            return View(languageDAL.GetAll());
         }
 
-        // GET: Genres/Details/5
+        // GET: Languages/Details/5
         public ActionResult Details(int id)
         {
-            return View(genreDAL.Get(id));
+            return View(languageDAL.Get(id));
         }
 
-        // GET: Genres/Create
+        // GET: Languages/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Genres/Create
+        // POST: Languages/Create
         [HttpPost]
-        public ActionResult Create(Genre genre)
+        public ActionResult Create(Language language)
         {
             try
             {
                 // TODO: Add insert logic here
 
-                if (genreDAL.Add(genre) > 0)
+                if (languageDAL.Add(language) > 0)
                 {
                     return RedirectToAction("Index");
                 }
-                return Content("Error on CreateGenre");
+                return Content("Error on CreateLanguge");
             }
             catch
             {
-                return View(genre);
+                return View(language);
             }
         }
 
-        // GET: Genres/Edit/5
+        // GET: Languages/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(genreDAL.Get(id));
+            return View(languageDAL.Get(id));
         }
 
-        // POST: Genres/Edit/5
+        // POST: Languages/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Genre genre)
+        public ActionResult Edit(int id, Language language)
         {
             try
             {
                 // TODO: Add update logic here
 
-                var GetItem = genreDAL.Get(id);
-                GetItem.GenreName = genre.GenreName;
+                var GetItem = languageDAL.Get(id);
+                GetItem.LanguageName = language.LanguageName;
 
-                if (genreDAL.Update(GetItem) > 0)
+                if (languageDAL.Update(GetItem) > 0)
                 {
                     return RedirectToAction("Index");
                 }
-                return Content("Error on EditGenre to methods Add()");
+                return Content("Error on EditLanguage to methods Add()");
             }
             catch
             {
-                return View(genre);
+                return View(language);
             }
         }
 
-        // GET: Genres/Delete/5
+        // GET: Languages/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(genreDAL.Get(id));
+            return View(languageDAL.Delete(id));
         }
 
-        // POST: Genres/Delete/5
+        // POST: Languages/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Genre genre)
+        public ActionResult Delete(int id, Language language)
         {
             try
             {
                 // TODO: Add delete logic here
 
-                if (genreDAL.Delete(id) > 0)
+                if (languageDAL.Delete(id) > 0)
                 {
                     return RedirectToAction("Index");
                 }
-                return Content("Error on DeleteGenre");
+                return Content("Error on DeleteLangugage");
             }
             catch
             {
-                return View(genre);
+                return View(language);
             }
         }
     }

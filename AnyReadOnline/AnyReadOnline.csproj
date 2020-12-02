@@ -175,11 +175,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
-    <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAL\DbHelper.cs" />
+    <Compile Include="DAL\LanguageDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,6 +204,7 @@
     <Compile Include="Models\Interfaces\IConvertToObject.cs" />
     <Compile Include="Models\Interfaces\ICountry.cs" />
     <Compile Include="Models\Interfaces\ICreate.cs" />
+    <Compile Include="Models\Interfaces\ICrud.cs" />
     <Compile Include="Models\Interfaces\IDelete.cs" />
     <Compile Include="Models\Interfaces\IGenre.cs" />
     <Compile Include="Models\Interfaces\ILanguage.cs" />
@@ -2027,18 +2029,21 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Genre\Create.cshtml" />
     <Content Include="Views\Class1\Create.cshtml" />
-    <Content Include="Views\Genre\Index.cshtml" />
-    <Content Include="Views\Genre\Edit.cshtml" />
-    <Content Include="Views\Genre\Delete.cshtml" />
-    <Content Include="Views\Genre\Details.cshtml" />
+    <Content Include="Views\Genres\Index.cshtml" />
+    <Content Include="Views\Genres\Details.cshtml" />
+    <Content Include="Views\Genres\Create.cshtml" />
+    <Content Include="Views\Genres\Edit.cshtml" />
+    <Content Include="Views\Genres\Delete.cshtml" />
+    <Content Include="Views\Languages\Index.cshtml" />
+    <Content Include="Views\Languages\Details.cshtml" />
+    <Content Include="Views\Languages\Create.cshtml" />
+    <Content Include="Views\Languages\Edit.cshtml" />
+    <Content Include="Views\Languages\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Client\" />
-    <Folder Include="Views\Genres\" />
-    <Folder Include="Views\gtre\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Models\fonts\glyphicons-halflings-regular.woff2" />
