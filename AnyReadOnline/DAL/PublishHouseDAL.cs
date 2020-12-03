@@ -31,7 +31,7 @@ namespace AnyReadOnline.DAL
                         }
                         else
                         {
-                            return -1;
+                            throw new Exception();
                         }
                     }
                 }
@@ -94,7 +94,7 @@ namespace AnyReadOnline.DAL
                         }
                         else
                         {
-                            return -1;
+                            throw new Exception();
                         }
                     }
                 }
@@ -119,11 +119,7 @@ namespace AnyReadOnline.DAL
                         {
                             if (sqlDataReader.Read())
                             {
-                                publishHouse = new PublishHouse();
-                                publishHouse = ConvertToObject(sqlDataReader);
-                                return publishHouse;
-
-                                //or only: return ConvertToObject(sqlDataReader);
+                                return ConvertToObject(sqlDataReader);
                             }
                             else
                             {
@@ -155,14 +151,11 @@ namespace AnyReadOnline.DAL
                             {
                                 while (sqlDataReader.Read())
                                 {
-                                    publishHouse = new PublishHouse();
-                                    publishHouse = ConvertToObject(sqlDataReader);
-
-                                    if (publishHouse == null)
+                                    if (ConvertToObject(sqlDataReader) == null)
                                     {
                                         throw new Exception();
                                     }
-                                    publishHouses.Add(publishHouse);
+                                    publishHouses.Add(ConvertToObject(sqlDataReader));
                                 }
                             }
                             return publishHouses;

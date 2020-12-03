@@ -32,7 +32,7 @@ namespace AnyReadOnline.DAL
                         }
                         else
                         {
-                            return -1;
+                            throw new Exception();
                         }
                     }
                 }
@@ -95,7 +95,7 @@ namespace AnyReadOnline.DAL
                         }
                         else
                         {
-                            return -1;
+                            throw new Exception();
                         }
                     }
                 }
@@ -120,11 +120,7 @@ namespace AnyReadOnline.DAL
                         {
                             if (sqlDataReader.Read())
                             {
-                                author = new Author();
-                                author = ConvertToObject(sqlDataReader);
-                                return author;
-
-                                //or only: return ConvertToObject(sqlDataReader);
+                                return ConvertToObject(sqlDataReader);
                             }
                             else
                             {
@@ -156,14 +152,11 @@ namespace AnyReadOnline.DAL
                             {
                                 while (sqlDataReader.Read())
                                 {
-                                    author = new Author();
-                                    author = ConvertToObject(sqlDataReader);
-
-                                    if (author == null)
+                                    if (ConvertToObject(sqlDataReader) == null)
                                     {
                                         throw new Exception();
                                     }
-                                    Authors.Add(author);
+                                    Authors.Add(ConvertToObject(sqlDataReader));
                                 }
                             }
                             return Authors;

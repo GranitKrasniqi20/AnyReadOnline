@@ -32,7 +32,7 @@ namespace AnyReadOnline.DAL
                         }
                         else
                         {
-                            return -1;
+                            throw new Exception();
                         }
                     }
                 }
@@ -95,7 +95,7 @@ namespace AnyReadOnline.DAL
                         }
                         else
                         {
-                            return -1;
+                            throw new Exception();
                         }
                     }
                 }
@@ -116,15 +116,12 @@ namespace AnyReadOnline.DAL
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetByIDLanguage", CommandType.StoredProcedure))
                     {
                         sqlCommand.Parameters.AddWithValue("LanguageID", id);
+
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
                             if (sqlDataReader.Read())
                             {
-                                language = new Language();
-                                language = ConvertToObject(sqlDataReader);
-                                return language;
-
-                                //or only: return ConvertToObject(sqlDataReader);
+                                return ConvertToObject(sqlDataReader);
                             }
                             else
                             {
@@ -156,14 +153,11 @@ namespace AnyReadOnline.DAL
                             {
                                 while (sqlDataReader.Read())
                                 {
-                                    language = new Language();
-                                    language = ConvertToObject(sqlDataReader);
-
-                                    if (language == null)
+                                    if (ConvertToObject(sqlDataReader) == null)
                                     {
                                         throw new Exception();
                                     }
-                                    Languages.Add(language);
+                                    Languages.Add(ConvertToObject(sqlDataReader));
                                 }
                             }
                             return Languages;

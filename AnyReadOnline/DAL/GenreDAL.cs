@@ -11,7 +11,7 @@ using AnyReadOnline.Models.Interfaces;
 
 namespace AnyReadOnline.DAL
 {
-    class GenreDAL : ICreate<Genre>, IRead<Genre>, IUpdate<Genre>, IDelete, IConvertToObject<Genre>
+    class GenreDAL : ICrud<Genre>, IConvertToObject<Genre>
     {
         private Genre genre;
 
@@ -32,7 +32,7 @@ namespace AnyReadOnline.DAL
                         }
                         else
                         {
-                            return -1;
+                            throw new Exception();
                         }
                     }
                 }
@@ -40,7 +40,7 @@ namespace AnyReadOnline.DAL
             catch (SqlException e)
             {
                 MessageBox.Show(e.Message);
-                return -1;
+                return -1;  
             }
         }
 
@@ -120,11 +120,7 @@ namespace AnyReadOnline.DAL
                         {
                             if (sqlDataReader.Read())
                             {
-                                genre = new Genre();
-                                genre=ConvertToObject(sqlDataReader);
-                                return genre;
-
-                                //or only: return ConvertToObject(sqlDataReader);
+                                return ConvertToObject(sqlDataReader);
                             }
                             else
                             {
@@ -156,14 +152,11 @@ namespace AnyReadOnline.DAL
                             {
                                 while (sqlDataReader.Read())
                                 {
-                                    genre = new Genre();
-                                    genre = ConvertToObject(sqlDataReader);
-
-                                    if (genre == null)
+                                    if (ConvertToObject(sqlDataReader) == null)
                                     {
                                         throw new Exception();
                                     }
-                                    Genres.Add(genre);
+                                    Genres.Add(ConvertToObject(sqlDataReader));
                                 }
                             }
                             return Genres;
