@@ -26,8 +26,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("languageName", obj.LanguageName);
                         sqlCommand.Parameters.AddWithValue("insBy", 1);// obj.InsBy);//Dergojme 1 derisa te krijojme User
 
-                        int rowsInserted = sqlCommand.ExecuteNonQuery();
-                        if (rowsInserted > 0)
+                        if (sqlCommand.ExecuteNonQuery() > 0)
                         {
                             return 1;
                         }
@@ -89,9 +88,8 @@ namespace AnyReadOnline.DAL
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteGenre", CommandType.StoredProcedure))
                     {
                         sqlCommand.Parameters.AddWithValue("LanguageID", id);
-                        int Affected = sqlCommand.ExecuteNonQuery();
 
-                        if (Affected > 0)
+                        if (sqlCommand.ExecuteNonQuery() > 0)
                         {
                             return 1;
                         }
@@ -115,7 +113,7 @@ namespace AnyReadOnline.DAL
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetByIDLangugae", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetByIDLanguage", CommandType.StoredProcedure))
                     {
                         sqlCommand.Parameters.AddWithValue("LanguageID", id);
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
@@ -146,29 +144,37 @@ namespace AnyReadOnline.DAL
         {
             List<Language> Languages = new List<Language>();
 
-            using (SqlConnection sqlConnection = DbHelper.GetConnection())
+            try
             {
-                using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAllGenre", CommandType.StoredProcedure))
+                using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAllGenre", CommandType.StoredProcedure))
                     {
-                        if (sqlDataReader.HasRows)
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
-                            while (sqlDataReader.Read())
+                            if (sqlDataReader.HasRows)
                             {
-                                language = new Language();
-                                language = ConvertToObject(sqlDataReader);
-
-                                if (language == null)
+                                while (sqlDataReader.Read())
                                 {
-                                    throw new Exception();
+                                    language = new Language();
+                                    language = ConvertToObject(sqlDataReader);
+
+                                    if (language == null)
+                                    {
+                                        throw new Exception();
+                                    }
+                                    Languages.Add(language);
                                 }
-                                Languages.Add(language);
                             }
+                            return Languages;
                         }
-                        return Languages;
                     }
                 }
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+                return Languages;
             }
         }
 
@@ -184,8 +190,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("languageName", obj.LanguageName);
                         sqlCommand.Parameters.AddWithValue("updBy", 1);//obj.UpdBy);//Dergojme 1 derisa te krijojme User
 
-                        int rowsAffected = sqlCommand.ExecuteNonQuery();
-                        if (rowsAffected > 0)
+                        if (sqlCommand.ExecuteNonQuery() > 0)
                         {
                             return 1;
                         }

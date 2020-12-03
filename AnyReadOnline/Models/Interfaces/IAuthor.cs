@@ -9,7 +9,7 @@ namespace AnyReadOnline.Models.Interfaces
     public interface IAuthor
     {
         int AuthorID { get; set; }
-        string LastName { get; set; }
         string FirstName { get; set; }
+        string LastName { get; set; }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 using AnyReadOnline.Models;
 using System.Data.SqlClient;
 using System.Data;
@@ -11,21 +10,21 @@ using AnyReadOnline.Models.Interfaces;
 
 namespace AnyReadOnline.DAL
 {
-    class GenreDAL : ICreate<Genre>, IRead<Genre>, IUpdate<Genre>, IDelete, IConvertToObject<Genre>
+    public class PublishHouseDAL : ICrud<PublishHouse>, IConvertToObject<PublishHouse>
     {
-        private Genre genre;
+        private PublishHouse publishHouse;
 
-        public int Add(Genre obj)
+        public int Add(PublishHouse obj)
         {
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_InsertGenre", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_InsertPublishHouse", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("genreName", obj.GenreName);
+                        sqlCommand.Parameters.AddWithValue("publishHouseName", obj.PublishHouseName);
                         sqlCommand.Parameters.AddWithValue("insBy", 1);// obj.InsBy);//Dergojme 1 derisa te krijojme User
-                        
+
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
                             return 1;
@@ -44,39 +43,39 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public Genre ConvertToObject(SqlDataReader sqlDataReader)
+        public PublishHouse ConvertToObject(SqlDataReader sqlDataReader)
         {
-            genre = new Genre();
+            publishHouse = new PublishHouse();
 
-            if (sqlDataReader["GenreID"] != DBNull.Value)
+            if (sqlDataReader["PublishHouseID"] != DBNull.Value)
             {
-                genre.GenreID = int.Parse(sqlDataReader["GenreID"].ToString());
+                publishHouse.PublishHouseID = int.Parse(sqlDataReader["PublishHouseID"].ToString());
             }
-            if (sqlDataReader["Genre"] != DBNull.Value)
+            if (sqlDataReader["PublishHouse"] != DBNull.Value)
             {
-                genre.GenreName = sqlDataReader["Genre"].ToString();
+                publishHouse.PublishHouseName = sqlDataReader["publishHouse"].ToString();
             }
             if (sqlDataReader["InsBy"] != DBNull.Value)
             {
-                genre.InsBy = (int)sqlDataReader["InsBy"];
+                publishHouse.InsBy = (int)sqlDataReader["InsBy"];
             }
             if (sqlDataReader["InsDate"] != DBNull.Value)
             {
-                genre.InsDate = (DateTime)sqlDataReader["InsDate"];
+                publishHouse.InsDate = (DateTime)sqlDataReader["InsDate"];
             }
             if (sqlDataReader["UpdBy"] != DBNull.Value)
             {
-                genre.UpdBy = (int)sqlDataReader["UpdBy"];
+                publishHouse.UpdBy = (int)sqlDataReader["UpdBy"];
             }
             if (sqlDataReader["UpdDate"] != DBNull.Value)
             {
-                genre.UpdDate = (DateTime)sqlDataReader["UpdDate"];
+                publishHouse.UpdDate = (DateTime)sqlDataReader["UpdDate"];
             }
             if (sqlDataReader["UpdNo"] != DBNull.Value)
             {
-                genre.UpdNo = (int)sqlDataReader["UpdNo"];
+                publishHouse.UpdNo = (int)sqlDataReader["UpdNo"];
             }
-            return genre;
+            return publishHouse;
         }
 
         public int Delete(int id)
@@ -85,9 +84,9 @@ namespace AnyReadOnline.DAL
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteGenre", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeletePublishHouse", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("GenreID", id);
+                        sqlCommand.Parameters.AddWithValue("PublishHouseID", id);
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -107,22 +106,22 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public Genre Get(int id)
+        public PublishHouse Get(int id)
         {
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetByIDGenre", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetByIDPublishHouse", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("GenreID", id);
+                        sqlCommand.Parameters.AddWithValue("PublishHouseID", id);
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
                             if (sqlDataReader.Read())
                             {
-                                genre = new Genre();
-                                genre=ConvertToObject(sqlDataReader);
-                                return genre;
+                                publishHouse = new PublishHouse();
+                                publishHouse = ConvertToObject(sqlDataReader);
+                                return publishHouse;
 
                                 //or only: return ConvertToObject(sqlDataReader);
                             }
@@ -140,15 +139,15 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public List<Genre> GetAll()
+        public List<PublishHouse> GetAll()
         {
-            List<Genre> Genres = new List<Genre>();
+            List<PublishHouse> publishHouses = new List<PublishHouse>();
 
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAllGenre", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAllPublishHouse", CommandType.StoredProcedure))
                     {
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
@@ -156,38 +155,38 @@ namespace AnyReadOnline.DAL
                             {
                                 while (sqlDataReader.Read())
                                 {
-                                    genre = new Genre();
-                                    genre = ConvertToObject(sqlDataReader);
+                                    publishHouse = new PublishHouse();
+                                    publishHouse = ConvertToObject(sqlDataReader);
 
-                                    if (genre == null)
+                                    if (publishHouse == null)
                                     {
                                         throw new Exception();
                                     }
-                                    Genres.Add(genre);
+                                    publishHouses.Add(publishHouse);
                                 }
                             }
-                            return Genres;
+                            return publishHouses;
                         }
                     }
                 }
             }
-            catch(SqlException e)
+            catch (SqlException e)
             {
                 MessageBox.Show(e.Message);
-                return Genres;
+                return publishHouses;
             }
         }
 
-        public int Update(Genre obj)
+        public int Update(PublishHouse obj)
         {
             try
             {
                 using (var sqlConnection = DbHelper.GetConnection())
                 {
-                    using (var sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_UpdateGenre", CommandType.StoredProcedure))
+                    using (var sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_UpdatePublishHouse", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("genreID", obj.GenreID);
-                        sqlCommand.Parameters.AddWithValue("genreName", obj.GenreName);
+                        sqlCommand.Parameters.AddWithValue("publishHouseID", obj.PublishHouseID);
+                        sqlCommand.Parameters.AddWithValue("publishHouseName", obj.PublishHouseName);
                         sqlCommand.Parameters.AddWithValue("updBy", 1);//obj.UpdBy);//Dergojme 1 derisa te krijojme User
 
                         if (sqlCommand.ExecuteNonQuery() > 0)

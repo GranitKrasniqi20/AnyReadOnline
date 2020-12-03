@@ -8,7 +8,7 @@ namespace AnyReadOnline.Models.Interfaces
 {
     public interface IPublishHouse
     {
-        string publishHouse { get; set; }
         int PublishHouseID { get; set; }
+        string PublishHouseName { get; set; }
     }
 }

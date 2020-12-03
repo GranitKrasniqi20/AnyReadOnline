@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 using AnyReadOnline.Models;
 using System.Data.SqlClient;
 using System.Data;
@@ -11,21 +10,22 @@ using AnyReadOnline.Models.Interfaces;
 
 namespace AnyReadOnline.DAL
 {
-    class GenreDAL : ICreate<Genre>, IRead<Genre>, IUpdate<Genre>, IDelete, IConvertToObject<Genre>
+    public class AuthorDAL : ICrud<Author>, IConvertToObject<Author>
     {
-        private Genre genre;
+        private Author author;
 
-        public int Add(Genre obj)
+        public int Add(Author obj)
         {
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_InsertGenre", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_InsertAuthor", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("genreName", obj.GenreName);
+                        sqlCommand.Parameters.AddWithValue("firstName", obj.FirstName);
+                        sqlCommand.Parameters.AddWithValue("lastName", obj.LastName);
                         sqlCommand.Parameters.AddWithValue("insBy", 1);// obj.InsBy);//Dergojme 1 derisa te krijojme User
-                        
+
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
                             return 1;
@@ -44,39 +44,39 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public Genre ConvertToObject(SqlDataReader sqlDataReader)
+        public Author ConvertToObject(SqlDataReader sqlDataReader)
         {
-            genre = new Genre();
+            author = new Author();
 
-            if (sqlDataReader["GenreID"] != DBNull.Value)
+            if (sqlDataReader["AuthorID"] != DBNull.Value)
             {
-                genre.GenreID = int.Parse(sqlDataReader["GenreID"].ToString());
+                author.AuthorID = int.Parse(sqlDataReader["AuthorID"].ToString());
             }
-            if (sqlDataReader["Genre"] != DBNull.Value)
+            if (sqlDataReader["FirstName"] != DBNull.Value)
             {
-                genre.GenreName = sqlDataReader["Genre"].ToString();
+                author.FirstName = sqlDataReader["FirstName"].ToString();
             }
             if (sqlDataReader["InsBy"] != DBNull.Value)
             {
-                genre.InsBy = (int)sqlDataReader["InsBy"];
+                author.InsBy = (int)sqlDataReader["InsBy"];
             }
             if (sqlDataReader["InsDate"] != DBNull.Value)
             {
-                genre.InsDate = (DateTime)sqlDataReader["InsDate"];
+                author.InsDate = (DateTime)sqlDataReader["InsDate"];
             }
             if (sqlDataReader["UpdBy"] != DBNull.Value)
             {
-                genre.UpdBy = (int)sqlDataReader["UpdBy"];
+                author.UpdBy = (int)sqlDataReader["UpdBy"];
             }
             if (sqlDataReader["UpdDate"] != DBNull.Value)
             {
-                genre.UpdDate = (DateTime)sqlDataReader["UpdDate"];
+                author.UpdDate = (DateTime)sqlDataReader["UpdDate"];
             }
             if (sqlDataReader["UpdNo"] != DBNull.Value)
             {
-                genre.UpdNo = (int)sqlDataReader["UpdNo"];
+                author.UpdNo = (int)sqlDataReader["UpdNo"];
             }
-            return genre;
+            return author;
         }
 
         public int Delete(int id)
@@ -85,9 +85,9 @@ namespace AnyReadOnline.DAL
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteGenre", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteAuthor", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("GenreID", id);
+                        sqlCommand.Parameters.AddWithValue("AuthorID", id);
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -107,22 +107,22 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public Genre Get(int id)
+        public Author Get(int id)
         {
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetByIDGenre", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetByIDAuthor", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("GenreID", id);
+                        sqlCommand.Parameters.AddWithValue("AuthorID", id);
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
                             if (sqlDataReader.Read())
                             {
-                                genre = new Genre();
-                                genre=ConvertToObject(sqlDataReader);
-                                return genre;
+                                author = new Author();
+                                author = ConvertToObject(sqlDataReader);
+                                return author;
 
                                 //or only: return ConvertToObject(sqlDataReader);
                             }
@@ -140,15 +140,15 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public List<Genre> GetAll()
+        public List<Author> GetAll()
         {
-            List<Genre> Genres = new List<Genre>();
+            List<Author> Authors = new List<Author>();
 
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAllGenre", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAllAuthor", CommandType.StoredProcedure))
                     {
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
@@ -156,38 +156,39 @@ namespace AnyReadOnline.DAL
                             {
                                 while (sqlDataReader.Read())
                                 {
-                                    genre = new Genre();
-                                    genre = ConvertToObject(sqlDataReader);
+                                    author = new Author();
+                                    author = ConvertToObject(sqlDataReader);
 
-                                    if (genre == null)
+                                    if (author == null)
                                     {
                                         throw new Exception();
                                     }
-                                    Genres.Add(genre);
+                                    Authors.Add(author);
                                 }
                             }
-                            return Genres;
+                            return Authors;
                         }
                     }
                 }
             }
-            catch(SqlException e)
+            catch (SqlException e)
             {
                 MessageBox.Show(e.Message);
-                return Genres;
+                return Authors;
             }
         }
 
-        public int Update(Genre obj)
+        public int Update(Author obj)
         {
             try
             {
                 using (var sqlConnection = DbHelper.GetConnection())
                 {
-                    using (var sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_UpdateGenre", CommandType.StoredProcedure))
+                    using (var sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_UpdateAuthor", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("genreID", obj.GenreID);
-                        sqlCommand.Parameters.AddWithValue("genreName", obj.GenreName);
+                        sqlCommand.Parameters.AddWithValue("authorID", obj.AuthorID);
+                        sqlCommand.Parameters.AddWithValue("firstName", obj.FirstName);
+                        sqlCommand.Parameters.AddWithValue("lastName", obj.LastName);
                         sqlCommand.Parameters.AddWithValue("updBy", 1);//obj.UpdBy);//Dergojme 1 derisa te krijojme User
 
                         if (sqlCommand.ExecuteNonQuery() > 0)

@@ -8,7 +8,7 @@ namespace AnyReadOnline.Models
 {
     public class PublishHouse : Audit, IPublishHouse
     {
-        public string publishHouse { get ; set; }
         public int PublishHouseID { get ; set; }
+        public string PublishHouseName { get; set; }
     }
 }

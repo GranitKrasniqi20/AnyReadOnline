@@ -174,13 +174,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PublishHousesController.cs" />
+    <Compile Include="DAL\AuthorDAL.cs" />
     <Compile Include="DAL\DbHelper.cs" />
     <Compile Include="DAL\LanguageDAL.cs" />
+    <Compile Include="DAL\PublishHouseDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2040,6 +2044,16 @@
     <Content Include="Views\Languages\Create.cshtml" />
     <Content Include="Views\Languages\Edit.cshtml" />
     <Content Include="Views\Languages\Delete.cshtml" />
+    <Content Include="Views\PublishHouses\Index.cshtml" />
+    <Content Include="Views\PublishHouses\Details.cshtml" />
+    <Content Include="Views\PublishHouses\Create.cshtml" />
+    <Content Include="Views\PublishHouses\Edit.cshtml" />
+    <Content Include="Views\PublishHouses\Delete.cshtml" />
+    <Content Include="Views\Authors\Index.cshtml" />
+    <Content Include="Views\Authors\Details.cshtml" />
+    <Content Include="Views\Authors\Create.cshtml" />
+    <Content Include="Views\Authors\Edit.cshtml" />
+    <Content Include="Views\Authors\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
