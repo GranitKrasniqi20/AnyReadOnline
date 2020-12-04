@@ -87,6 +87,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -138,6 +141,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -167,6 +173,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\FontAwesomeBundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -218,12 +225,118 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fontawesome\font-awesome.css" />
+    <Content Include="Content\fontawesome\font-awesome.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_home_cover_1.2.jpg">
+      <Link>Content\img\anyread_home_cover_1.2.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_home_cover_2.1.jpg">
+      <Link>Content\img\anyread_home_cover_2.1.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_home_cover_2.2.jpg">
+      <Link>Content\img\anyread_home_cover_2.2.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_home_cover_3.1.jpg">
+      <Link>Content\img\anyread_home_cover_3.1.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_home_cover_3.2.jpg">
+      <Link>Content\img\anyread_home_cover_3.2.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_name.png">
+      <Link>Content\img\anyread_name.png</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_name_white.png">
+      <Link>Content\img\anyread_name_white.png</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bio_leonardo_davinci.jpg">
+      <Link>Content\img\bio_leonardo_davinci.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bio_mamba_mentality.jpg">
+      <Link>Content\img\bio_mamba_mentality.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bio_napoleon_bonaparta.jpg">
+      <Link>Content\img\bio_napoleon_bonaparta.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bio_obama.jpg">
+      <Link>Content\img\bio_obama.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bio_steve_jobs.jpg">
+      <Link>Content\img\bio_steve_jobs.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bs-img-1.jpg">
+      <Link>Content\img\bs-img-1.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bs-img-2.jpg">
+      <Link>Content\img\bs-img-2.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bs-img-3.jpg">
+      <Link>Content\img\bs-img-3.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\cs_basics_c#.png">
+      <Link>Content\img\cs_basics_c#.png</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\cs_c#_programing_lang.jpg">
+      <Link>Content\img\cs_c#_programing_lang.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\cs_code.jpg">
+      <Link>Content\img\cs_code.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\cs_learning_sql.jpg">
+      <Link>Content\img\cs_learning_sql.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\cs_understanding_crypto.jpg">
+      <Link>Content\img\cs_understanding_crypto.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\dale_carnegie.jpg">
+      <Link>Content\img\dale_carnegie.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\fic_embodied_hope.jpg">
+      <Link>Content\img\fic_embodied_hope.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\fic_ice_and_fire.jpg">
+      <Link>Content\img\fic_ice_and_fire.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\fic_lotr_1.jpg">
+      <Link>Content\img\fic_lotr_1.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\fic_tess_road.jpg">
+      <Link>Content\img\fic_tess_road.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\george_rr_martin.jpg">
+      <Link>Content\img\george_rr_martin.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\his_inferno_ww2.jpg">
+      <Link>Content\img\his_inferno_ww2.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\kelly_kapic.jpg">
+      <Link>Content\img\kelly_kapic.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\ps_thinking_fast_and_slow.jpg">
+      <Link>Content\img\ps_thinking_fast_and_slow.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\sd_48_laws_power.jpg">
+      <Link>Content\img\sd_48_laws_power.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\sd_art_of_public_speaking.jpg">
+      <Link>Content\img\sd_art_of_public_speaking.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\walter_isaacson.jpg">
+      <Link>Content\img\walter_isaacson.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\main.css">
+      <Link>Content\main.css</Link>
+    </Content>
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -269,6 +382,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_ClientLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

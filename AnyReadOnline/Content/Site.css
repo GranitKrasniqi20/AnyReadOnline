@@ -1,24 +1,203 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿/* HTML */
+
+body {
+    background-color: #fff;
 }
 
+header {
+    border-bottom: 2px solid #eaeaea;
+}
+
+    header #upperNav {
+        background-color: #E6674A;
+        padding: 15px 15px;
+    }
+
+    header #lowerNav {
+        background-color: #fff;
+        padding: 15px 15px;
+    }
+
+footer {
+    background-color: #eaeaea;
+}
+
+.language-selection {
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 5px;
+}
+/* Used at navbar */
+
+
+
+
+
+/* COLORS */
+
+.white-text {
+    color: #fff;
+}
+
+.black-text {
+    color: #000;
+}
+
+.orange-text {
+    color: #E6674A;
+}
+
+.my-blue {
+    background-color: #5C6E91;
+}
+
+.my-red {
+    background-color: #B53A3A;
+}
+
+.my-green {
+    background-color: #55838D;
+}
+
+.my-orange {
+    background-color: #CE6652;
+}
+
+
+
+
+
+/* BUTTONS */
+
+.btn-white {
+    background-color: #fff;
+    color: #E6674A;
+    font-weight: bold;
+    border-radius: 50px;
+}
+
+.btn-black {
+    background-color: #000;
+    color: #E6674A;
+    font-weight: bold;
+    border-radius: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+/* BOOTSTRAP CUSTOMIZATION */
+
+.nav-item {
+    padding: 0 6px 0 6px;
+}
+
+
+
+
+
+
+
+
+
+
+/* HOME CUSTOM CSS */
+
+.positioning-caption {
+    top: 40%
+}
+
+.category-box {
+    padding: 40px;
+    text-align: center;
+    color: #fff;
+}
+
+.custom-image-container .my-book-title {
+    margin-top: 30px;
+}
+
+.custom-image-container .my-book-price {
+    margin-top: -10px;
+}
+
+#authorSection .custom-image-container img {
+    border-radius: 100%;
+}
+
+
+
+
+
+/* SEARCH PAGE CUSTOM CSS */
+
+.search-cart-btn-height {
+    min-height: 100%;
+}
+
+.search-image-size {
+    min-height: 100%;
+    min-width: 100%;
+    width: 0;
+}
+
+.bigger-text-1 {
+    font-size: 1.5em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}*/
+
 /* Set padding to keep content from hitting the edges */
-.body-content {
+/*.body-content {
     padding-left: 15px;
     padding-right: 15px;
-}
+}*/
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
-.dl-horizontal dt {
+/*.dl-horizontal dt {
     white-space: normal;
-}
+}*/
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
-}
+}*/

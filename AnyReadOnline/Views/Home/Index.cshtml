@@ -2,30 +2,220 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!-- MAIN -->
+<main>
+    <!-- Large Carousel -->
+    <section>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="~/Content/img/anyread_home_cover_1.2.jpg" class="d-block w-100" alt="..." />
+                    <div class="container">
+                        <div class="carousel-caption d-none d-md-block positioning-caption white-text">
+                            <h1>Find the book you're looking for!</h1>
+                            <button type="button" class="btn btn-white my-4">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="~/Content/img/anyread_home_cover_2.2.jpg" class="d-block w-100" alt="..." />
+                    <div class="container">
+                        <div class="carousel-caption d-none d-md-block positioning-caption white-text">
+                            <h1>Search our library by category!</h1>
+                            <button type="button" class="btn btn-white my-4">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="~/Content/img/anyread_home_cover_3.2.jpg" class="d-block w-100" alt="..." />
+                    <div class="container">
+                        <div class="carousel-caption d-none d-md-block positioning-caption black-text">
+                            <h1>Large collection of Books!</h1>
+                            <button type="button" class="btn btn-black my-4">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </section>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <div class="container">
+        <!-- Featured Categories Section -->
+        <section class="my-5">
+            <div class="row">
+                <div class="col">
+                    <h4>Featured Categories</h4>
+                </div>
+                <div class="col text-right my-auto">
+                    <a href="#" class="text-danger">View All</a>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col start-point">
+                    <div class="category-box my-blue">
+                        <a href="#" class="text-white"><h4>Biographies</h4></a>
+                        <a href="#" class="text-white">Shop Now</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="category-box my-red">
+                        <a href="#" class="text-white"><h4>History</h4></a>
+                        <a href="#" class="text-white">Shop Now</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="category-box my-green">
+                        <a href="#" class="text-white"><h4>Economics</h4></a>
+                        <a href="#" class="text-white">Shop Now</a>
+                    </div>
+                </div>
+                <div class="col end-point">
+                    <div class="category-box my-orange">
+                        <a href="#" class="text-white"><h4>Fiction</h4></a>
+                        <a href="#" class="text-white">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Bestselling Books Section -->
+        <section class="my-5">
+            <div class="row">
+                <div class="col">
+                    <h4>Bestselling Books</h4>
+                </div>
+                <div class="col text-right my-auto">
+                    <a href="#" class="text-danger">View All</a>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col">
+                    <div class="custom-image-container">
+                        <img src="~/Content/img/bio_leonardo_davinci.jpg" width="253" />
+                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Leonardo Da Vinci</a></h4>
+                        <p class="text-muted">Walter Isaacson</p>
+                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="custom-image-container">
+                        <img src="~/Content/img/cs_understanding_crypto.jpg" width="253" />
+                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Understanding Crypt...</a></h4>
+                        <p class="text-muted">Christof Paar / Jan Pelzl</p>
+                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="custom-image-container">
+                        <img src="~/Content/img/fic_tess_road.jpg" width="253" />
+                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Tess of the Road</a></h4>
+                        <p class="text-muted">Rachel Hartman</p>
+                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="custom-image-container">
+                        <img src="~/Content/img/sd_48_laws_power.jpg" width="253" />
+                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">The 48 Laws of Power</a></h4>
+                        <p class="text-muted">Robert Greene</p>
+                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Newest Releases Section -->
+        <section class="my-5">
+            <div class="row">
+                <div class="col">
+                    <h4>Newest Releases</h4>
+                </div>
+                <div class="col text-right my-auto">
+                    <a href="#" class="text-danger">View All</a>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col">
+                    <div class="custom-image-container">
+                        <img src="~/Content/img/bio_steve_jobs.jpg" width="253" />
+                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Steve Jobs</a></h4>
+                        <p class="text-muted">Walter Isaacson</p>
+                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="custom-image-container">
+                        <img src="~/Content/img/fic_embodied_hope.jpg" width="253" />
+                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Embodied Hope</a></h4>
+                        <p class="text-muted">Kelly M. Kapic</p>
+                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="custom-image-container">
+                        <img src="~/Content/img/fic_ice_and_fire.jpg" width="253" />
+                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Ice and Fire</a></h4>
+                        <p class="text-muted">George R. R. Martin</p>
+                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="custom-image-container">
+                        <img src="~/Content/img/sd_art_of_public_speaking.jpg" width="253" />
+                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">The Art of Public Spe...</a></h4>
+                        <p class="text-muted">Dale Carnegie</p>
+                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Favorite Authors Section -->
+        <section id="authorSection" class="my-5">
+            <div class="row">
+                <div class="col">
+                    <h4>Favorite Authors</h4>
+                </div>
+                <div class="col text-right my-auto">
+                    <a href="#" class="text-danger">View All</a>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col">
+                    <div class="custom-image-container">
+                        <img src="~/Content/img/dale_carnegie.jpg" width="253" />
+                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Dale Carnegie</a></h4>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="custom-image-container">
+                        <img src="~/Content/img/george_rr_martin.jpg" width="253" />
+                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">George R. R. Martin</a></h4>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="custom-image-container">
+                        <img src="~/Content/img/kelly_kapic.jpg" width="253" />
+                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Kelly M. Kapic</a></h4>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="custom-image-container">
+                        <img src="~/Content/img/walter_isaacson.jpg" width="253" />
+                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Walter Isaacson</a></h4>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+</main>
