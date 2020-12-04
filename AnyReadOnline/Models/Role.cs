@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AnyReadOnline.Models.Interfaces;
 
-namespace ANYREAD.Models
+namespace AnyReadOnline.Models
 {
-    public class Role : IRole
+    public class Role : Audit, IRole
     {
         public int RoleID { get; set; }
         public string role { get; set; }

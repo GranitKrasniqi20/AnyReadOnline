@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AnyReadOnline.Models
 {
-    public class ExternalLoginConfirmationViewModel
+    public class ExternalLoginConfirmationViewModel:Audit
     {
         [Required]
         [Display(Name = "Email")]
@@ -79,6 +79,9 @@ namespace AnyReadOnline.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+
+
     }
 
     public class ResetPasswordViewModel

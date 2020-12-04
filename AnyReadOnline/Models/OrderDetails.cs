@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AnyReadOnline.Models.Interfaces;
 
-namespace ANYREAD.Models
+namespace AnyReadOnline.Models
 {
-    public class OrderDetails
+    public class OrderDetails : Audit
     {
         public int OrderDetailsID { get; set; }
         public int BookID { get; set; }

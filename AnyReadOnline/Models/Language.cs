@@ -1,14 +1,16 @@
-﻿using System;
+﻿using AnyReadOnline.Models;
+using AnyReadOnline.Models.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ANYREAD.Models
+namespace AnyReadOnline.Models
 {
-    public class Language//:ILanguage
+    public class Language:Audit,ILanguage
     {
         public int LanguageID { get; set; }
-        public int language { get; set; }
+        public string LanguageName { get; set; }
        
     }
 }
