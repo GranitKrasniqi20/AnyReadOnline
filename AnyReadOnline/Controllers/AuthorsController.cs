@@ -1,4 +1,5 @@
-﻿using AnyReadOnline.DAL;
+﻿using AnyReadOnline.BLL;
+using AnyReadOnline.BOL;
 using AnyReadOnline.Models;
 using System;
 using System.Collections.Generic;
@@ -10,18 +11,18 @@ namespace AnyReadOnline.Controllers
 {
     public class AuthorsController : Controller
     {
-        readonly AuthorDAL authorDAL = new AuthorDAL();
+        private readonly AuthorBLL authorBLL = new AuthorBLL();
 
         // GET: Authors
         public ActionResult Index()
         {
-            return View(authorDAL.GetAll());
+            return View(authorBLL.GetAll());
         }
 
         // GET: Authors/Details/5
         public ActionResult Details(int id)
         {
-            return View(authorDAL.Get(id));
+            return View(authorBLL.Get(id));
         }
 
         // GET: Authors/Create
@@ -38,7 +39,7 @@ namespace AnyReadOnline.Controllers
             {
                 // TODO: Add insert logic here
 
-                if (authorDAL.Add(author) > 0)
+                if (authorBLL.Add(author) > 0)
                 {
                     return RedirectToAction("Index");
                 }
@@ -53,7 +54,7 @@ namespace AnyReadOnline.Controllers
         // GET: Authors/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(authorDAL.Get(id));
+            return View(authorBLL.Get(id));
         }
 
         // POST: Authors/Edit/5
@@ -64,11 +65,11 @@ namespace AnyReadOnline.Controllers
             {
                 // TODO: Add update logic here
 
-                var GetItem = authorDAL.Get(id);
+                var GetItem = authorBLL.Get(id);
                 GetItem.FirstName = author.FirstName;
                 GetItem.LastName = author.LastName;
 
-                if (authorDAL.Update(GetItem) > 0)
+                if (authorBLL.Update(GetItem) > 0)
                 {
                     return RedirectToAction("Index");
                 }
@@ -83,7 +84,7 @@ namespace AnyReadOnline.Controllers
         // GET: Authors/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(authorDAL.Delete(id));
+            return View(authorBLL.Delete(id));
         }
 
         // POST: Authors/Delete/5
@@ -94,7 +95,7 @@ namespace AnyReadOnline.Controllers
             {
                 // TODO: Add delete logic here
 
-                if (authorDAL.Delete(id) > 0)
+                if (authorBLL.Delete(id) > 0)
                 {
                     return RedirectToAction("Index");
                 }

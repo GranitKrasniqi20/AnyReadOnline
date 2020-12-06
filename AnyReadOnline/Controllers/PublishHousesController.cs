@@ -1,4 +1,5 @@
-﻿using AnyReadOnline.DAL;
+﻿using AnyReadOnline.BLL;
+using AnyReadOnline.BOL;
 using AnyReadOnline.Models;
 using System;
 using System.Collections.Generic;
@@ -10,18 +11,18 @@ namespace AnyReadOnline.Controllers
 {
     public class PublishHousesController : Controller
     {
-        readonly PublishHouseDAL publishHouseDAL = new PublishHouseDAL();
+        private readonly PublishHouseBLL publishHouseBLL = new PublishHouseBLL();
 
         // GET: PublishHouses
         public ActionResult Index()
         {
-            return View(publishHouseDAL.GetAll());
+            return View(publishHouseBLL.GetAll());
         }
 
         // GET: PublishHouses/Details/5
         public ActionResult Details(int id)
         {
-            return View(publishHouseDAL.Get(id));
+            return View(publishHouseBLL.Get(id));
         }
 
         // GET: PublishHouses/Create
@@ -38,7 +39,7 @@ namespace AnyReadOnline.Controllers
             {
                 // TODO: Add insert logic here
 
-                if (publishHouseDAL.Add(publishHouse) > 0)
+                if (publishHouseBLL.Add(publishHouse) > 0)
                 {
                     return RedirectToAction("Index");
                 }
@@ -53,7 +54,7 @@ namespace AnyReadOnline.Controllers
         // GET: PublishHouses/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(publishHouseDAL.Get(id));
+            return View(publishHouseBLL.Get(id));
         }
 
         // POST: PublishHouses/Edit/5
@@ -64,10 +65,10 @@ namespace AnyReadOnline.Controllers
             {
                 // TODO: Add update logic here
 
-                var GetItem = publishHouseDAL.Get(id);
+                var GetItem = publishHouseBLL.Get(id);
                 GetItem.PublishHouseName = publishHouse.PublishHouseName;
 
-                if (publishHouseDAL.Update(GetItem) > 0)
+                if (publishHouseBLL.Update(GetItem) > 0)
                 {
                     return RedirectToAction("Index");
                 }
@@ -82,7 +83,7 @@ namespace AnyReadOnline.Controllers
         // GET: PublishHouses/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(publishHouseDAL.Delete(id));
+            return View(publishHouseBLL.Delete(id));
         }
 
         // POST: PublishHouses/Delete/5
@@ -93,7 +94,7 @@ namespace AnyReadOnline.Controllers
             {
                 // TODO: Add delete logic here
 
-                if (publishHouseDAL.Delete(id) > 0)
+                if (publishHouseBLL.Delete(id) > 0)
                 {
                     return RedirectToAction("Index");
                 }
