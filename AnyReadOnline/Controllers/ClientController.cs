@@ -1,5 +1,5 @@
-﻿using ANYREAD.Models;
-using AnyReadOnline.Models;
+﻿using AnyReadOnline.BLL;
+using AnyReadOnline.BOL;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
-﻿using AnyReadOnline.DAL;
+﻿using AnyReadOnline.BLL;
+using AnyReadOnline.BOL;
 using AnyReadOnline.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace AnyReadOnline.Controllers
 {
     public class LanguagesController : Controller
     {
-        readonly LanguageDAL languageDAL = new LanguageDAL();
+        private readonly LanguageDAL languageDAL = new LanguageDAL();
 
         // GET: Languages
         public ActionResult Index()

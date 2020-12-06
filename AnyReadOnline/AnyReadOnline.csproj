@@ -188,56 +188,9 @@
     <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PublishHousesController.cs" />
-    <Compile Include="DAL\AuthorDAL.cs" />
-    <Compile Include="DAL\BookDAL.cs" />
-    <Compile Include="DAL\DbHelper.cs" />
-    <Compile Include="DAL\LanguageDAL.cs" />
-    <Compile Include="DAL\PublishHouseDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Address.cs" />
-    <Compile Include="Models\Audit.cs" />
-    <Compile Include="Models\Author.cs" />
-    <Compile Include="Models\Book.cs" />
-    <Compile Include="Models\Client.cs" />
-    <Compile Include="Models\Country.cs" />
-    <Compile Include="Models\Enums\Gender.cs" />
-    <Compile Include="Models\ErrorViewModel.cs" />
-    <Compile Include="Models\Factory.cs" />
-    <Compile Include="Models\Genre.cs" />
-    <Compile Include="DAL\GenreDAL.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Interfaces\IAddress.cs" />
-    <Compile Include="Models\Interfaces\IAuthor.cs" />
-    <Compile Include="Models\Interfaces\IBook.cs" />
-    <Compile Include="Models\Interfaces\IClient.cs" />
-    <Compile Include="Models\Interfaces\IConvertToObject.cs" />
-    <Compile Include="Models\Interfaces\ICountry.cs" />
-    <Compile Include="Models\Interfaces\ICreate.cs" />
-    <Compile Include="Models\Interfaces\ICrud.cs" />
-    <Compile Include="Models\Interfaces\IDelete.cs" />
-    <Compile Include="Models\Interfaces\IGenre.cs" />
-    <Compile Include="Models\Interfaces\ILanguage.cs" />
-    <Compile Include="Models\Interfaces\IMeasure.cs" />
-    <Compile Include="Models\Interfaces\IOrder.cs" />
-    <Compile Include="Models\Interfaces\IPublishHouse.cs" />
-    <Compile Include="Models\Interfaces\IRead.cs" />
-    <Compile Include="Models\Interfaces\IRole.cs" />
-    <Compile Include="Models\Interfaces\IStaff.cs" />
-    <Compile Include="Models\Interfaces\IUpdate.cs" />
-    <Compile Include="Models\Interfaces\IUser.cs" />
-    <Compile Include="Models\Language.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrderDetails.cs" />
-    <Compile Include="Models\Payment.cs" />
-    <Compile Include="Models\PublishHouse.cs" />
-    <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\ShippingCompany.cs" />
-    <Compile Include="Models\Staff.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -252,7 +205,6 @@
     <Content Include="Content\fontawesome\font-awesome.css" />
     <Content Include="Content\fontawesome\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
-    <Content Include="DAL\DbScript\script-5Dhjetor2020.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fontawesome-free-5.15.1-web\attribution.js" />
     <Content Include="fontawesome-free-5.15.1-web\css\all.css" />
@@ -1902,7 +1854,7 @@
     <Content Include="fontawesome-free-5.15.1-web\webfonts\fa-brands-400.svg" />
     <Content Include="fontawesome-free-5.15.1-web\webfonts\fa-regular-400.svg" />
     <Content Include="fontawesome-free-5.15.1-web\webfonts\fa-solid-900.svg" />
-    <Content Include="Models\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -2073,7 +2025,6 @@
     <Content Include="Views\Authors\Index.cshtml" />
     <Content Include="Views\Genres\Delete.cshtml" />
     <Content Include="Views\Genres\Details.cshtml" />
-    <Content Include="Views\Genres\Edit.cshtml" />
     <Content Include="Views\Genres\Index.cshtml" />
     <Content Include="Views\Languages\Create.cshtml" />
     <Content Include="Views\Languages\Delete.cshtml" />
@@ -2086,16 +2037,19 @@
     <Content Include="Views\PublishHouses\Edit.cshtml" />
     <Content Include="Views\PublishHouses\Index.cshtml" />
     <Content Include="Views\Genres\Create.cshtml" />
+    <Content Include="Views\Genres\Index2.cshtml" />
+    <Content Include="Views\Genres\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
     <Folder Include="Views\Client\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Models\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Models\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Models\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
@@ -2112,6 +2066,16 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnyReadOnline.BLL\AnyReadOnline.BLL.csproj">
+      <Project>{d819978f-497a-4f6b-8cf0-01006994acc1}</Project>
+      <Name>AnyReadOnline.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnyReadOnline.BOL\AnyReadOnline.BOL.csproj">
+      <Project>{ef0ca07c-d6a2-448a-ba27-0c0640385de8}</Project>
+      <Name>AnyReadOnline.BOL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

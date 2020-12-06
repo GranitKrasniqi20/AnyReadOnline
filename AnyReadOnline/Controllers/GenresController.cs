@@ -1,4 +1,5 @@
-﻿using AnyReadOnline.DAL;
+﻿using AnyReadOnline.BLL;
+using AnyReadOnline.BOL;
 using AnyReadOnline.Models;
 using System;
 using System.Collections.Generic;
@@ -10,18 +11,18 @@ namespace AnyReadOnline.Controllers
 {
     public class GenresController : Controller
     {
-        readonly GenreDAL genreDAL = new GenreDAL();
+        private readonly GenreBLL genreBLL = new GenreBLL();
 
         // GET: Genres
         public ActionResult Index()
         {
-            return View(genreDAL.GetAll());
+            return View(genreBLL.GetAll());
         }
 
         // GET: Genres/Details/5
         public ActionResult Details(int id)
         {
-            return View(genreDAL.Get(id));
+            return View(genreBLL.Get(id));
         }
 
         // GET: Genres/Create
@@ -38,7 +39,7 @@ namespace AnyReadOnline.Controllers
             {
                 // TODO: Add insert logic here
 
-                if (genreDAL.Add(genre) > 0)
+                if (genreBLL.Add(genre) > 0)
                 {
                     return RedirectToAction("Index");
                 }
@@ -53,7 +54,7 @@ namespace AnyReadOnline.Controllers
         // GET: Genres/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(genreDAL.Get(id));
+            return View(genreBLL.Get(id));
         }
 
         // POST: Genres/Edit/5
@@ -64,10 +65,10 @@ namespace AnyReadOnline.Controllers
             {
                 // TODO: Add update logic here
 
-                var GetItem = genreDAL.Get(id);
+                var GetItem = genreBLL.Get(id);
                 GetItem.GenreName = genre.GenreName;
 
-                if (genreDAL.Update(GetItem) > 0)
+                if (genreBLL.Update(GetItem) > 0)
                 {
                     return RedirectToAction("Index");
                 }
@@ -82,7 +83,7 @@ namespace AnyReadOnline.Controllers
         // GET: Genres/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(genreDAL.Get(id));
+            return View(genreBLL.Get(id));
         }
 
         // POST: Genres/Delete/5
@@ -93,7 +94,7 @@ namespace AnyReadOnline.Controllers
             {
                 // TODO: Add delete logic here
 
-                if (genreDAL.Delete(id) > 0)
+                if (genreBLL.Delete(id) > 0)
                 {
                     return RedirectToAction("Index");
                 }
