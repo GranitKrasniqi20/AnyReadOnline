@@ -10,10 +10,11 @@ using System.Windows.Forms;
 
 namespace AnyReadOnline.DAL
 {
+
     class DbHelper
     {
         private static string ConnectionString = ConfigurationManager.ConnectionStrings["DbConnectionGranit"].ConnectionString;
-
+        
         public static SqlConnection GetConnection()
         {
             try

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace AnyReadOnline.Models
 {
-    public class Audit
+    public class Audit : IAudit
     {
         public int InsBy { get; set; }
         public DateTime InsDate { get; set; }

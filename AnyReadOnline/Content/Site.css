@@ -67,3 +67,77 @@ rflow-x: hidden;
         margin-left: -15rem;
     }
 }
+
+
+
+.CenterElement {
+    margin: 0 auto;
+}
+
+.RegisterInputWidth {
+    width: 24vw;
+}
+
+.RegisterInputHeight {
+    height: 2em;
+}
+
+.nounderline {
+    text-decoration: none !important
+}
+
+
+
+.RegisterFontFamily {
+    font-family: Helvetica, sans-serif,Arial
+}
+
+.loginBg {
+    background-image: url("~/images/anyread_home_cover_1.2.jpg");
+}
+
+
+
+
+
+.CenterElement {
+    margin: 0 auto;
+}
+
+.RegisterInputWidth {
+    width: 70vw;
+}
+
+.RegisterInputHeight {
+    height: 2em;
+}
+
+.nounderline {
+    text-decoration: none !important
+}
+
+
+
+.RegisterFontFamily {
+    font-family: Helvetica, sans-serif,Arial
+}
+
+.loginBg {
+    background-image: url("~/images/anyread_home_cover_1.2.jpg");
+}
+
+.containerHeight {
+    height:32em;
+}
+
+
+.containerWidth {
+    width: 35em;
+}
+
+
+
+
+.NoBorders{
+    border:0;
+}

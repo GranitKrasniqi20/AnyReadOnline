@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AnyReadOnline.Models
 {
+
     public class Address : Audit, IAddress
     {
         public int AddressID { get; set; }
@@ -24,5 +25,6 @@ namespace AnyReadOnline.Models
 
 
     }
+
 
 }

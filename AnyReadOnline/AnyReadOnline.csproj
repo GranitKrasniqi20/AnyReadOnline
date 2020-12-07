@@ -179,6 +179,7 @@
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAL\ClientDAL.cs" />
     <Compile Include="DAL\DbHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -188,6 +189,7 @@
     <Compile Include="Models\Audit.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\Class1.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Enums\Gender.cs" />
@@ -195,6 +197,7 @@
     <Compile Include="Models\Factory.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="DAL\GenreDAL.cs" />
+    <Compile Include="Models\IAudit.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Interfaces\IAddress.cs" />
     <Compile Include="Models\Interfaces\IAuthor.cs" />
@@ -1879,6 +1882,8 @@
     <Content Include="fontawesome-free-5.15.1-web\webfonts\fa-brands-400.svg" />
     <Content Include="fontawesome-free-5.15.1-web\webfonts\fa-regular-400.svg" />
     <Content Include="fontawesome-free-5.15.1-web\webfonts\fa-solid-900.svg" />
+    <Content Include="images\anyread_home_cover_1.1.jpg" />
+    <Content Include="images\anyread_home_cover_1.2.jpg" />
     <Content Include="Models\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -2028,10 +2033,12 @@
     <Content Include="Views\Genre\Edit.cshtml" />
     <Content Include="Views\Genre\Delete.cshtml" />
     <Content Include="Views\Genre\Details.cshtml" />
+    <Content Include="Views\Client\Registerr.cshtml" />
+    <Content Include="Views\Client\Register.cshtml" />
+    <Content Include="Views\Client\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Client\" />
     <Folder Include="Views\Genres\" />
     <Folder Include="Views\gtre\" />
   </ItemGroup>

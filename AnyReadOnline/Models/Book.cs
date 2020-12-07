@@ -36,6 +36,8 @@ namespace AnyReadOnline.Models
             Language = language;
             Author = author;
             PublishHouse = publishHouse;
+
+          
         }
     }
 }

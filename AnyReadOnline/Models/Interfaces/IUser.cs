@@ -7,7 +7,7 @@ using AnyReadOnline.Models;
 
 namespace AnyReadOnline.Models.Interfaces
 {
-    public interface IUser
+    public interface IUser:IAudit
     {
         int AddressID { get; set; }
         string ConfirmEmail { get; set; }
