@@ -84,7 +84,7 @@ namespace AnyReadOnline.Controllers
         // GET: Authors/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(authorBLL.Delete(id));
+            return View(authorBLL.Get(id));
         }
 
         // POST: Authors/Delete/5
