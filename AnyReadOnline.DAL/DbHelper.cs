@@ -12,7 +12,7 @@ namespace AnyReadOnline.DAL
 {
     class DbHelper
     {
-        private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["DbConnectionGranit"].ConnectionString;
+        private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["DbConnectionBeis"].ConnectionString;
 
         public static SqlConnection GetConnection()
         {
