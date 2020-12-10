@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AnyReadOnline.BLL
 {
-    public class ClientBLL:ICrud
+    public class ClientBLL
     {
 
     }
