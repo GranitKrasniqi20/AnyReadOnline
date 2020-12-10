@@ -34,7 +34,7 @@ namespace AnyReadOnline.BLL
         }
 
         public List<Client> GetAll()
-        {
+    {
             return clientDAL.GetAll();
         }
 

@@ -9,13 +9,6 @@ namespace AnyReadOnline.BOL
 
     public class Factory : Audit
     {
-
-        public static IBook GetBook()
-        {
-            return new Book(GetLanguage(), GetAuthor(), GetPublishHouse());
-        }
-
-
         public static ILanguage GetLanguage()
         {
             return new Language();

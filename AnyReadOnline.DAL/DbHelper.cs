@@ -12,7 +12,28 @@ namespace AnyReadOnline.DAL
 {
     class DbHelper
     {
-        private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["DbConnectionBeis"].ConnectionString;
+        public static string ConnectionStringName()
+        {
+            string pathGranit = "PC-GRANIT";
+            string pathBeis = "";
+            string pathEndrit = "DESKTOP-CMMTF7M";
+
+            if (string.Equals(Environment.MachineName, pathGranit))
+            {
+                return "DbConnectionGranit";
+            }
+            if (string.Equals(Environment.MachineName, pathBeis))
+            {
+                return "DbConnectionBeis";
+            }
+            if (string.Equals(Environment.MachineName, pathEndrit))
+            {
+                return "DbConnectionEndrit";
+            }
+            else return "";//ose throw new Exception;
+        }
+
+        private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings[ConnectionStringName()].ConnectionString;
 
         public static SqlConnection GetConnection()
         {

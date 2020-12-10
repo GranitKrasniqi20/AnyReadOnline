@@ -48,7 +48,7 @@ namespace AnyReadOnline.DAL
         }
 
         public int Update(Client obj)
-        {
+                        {
             try
             {
                 using (var sqlConnection = DbHelper.GetConnection())
@@ -76,7 +76,7 @@ namespace AnyReadOnline.DAL
             {
                 throw new Exception();
             }
-        }
+            }
 
         public Client Get(string email)
         {
@@ -93,11 +93,11 @@ namespace AnyReadOnline.DAL
                             if (sqlDataReader.Read())
                             {
                                 return ConvertToObject(sqlDataReader);
-                            }
+        }
                             else
-                            {
-                                return null;
-                            }
+        {
+            return null;
+        }
                         }
                     }
                 }
@@ -125,9 +125,9 @@ namespace AnyReadOnline.DAL
                                 return ConvertToObject(sqlDataReader);
                             }
                             else
-                            {
-                                return null;
-                            }
+        {
+            return null;
+        }
                         }
                     }
                 }
@@ -167,7 +167,7 @@ namespace AnyReadOnline.DAL
                 }
             }
             catch (Exception)
-            {
+        {
                 throw new Exception();
             }
         }
