@@ -83,7 +83,7 @@ namespace AnyReadOnline.Controllers
         // GET: Languages/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(languageDAL.Delete(id));
+            return View(languageDAL.Get(id));
         }
 
         // POST: Languages/Delete/5

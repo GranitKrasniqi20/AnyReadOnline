@@ -24,7 +24,7 @@ namespace AnyReadOnline.DAL
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_InsertLanguage", CommandType.StoredProcedure))
                     {
                         sqlCommand.Parameters.AddWithValue("languageName", obj.LanguageName);
-                        sqlCommand.Parameters.AddWithValue("insBy", 1);// obj.InsBy);//Dergojme 1 derisa te krijojme User
+                        sqlCommand.Parameters.AddWithValue("insBy", 3);// obj.InsBy);//Dergojme 1 derisa te krijojme User
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {

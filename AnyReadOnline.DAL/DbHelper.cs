@@ -10,16 +10,31 @@ using System.Windows.Forms;
 
 namespace AnyReadOnline.DAL
 {
-
     class DbHelper
     {
-<<<<<<< HEAD:AnyReadOnline/DAL/DbHelper.cs
-        private static string ConnectionString = ConfigurationManager.ConnectionStrings["DbConnectionGranit"].ConnectionString;
-        
-=======
-        private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["DbConnectionBeis"].ConnectionString;
+        public static string ConnectionStringName()
+        {
+            string pathGranit = "PC-GRANIT";
+            string pathBeis = "";
+            string pathEndrit = "";
 
->>>>>>> a290ad17163e9f056325b03b0cfd3ae4bdd834c0:AnyReadOnline.DAL/DbHelper.cs
+            if (string.Equals(Environment.MachineName, pathGranit))
+            {
+                return "DbConnectionGranit";
+            }
+            if (string.Equals(Environment.MachineName, pathBeis))
+            {
+                return "DbConnectionBeis";
+            }
+            if (string.Equals(Environment.MachineName, pathEndrit))
+            {
+                return "DbConnectionEndrit";
+            }
+            else return "";//ose throw new Exception;
+        }
+
+        private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings[ConnectionStringName()].ConnectionString;
+
         public static SqlConnection GetConnection()
         {
             try

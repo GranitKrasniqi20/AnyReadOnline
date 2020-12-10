@@ -1,0 +1,187 @@
+﻿@model AnyReadOnline.BOL.Book
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.InsBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InsBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InsDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InsDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GenreID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GenreID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LanguageID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LanguageID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishHouseID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublishHouseID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublishYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishPlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublishPlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PageNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookCover)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookCover)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Length)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Length)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Width)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

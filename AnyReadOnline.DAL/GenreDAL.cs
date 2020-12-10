@@ -8,7 +8,6 @@ using System.Data;
 using System.Windows.Forms;
 using AnyReadOnline.BOL;
 using AnyReadOnline.BOL.Interfaces;
-using ServiceStack;
 
 namespace AnyReadOnline.DAL
 {
@@ -25,8 +24,15 @@ namespace AnyReadOnline.DAL
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_InsertGenre", CommandType.StoredProcedure))
                     {
                         sqlCommand.Parameters.AddWithValue("genreName", obj.GenreName);
-                        sqlCommand.Parameters.AddWithValue("insBy", 1);// obj.InsBy);//Dergojme 1 derisa te krijojme User
-                        
+                        sqlCommand.Parameters.AddWithValue("insBy", 3);// obj.InsBy);//Dergojme 3 derisa te krijojme User
+
+                        //SqlParameter sqlParameter = new SqlParameter();
+                        //sqlParameter.ParameterName = "GenreID";
+                        //sqlParameter.SqlDbType = SqlDbType.Int;
+                        //sqlParameter.Direction = ParameterDirection.Output;
+                        //sqlCommand.Parameters.Add(sqlParameter);
+                        //int GenreID = (int)sqlParameter.Value; 
+
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
                             return 1;
@@ -96,7 +102,7 @@ namespace AnyReadOnline.DAL
                         }
                         else
                         {
-                            return -1;
+                            throw new Exception();
                         }
                     }
                 }

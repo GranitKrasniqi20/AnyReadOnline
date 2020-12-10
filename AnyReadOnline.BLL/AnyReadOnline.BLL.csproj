@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorBLL.cs" />
+    <Compile Include="BookBLL.cs" />
     <Compile Include="GenreBLL.cs" />
     <Compile Include="LanguageDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
