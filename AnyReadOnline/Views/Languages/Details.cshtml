@@ -1,0 +1,60 @@
+﻿@model AnyReadOnline.BOL.Language
+
+<div>
+    <h4>Language</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.InsBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InsBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InsDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InsDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LanguageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LanguageName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LanguageID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

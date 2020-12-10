@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="@Url.Content("~/Content/Site.css")" type="text/css" />
+
+    <!-- Jquery DataTables-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
+
+    <!-- Font Awesome Icons -->
+    @Styles.Render("~/Content/fontawesome")
+    <!--<link rel="stylesheet" href="~/Content/fontawesome/font-awesome.min.css" />-->
+
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <!-- UPPER ORANGE NAVIGATION -->
+        <nav id="upperNav" class="navbar">
+            <div class="container">
+                <div class="col">
+                    <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                        <img src="~/Content/img/anyread_name_white.png" width="150" />
+                    </a>
+                </div>
+                <div class="col">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item"><a href="#" class="language-selection text-decoration-none text-danger font-weight-bold mx-2">EN</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="text-decoration-none white-text font-weight-bold mx-2">Log In</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="text-decoration-none white-text font-weight-bold mx-2"><i class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- LOWER WHITE NAVIGATION -->
+        <nav id="lowerNav" class="navbar navbar-light">
+            <div class="container">
+                <div class="col">
+                    <form class="form-group my-auto">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    </form>
+                </div>
+                <div class="col">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="orange-text font-weight-bold text-decoration-none">Home</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Index", "Categories")" class="orange-text font-weight-bold text-decoration-none">Categories</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Search", "Books")" class="orange-text font-weight-bold text-decoration-none">Shop</a></li>
+                        <li class="nav-item"><a href="#" class="orange-text font-weight-bold text-decoration-none">Blog</a></li>
+                        <li class="nav-item"><a href="@Url.Action("About", "Home")" class="orange-text font-weight-bold text-decoration-none">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    @RenderBody()
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row py-5">
+                <div class="col">
+                    <img src="~/Content/img/anyread_name.png" width="180" class="pb-4" />
+                    <p class="pb-3">
+                        Rr. Rexhep Mala, Nr. 35,
+                        <br>
+                        Prishtinë, Kosovë
+                    </p>
+                    <p>
+                        <a href="#" class="text-decoration-none black-text">info@anyread.com</a>
+                        <br>
+                        <a href="#" class="text-decoration-none black-text">+383 49 123 123</a>
+                    </p>
+                </div>
+                <div class="col">
+                    <h4 class="pb-4">Explore</h4>
+                    <p><a href="#" class="text-decoration-none black-text">Home</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">Categories</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">Shop</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">Blog</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">About Us</a></p>
+                </div>
+                <div class="col">
+                    <h4 class="pb-4">Customer Service</h4>
+                    <p><a href="#" class="text-decoration-none black-text">Help Center</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">Returns</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">Accessibility</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">Contact Us</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">Sign In / Join</a></p>
+                </div>
+                <div class="col">
+                    <h4 class="pb-4">Policy</h4>
+                    <p><a href="#" class="text-decoration-none black-text">Return Policy</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">Terms of Use</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">Security</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">Privacy</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <!--Jquery DataTables-->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    @RenderSection("scripts", required: false)
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    -->
+</body>
+</html>

@@ -1,6 +1,5 @@
-﻿using ANYREAD.Models;
-using AnyReadOnline.DAL;
-using AnyReadOnline.Models;
+﻿using AnyReadOnline.BLL;
+using AnyReadOnline.BOL;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -77,29 +76,13 @@ namespace AnyReadOnline.Controllers
         {
             try
             {
-
-                RegisterViewModel register = new RegisterViewModel();
-
-
-                register.Email = client.Email;
-                register.Password = client.Password;
-                register.ConfirmPassword = client.Password;
-
-
                 if (ModelState.IsValid)
                 {
-                    var user = new ApplicationUser { UserName = client.Email, Email = client.Email };
+                    var user = new ApplicationUser { UserName = client.UserName, Email = client.Email };
                     var result = await UserManager.CreateAsync(user, client.Password);
                     if (result.Succeeded)
                     {
-                        ClientDAL clientDAL = new ClientDAL();
-                        if (clientDAL.Create(client) == 1)
-                        {
-                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        }
-
-                       
-
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                         return RedirectToAction("Index", "Home");
                     }
@@ -113,53 +96,6 @@ namespace AnyReadOnline.Controllers
                 return View();
             }
         }
-
-        [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
-        }
-
-        //
-        // POST: /Account/Login
-        [HttpPost]
-
-        public async Task<ActionResult> LogIn(LoginViewModel model, string returnUrl)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
-            }
-        }
-
-        private ActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            return RedirectToAction("Index", "Home");
-        }
-
-
 
         // GET: Client/Edit/5
         public ActionResult Edit(int id)

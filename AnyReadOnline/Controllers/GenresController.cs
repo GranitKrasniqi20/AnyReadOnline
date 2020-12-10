@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AnyReadOnline.BLL;
+using AnyReadOnline.BOL;
+using AnyReadOnline.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,16 +11,18 @@ namespace AnyReadOnline.Controllers
 {
     public class GenresController : Controller
     {
+        private readonly GenreBLL genreBLL = new GenreBLL();
+
         // GET: Genres
         public ActionResult Index()
         {
-            return View();
+            return View(genreBLL.GetAll());
         }
 
         // GET: Genres/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(genreBLL.Get(id));
         }
 
         // GET: Genres/Create
@@ -28,61 +33,76 @@ namespace AnyReadOnline.Controllers
 
         // POST: Genres/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Genre genre)
         {
             try
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                if (genreBLL.Add(genre) > 0)
+                {
+                    return RedirectToAction("Index");
+                }
+                return Content("Error on CreateGenre");
             }
             catch
             {
-                return View();
+                return View(genre);
             }
         }
 
         // GET: Genres/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(genreBLL.Get(id));
         }
 
         // POST: Genres/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Genre genre)
         {
             try
             {
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                var GetItem = genreBLL.Get(id);
+                GetItem.GenreName = genre.GenreName;
+
+                if (genreBLL.Update(GetItem) > 0)
+                {
+                    return RedirectToAction("Index");
+                }
+                return Content("Error on EditGenre to methods Add()");
             }
             catch
             {
-                return View();
+                return View(genre);
             }
         }
 
         // GET: Genres/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(genreBLL.Get(id));
         }
 
         // POST: Genres/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Genre genre)
         {
             try
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                if (genreBLL.Delete(id) > 0)
+                {
+                    return RedirectToAction("Index");
+                }
+                return Content("Error on DeleteGenre");
             }
             catch
             {
-                return View();
+                return View(genre);
             }
         }
     }

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AAE76184-1A4B-42A5-ACCF-36D3FFCFCBFE}</ProjectGuid>
+    <ProjectGuid>{D819978F-497A-4F6B-8CF0-01006994ACC1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AnyReadOnline.BLL</RootNamespace>
@@ -41,14 +41,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorBLL.cs" />
     <Compile Include="GenreBLL.cs" />
+    <Compile Include="LanguageDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublishHouseBLL.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AnyReadOnline\AnyReadOnline.csproj">
-      <Project>{455eb097-030c-4385-bb55-cc2f20e842cb}</Project>
-      <Name>AnyReadOnline</Name>
+    <ProjectReference Include="..\AnyReadOnline.BOL\AnyReadOnline.BOL.csproj">
+      <Project>{ef0ca07c-d6a2-448a-ba27-0c0640385de8}</Project>
+      <Name>AnyReadOnline.BOL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AnyReadOnline.DAL\AnyReadOnline.DAL.csproj">
+      <Project>{4c0d3d18-c247-490f-be54-01e026af3c3e}</Project>
+      <Name>AnyReadOnline.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
