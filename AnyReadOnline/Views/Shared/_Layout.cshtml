@@ -11,6 +11,9 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -33,7 +36,9 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+
+
+    <div class="container-fluid  body-content">
         @RenderBody()
         <hr />
         <footer>

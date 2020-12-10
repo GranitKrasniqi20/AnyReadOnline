@@ -7,7 +7,7 @@ using AnyReadOnline.BOL.Interfaces;
 
 namespace AnyReadOnline.BOL
 {
-    public class Genre : Audit, IGenre
+    public class Genre : Audit
     {
         public int GenreID { get; set; }
 

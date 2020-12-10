@@ -5,7 +5,7 @@ using System.Web;
 
 namespace AnyReadOnline.BOL
 {
-    public class Audit
+    public class Audit 
     {
         public int InsBy { get; set; }
         public DateTime InsDate { get; set; }

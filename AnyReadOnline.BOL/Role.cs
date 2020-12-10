@@ -6,7 +6,7 @@ using AnyReadOnline.BOL.Interfaces;
 
 namespace AnyReadOnline.BOL
 {
-    public class Role : Audit, IRole
+    public class Role : Audit
     {
         public int RoleID { get; set; }
         public string RoleName { get; set; }
