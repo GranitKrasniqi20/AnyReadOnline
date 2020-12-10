@@ -10,10 +10,10 @@ namespace AnyReadOnline.BOL
     {
         public int OrderDetailsID { get; set; }
         public int BookID { get; set; }
-        public virtual  IBook Book { get; set; }
+        public virtual  Book Book { get; set; }
         public int Quantity { get; set; }
         public int OrderID { get; set; }
-        public virtual IOrder Order { get; set; }
+        public virtual Order Order { get; set; }
 
     }
 }

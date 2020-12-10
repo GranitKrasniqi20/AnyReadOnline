@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnyReadOnline.BOL
 {
-    public class Author : Audit, IAuthor
+    public class Author : Audit
     {
         public int AuthorID { get; set; }
         public string  FirstName { get; set; }

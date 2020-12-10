@@ -6,11 +6,12 @@ using AnyReadOnline.BOL.Interfaces;
 
 namespace AnyReadOnline.BOL
 {
-    public class Client:User,IClient
+    public class Client : User
     {
+        public Gender Gender { get; set; }
 
         //public List<IOrder> orders;
-        //public List<IAddress> addresses;
+        //public List<Address> addresses;
         //public List<IPayment> payments;
         public void Genderr()
         {

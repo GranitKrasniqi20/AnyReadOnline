@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace AnyReadOnline.BOL.Interfaces
 {
-    public interface IAuthor
+    public interface IReadByEmail<T>
     {
-        int AuthorID { get; set; }
-        string FirstName { get; set; }
-        string LastName { get; set; }
+        T Get(string email);
     }
 }

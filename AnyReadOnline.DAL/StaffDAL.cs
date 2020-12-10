@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace AnyReadOnline.DAL
 {
-    public class ClientDAL : ICrud<Client>, IReadByEmail<Client>, IConvertToObject<Client>
+    public class StaffDAL : ICrud<Staff>, IReadByEmail<Staff>, IConvertToObject<Staff>
     {
-        private Client client;
+        private Staff staff;
 
-        public int Add(Client obj)
+        public int Add(Staff obj)
         {
-            client = new Client();
+            staff = new Staff();
 
             try
             {
@@ -24,10 +24,12 @@ namespace AnyReadOnline.DAL
                 {
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_ClientRegister", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("FirstName", obj.FirstName);
+                        sqlCommand.Parameters.AddWithValue("Username", obj.UserName);
+                        sqlCommand.Parameters.AddWithValue("Name", obj.FirstName);
                         sqlCommand.Parameters.AddWithValue("LastName", obj.LastName);
                         sqlCommand.Parameters.AddWithValue("Email", obj.Email);
-                        sqlCommand.Parameters.AddWithValue("Gender", obj.Gender);
+                        sqlCommand.Parameters.AddWithValue("InsBy", 1);
+                        sqlCommand.Parameters.AddWithValue("RoleId", obj.Role.RoleID);
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -47,19 +49,18 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public int Update(Client obj)
-                        {
+        public int Update(Staff obj)
+        {
             try
             {
                 using (var sqlConnection = DbHelper.GetConnection())
                 {
-                    using (var sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_UpdateClient", CommandType.StoredProcedure))
+                    using (var sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_UpdateUser", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("firstname", obj.FirstName);
-                        sqlCommand.Parameters.AddWithValue("lastname", obj.LastName);
-                        sqlCommand.Parameters.AddWithValue("email", obj.Email);
-                        sqlCommand.Parameters.AddWithValue("gender", obj.Gender);
-                        sqlCommand.Parameters.AddWithValue("updby", 1);
+                        sqlCommand.Parameters.AddWithValue("@email", obj.Email);
+                        sqlCommand.Parameters.AddWithValue("@name", obj.FirstName);
+                        sqlCommand.Parameters.AddWithValue("@lastname", obj.LastName);
+                        sqlCommand.Parameters.AddWithValue("@updby", 1);
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -76,15 +77,15 @@ namespace AnyReadOnline.DAL
             {
                 throw new Exception();
             }
-            }
+        }
 
-        public Client Get(string email)
+        public Staff Get(string email)
         {
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetClientByEmail", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetUserByEmail", CommandType.StoredProcedure))
                     {
                         sqlCommand.Parameters.AddWithValue("email", email);
 
@@ -93,11 +94,11 @@ namespace AnyReadOnline.DAL
                             if (sqlDataReader.Read())
                             {
                                 return ConvertToObject(sqlDataReader);
-        }
+                            }
                             else
-        {
-            return null;
-        }
+                            {
+                                return null;
+                            }
                         }
                     }
                 }
@@ -108,15 +109,15 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public Client Get(int id)
+        public Staff Get(int id)
         {
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetClientById", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetUserById", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("ClientID", id);
+                        sqlCommand.Parameters.AddWithValue("UserID", id);
 
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
@@ -125,9 +126,9 @@ namespace AnyReadOnline.DAL
                                 return ConvertToObject(sqlDataReader);
                             }
                             else
-        {
-            return null;
-        }
+                            {
+                                return null;
+                            }
                         }
                     }
                 }
@@ -138,15 +139,15 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public List<Client> GetAll()
+        public List<Staff> GetAll()
         {
-            List<Client> clients = new List<Client>();
+            List<Staff> staffs = new List<Staff>();
 
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAllClients", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAllUsers", CommandType.StoredProcedure))
                     {
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
@@ -158,16 +159,16 @@ namespace AnyReadOnline.DAL
                                     {
                                         throw new Exception();
                                     }
-                                    clients.Add(ConvertToObject(sqlDataReader));
+                                    staffs.Add(ConvertToObject(sqlDataReader));
                                 }
                             }
-                            return clients;
+                            return staffs;
                         }
                     }
                 }
             }
             catch (Exception)
-        {
+            {
                 throw new Exception();
             }
         }
@@ -178,9 +179,9 @@ namespace AnyReadOnline.DAL
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteClient", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteUser", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("ClientID", id);
+                        sqlCommand.Parameters.AddWithValue("UserID", id);
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -199,49 +200,58 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public Client ConvertToObject(SqlDataReader sqlDataReader)
+        public Staff ConvertToObject(SqlDataReader sqlDataReader)
         {
-            client = new Client();
+            staff = new Staff();
 
-            if (sqlDataReader["ClientID"] != DBNull.Value)
+            if (sqlDataReader["UserID"] != DBNull.Value)
             {
-                client.UserID = int.Parse(sqlDataReader["ClientID"].ToString());
+                staff.UserID = int.Parse(sqlDataReader["UserID"].ToString());
             }
-            if (sqlDataReader["FIrstName"] != DBNull.Value)
+            if (sqlDataReader["RoleId"] != DBNull.Value)
             {
-                client.FirstName = sqlDataReader["FIrstName"].ToString();
+                staff.Role.RoleID = int.Parse(sqlDataReader["RoleId"].ToString());
+                staff.Role.RoleName = sqlDataReader["Role"].ToString();
+            }
+            if (sqlDataReader["Username"] != DBNull.Value)
+            {
+                staff.UserName = sqlDataReader["Username"].ToString();
+            }
+            if (sqlDataReader["Name"] != DBNull.Value)
+            {
+                staff.FirstName = sqlDataReader["Name"].ToString();
             }
             if (sqlDataReader["LastName"] != DBNull.Value)
             {
-                client.LastName = sqlDataReader["LastName"].ToString();
-            }
-            if (sqlDataReader["Gender"] != DBNull.Value)
-            {
-                client.Gender = (Gender)int.Parse(sqlDataReader["Gender"].ToString());
+                staff.LastName = sqlDataReader["LastName"].ToString();
             }
             if (sqlDataReader["Email"] != DBNull.Value)
             {
-                client.Email = sqlDataReader["Email"].ToString();
-                client.ConfirmEmail = sqlDataReader["Email"].ToString();
+                staff.Email = sqlDataReader["Email"].ToString();
+                staff.ConfirmEmail = sqlDataReader["Email"].ToString();
+            }
+            if (sqlDataReader["InsBy"] != DBNull.Value)
+            {
+                staff.InsBy = (int)sqlDataReader["InsBy"];
             }
             if (sqlDataReader["InsDate"] != DBNull.Value)
             {
-                client.InsDate = (DateTime)sqlDataReader["InsDate"];
+                staff.InsDate = (DateTime)sqlDataReader["InsDate"];
             }
             if (sqlDataReader["UpdBy"] != DBNull.Value)
             {
-                client.UpdBy = (int)sqlDataReader["UpdBy"];
+                staff.UpdBy = (int)sqlDataReader["UpdBy"];
             }
             if (sqlDataReader["UpdDate"] != DBNull.Value)
             {
-                client.UpdDate = (DateTime)sqlDataReader["UpdDate"];
+                staff.UpdDate = (DateTime)sqlDataReader["UpdDate"];
             }
             if (sqlDataReader["UpdNo"] != DBNull.Value)
             {
-                client.UpdNo = (int)sqlDataReader["UpdNo"];
+                staff.UpdNo = (int)sqlDataReader["UpdNo"];
             }
 
-            return client;
+            return staff;
         }
     }
 }
