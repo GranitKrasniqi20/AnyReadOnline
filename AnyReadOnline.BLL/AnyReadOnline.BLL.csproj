@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AddressBLL.cs" />
     <Compile Include="AuthorBLL.cs" />
+    <Compile Include="BookBLL.cs" />
     <Compile Include="ClientBLL.cs" />
     <Compile Include="GenreBLL.cs" />
     <Compile Include="LanguageDAL.cs" />
