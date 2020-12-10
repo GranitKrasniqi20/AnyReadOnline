@@ -76,6 +76,7 @@ namespace AnyReadOnline.Controllers
         {
 
             RegisterViewModel registerClient = new RegisterViewModel();
+            
 
             registerClient.Email = client.Email;
             registerClient.Password = client.Password;
@@ -89,7 +90,6 @@ namespace AnyReadOnline.Controllers
                     var result = await UserManager.CreateAsync(user, client.Password);
                     if (result.Succeeded)
                     {
- 
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                         return RedirectToAction("Index", "Home");
