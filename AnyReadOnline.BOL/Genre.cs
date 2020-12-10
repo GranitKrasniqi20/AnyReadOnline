@@ -12,6 +12,7 @@ namespace AnyReadOnline.BOL
         public int GenreID { get; set; }
 
         [Required]
+        [MaxLength(5)]
         public string GenreName { get; set; }
     }
 }
