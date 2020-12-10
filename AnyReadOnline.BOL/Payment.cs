@@ -15,7 +15,7 @@ namespace AnyReadOnline.BOL
         public DateTime PaymentDate { get; set; }
         public string TransactionID { get; set; }
         public int BillingAddresID { get; set; }
-        public virtual IAddress Address { get; set; }
+        public virtual Address Address { get; set; }
         public double TotalFee { get; set; }
 
     }

@@ -6,16 +6,16 @@ using AnyReadOnline.BOL.Interfaces;
 
 namespace AnyReadOnline.BOL
 {
-    public class Book : Audit , IBook
+    public class Book : Audit
     {
 
         public int BookID { get; set; }
         public int LanguageID { get; set; }
-        public ILanguage Language { get; set; }
+        public Language Language { get; set; }
         public int AuthorID { get; set; }
-        public IAuthor Author { get; set; }
+        public Author Author { get; set; }
         public int PublishHouseID { get; set; }
-        public IPublishHouse PublishHouse { get; set; }
+        public PublishHouse PublishHouse { get; set; }
         public string Title { get; set; }
         public DateTime PublishYear { get; set; }
         public string PublishPlace { get; set; }
@@ -29,14 +29,7 @@ namespace AnyReadOnline.BOL
         public double Height { get; set; }
 
 
-        public Book(Language language, IAuthor author, IPublishHouse publishHouse)
-        {
-            Language = language;
-            Author = author;
-            PublishHouse = publishHouse;
-        }
-
-        public Book(ILanguage language, IAuthor author, IPublishHouse publishHouse)
+        public Book(Language language, Author author, PublishHouse publishHouse)
         {
             Language = language;
             Author = author;

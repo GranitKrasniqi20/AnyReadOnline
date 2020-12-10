@@ -6,8 +6,9 @@ using AnyReadOnline.BOL.Interfaces;
 
 namespace AnyReadOnline.BOL
 {
-    public class Staff : User, IStaff
+    public class Staff : User
     {
-        public virtual IRole Role { get; set; }
+        public string UserName { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

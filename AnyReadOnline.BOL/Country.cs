@@ -6,7 +6,7 @@ using AnyReadOnline.BOL.Interfaces;
 
 namespace AnyReadOnline.BOL
 {
-    public class Country : Audit, ICountry
+    public class Country : Audit
     {
         public int CountryID { get; set; }
         public string CountryName { get; set; }
