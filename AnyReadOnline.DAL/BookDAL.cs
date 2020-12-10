@@ -68,26 +68,26 @@ namespace AnyReadOnline.DAL
             }
             if (sqlDataReader["GenreID"] != DBNull.Value)
             {
-                book.Genre.GenreID = (int)sqlDataReader["GenreID"];
                 book.GenreID = (int)sqlDataReader["GenreID"];
+                book.Genre.GenreID = (int)sqlDataReader["GenreID"];
                 book.Genre.GenreName = (string)sqlDataReader["Genre"];
             }
             if (sqlDataReader["LanguageId"] != DBNull.Value)
             {
-                book.Language.LanguageID = (int)sqlDataReader["LanguageID"];
                 book.LanguageID = (int)sqlDataReader["LanguageID"];
+                book.Language.LanguageID = (int)sqlDataReader["LanguageID"];
                 book.Language.LanguageName = (string)sqlDataReader["Language"];
             }
             if (sqlDataReader["PublishHouseId"] != DBNull.Value)
             {
-                book.PublishHouse.PublishHouseID = (int)sqlDataReader["PublishHouseID"];
                 book.PublishHouseID = (int)sqlDataReader["PublishHouseID"];
+                book.PublishHouse.PublishHouseID = (int)sqlDataReader["PublishHouseID"];
                 book.PublishHouse.PublishHouseName = (string)sqlDataReader["PublishHouse"];
             }
             if (sqlDataReader["AuthorId"] != DBNull.Value)
             {
-                book.Author.AuthorID = (int)sqlDataReader["AuthorID"];
                 book.AuthorID = (int)sqlDataReader["AuthorID"];
+                book.Author.AuthorID = (int)sqlDataReader["AuthorID"];
                 book.Author.FirstName = (string)sqlDataReader["Name"];
                 book.Author.LastName = (string)sqlDataReader["LastName"];
             }

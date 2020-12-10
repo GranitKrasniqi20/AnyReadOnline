@@ -25,7 +25,14 @@ namespace AnyReadOnline.DAL
                     {
                         sqlCommand.Parameters.AddWithValue("genreName", obj.GenreName);
                         sqlCommand.Parameters.AddWithValue("insBy", 3);// obj.InsBy);//Dergojme 3 derisa te krijojme User
-                        
+
+                        //SqlParameter sqlParameter = new SqlParameter();
+                        //sqlParameter.ParameterName = "GenreID";
+                        //sqlParameter.SqlDbType = SqlDbType.Int;
+                        //sqlParameter.Direction = ParameterDirection.Output;
+                        //sqlCommand.Parameters.Add(sqlParameter);
+                        //int GenreID = (int)sqlParameter.Value; 
+
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
                             return 1;
