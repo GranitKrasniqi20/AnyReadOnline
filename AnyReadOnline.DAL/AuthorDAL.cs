@@ -24,7 +24,7 @@ namespace AnyReadOnline.DAL
                     {
                         sqlCommand.Parameters.AddWithValue("firstName", obj.FirstName);
                         sqlCommand.Parameters.AddWithValue("lastName", obj.LastName);
-                        sqlCommand.Parameters.AddWithValue("insBy", 3);// obj.InsBy);//Dergojme 1 derisa te krijojme User
+                        sqlCommand.Parameters.AddWithValue("insBy", 1);// obj.InsBy);//Dergojme 1 derisa te krijojme User
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
