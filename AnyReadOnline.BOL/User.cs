@@ -7,8 +7,7 @@ using AnyReadOnline.BOL.Interfaces;
 namespace AnyReadOnline.BOL
 {
     public class User : Audit
-    {
-        public int UserID { get; set; }
+    {        public int UserID { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public string FirstName { get; set; }

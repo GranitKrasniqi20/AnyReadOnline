@@ -27,6 +27,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("publishHouseID", obj.PublishHouseID);
                         sqlCommand.Parameters.AddWithValue("authorID", obj.AuthorID);
                         sqlCommand.Parameters.AddWithValue("title", obj.Title);
+                        sqlCommand.Parameters.AddWithValue("description", obj.Description);
                         sqlCommand.Parameters.AddWithValue("publishYear", obj.PublishYear);
                         sqlCommand.Parameters.AddWithValue("publishPlace", obj.PublishPlace);
                         sqlCommand.Parameters.AddWithValue("iSBN", obj.ISBN);
@@ -38,7 +39,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("length", obj.Length);
                         sqlCommand.Parameters.AddWithValue("width", obj.Width);
                         sqlCommand.Parameters.AddWithValue("height", obj.Height);
-                        sqlCommand.Parameters.AddWithValue("insBy", 3);// obj.InsBy);//Dergojme 1 derisa te krijojme User
+                        sqlCommand.Parameters.AddWithValue("insBy", 1);// obj.InsBy);//Dergojme 1 derisa te krijojme User
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -94,6 +95,10 @@ namespace AnyReadOnline.DAL
             if (sqlDataReader["Title"] != DBNull.Value)
             {
                 book.Title = (string)sqlDataReader["Title"];
+            }
+            if (sqlDataReader["Description"] != DBNull.Value)
+            {
+                book.Title = (string)sqlDataReader["Description"];
             }
             if (sqlDataReader["Year"] != DBNull.Value)
             {
@@ -267,6 +272,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("publishHouseID", obj.PublishHouseID);
                         sqlCommand.Parameters.AddWithValue("authorID", obj.AuthorID);
                         sqlCommand.Parameters.AddWithValue("title", obj.Title);
+                        sqlCommand.Parameters.AddWithValue("description", obj.Description);
                         sqlCommand.Parameters.AddWithValue("publishYear", obj.PublishYear);
                         sqlCommand.Parameters.AddWithValue("publishPlace", obj.PublishPlace);
                         sqlCommand.Parameters.AddWithValue("iSBN", obj.ISBN);

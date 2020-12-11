@@ -24,7 +24,7 @@ namespace AnyReadOnline.DAL
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_InsertGenre", CommandType.StoredProcedure))
                     {
                         sqlCommand.Parameters.AddWithValue("genreName", obj.GenreName);
-                        sqlCommand.Parameters.AddWithValue("insBy", 3);// obj.InsBy);//Dergojme 3 derisa te krijojme User
+                        sqlCommand.Parameters.AddWithValue("insBy", 1);// obj.InsBy);//Dergojme 3 derisa te krijojme User
 
                         //SqlParameter sqlParameter = new SqlParameter();
                         //sqlParameter.ParameterName = "GenreID";
