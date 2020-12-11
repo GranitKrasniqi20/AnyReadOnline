@@ -77,7 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DbScript\script-5Dhjetor2020.sql" />
-    <Content Include="DbScript\script_10_dhjetor.sql" />
+    <Content Include="DbScript\scripta-11Dhjetor.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

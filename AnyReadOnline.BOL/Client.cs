@@ -13,9 +13,5 @@ namespace AnyReadOnline.BOL
         //public List<IOrder> orders;
         //public List<Address> addresses;
         //public List<IPayment> payments;
-        public void Genderr()
-        {
-            this.Gender = Gender.Female;
-        }
     }
 }
