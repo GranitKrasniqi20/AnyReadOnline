@@ -65,10 +65,10 @@ namespace AnyReadOnline.Controllers
             {
                 // TODO: Add update logic here
 
-                var GetItem = genreBLL.Get(id);
-                GetItem.GenreName = genre.GenreName;
+                /* var GetItem = genreBLL.Get(id);
+                 GetItem.GenreName = genre.GenreName;*/
 
-                if (genreBLL.Update(GetItem) > 0)
+                if (genreBLL.Update(genreBLL.UpdateObj(id, genre)) > 0)
                 {
                     return RedirectToAction("Index");
                 }

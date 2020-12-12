@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -10,12 +10,12 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table" border="1">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.InsBy)
         </th>
-        <th>
+       <th>
             @Html.DisplayNameFor(model => model.InsDate)
         </th>
         <th>
@@ -41,6 +41,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PublishYear)
@@ -84,13 +87,15 @@
             @Html.DisplayFor(modelItem => item.InsBy)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.InsDate)
+            @*@Html.DisplayFor(modelItem => item.InsDate)*@
+            @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.InsDate).ToString()))
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UpdBy)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UpdDate)
+            @*@Html.DisplayFor(modelItem => item.UpdDate.Date)*@
+            @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.UpdDate).ToString()))
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UpdNo)
@@ -111,7 +116,10 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PublishYear)
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PublishYear.Year)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PublishPlace)
@@ -144,8 +152,12 @@
             @Html.DisplayFor(modelItem => item.Height)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookID }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.BookID })
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.BookID }) 
+        </td>
+        <td>
             @Html.ActionLink("Delete", "Delete", new { id=item.BookID })
         </td>
     </tr>

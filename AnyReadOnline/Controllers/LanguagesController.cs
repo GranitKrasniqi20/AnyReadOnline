@@ -11,18 +11,18 @@ namespace AnyReadOnline.Controllers
 {
     public class LanguagesController : Controller
     {
-        private readonly LanguageDAL languageDAL = new LanguageDAL();
+        private readonly LanguageBLL languageBLL = new LanguageBLL();
 
         // GET: Languages
         public ActionResult Index()
         {
-            return View(languageDAL.GetAll());
+            return View(languageBLL.GetAll());
         }
 
         // GET: Languages/Details/5
         public ActionResult Details(int id)
         {
-            return View(languageDAL.Get(id));
+            return View(languageBLL.Get(id));
         }
 
         // GET: Languages/Create
@@ -39,7 +39,7 @@ namespace AnyReadOnline.Controllers
             {
                 // TODO: Add insert logic here
 
-                if (languageDAL.Add(language) > 0)
+                if (languageBLL.Add(language) > 0)
                 {
                     return RedirectToAction("Index");
                 }
@@ -54,7 +54,7 @@ namespace AnyReadOnline.Controllers
         // GET: Languages/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(languageDAL.Get(id));
+            return View(languageBLL.Get(id));
         }
 
         // POST: Languages/Edit/5
@@ -65,10 +65,10 @@ namespace AnyReadOnline.Controllers
             {
                 // TODO: Add update logic here
 
-                var GetItem = languageDAL.Get(id);
+                var GetItem = languageBLL.Get(id);
                 GetItem.LanguageName = language.LanguageName;
 
-                if (languageDAL.Update(GetItem) > 0)
+                if (languageBLL.Update(GetItem) > 0)
                 {
                     return RedirectToAction("Index");
                 }
@@ -83,7 +83,7 @@ namespace AnyReadOnline.Controllers
         // GET: Languages/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(languageDAL.Get(id));
+            return View(languageBLL.Get(id));
         }
 
         // POST: Languages/Delete/5
@@ -94,7 +94,7 @@ namespace AnyReadOnline.Controllers
             {
                 // TODO: Add delete logic here
 
-                if (languageDAL.Delete(id) > 0)
+                if (languageBLL.Delete(id) > 0)
                 {
                     return RedirectToAction("Index");
                 }

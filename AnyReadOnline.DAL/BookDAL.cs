@@ -98,7 +98,7 @@ namespace AnyReadOnline.DAL
             }
             if (sqlDataReader["Description"] != DBNull.Value)
             {
-                book.Title = (string)sqlDataReader["Description"];
+                book.Description = (string)sqlDataReader["Description"];
             }
             if (sqlDataReader["Year"] != DBNull.Value)
             {
@@ -122,27 +122,27 @@ namespace AnyReadOnline.DAL
             }
             if (sqlDataReader["BookCover"] != DBNull.Value)
             {
-                book.BookID = (int)sqlDataReader["BookCover"];
+                book.BookCover = (string)sqlDataReader["BookCover"];
             }
             if (sqlDataReader["Price"] != DBNull.Value)
             {
-                book.Price = (double)sqlDataReader["Price"];
+                book.Price = (decimal)sqlDataReader["Price"];
             }
             if (sqlDataReader["Weight"] != DBNull.Value)
             {
-                book.Weight = (double)sqlDataReader["Weight"];
+                book.Weight = (decimal)sqlDataReader["Weight"];
             }
             if (sqlDataReader["Length"] != DBNull.Value)
             {
-                book.Length = (double)sqlDataReader["Length"];
+                book.Length = (decimal)sqlDataReader["Length"];
             }
             if (sqlDataReader["Width"] != DBNull.Value)
             {
-                book.Width = (double)sqlDataReader["Width"];
+                book.Width = (decimal)sqlDataReader["Width"];
             }
             if (sqlDataReader["Height"] != DBNull.Value)
             {
-                book.Height = (double)sqlDataReader["Height"];
+                book.Height = (decimal)sqlDataReader["Height"];
             }
             if (sqlDataReader["InsBy"] != DBNull.Value)
             {
@@ -175,7 +175,7 @@ namespace AnyReadOnline.DAL
                 {
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteBook", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("BookID", id);
+                        sqlCommand.Parameters.AddWithValue("bookID", id);
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -203,7 +203,7 @@ namespace AnyReadOnline.DAL
                 {
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetByIDBook", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("BookID", id);
+                        sqlCommand.Parameters.AddWithValue("bookID", id);
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
                             if (sqlDataReader.Read())
@@ -265,9 +265,10 @@ namespace AnyReadOnline.DAL
             {
                 using (var sqlConnection = DbHelper.GetConnection())
                 {
-                    using (var sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_UpdateBoook", CommandType.StoredProcedure))
+                    using (var sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_UpdateBook", CommandType.StoredProcedure))
                     {
                         sqlCommand.Parameters.AddWithValue("bookID", obj.BookID);
+                        sqlCommand.Parameters.AddWithValue("genreID", obj.GenreID);
                         sqlCommand.Parameters.AddWithValue("languageID", obj.LanguageID);
                         sqlCommand.Parameters.AddWithValue("publishHouseID", obj.PublishHouseID);
                         sqlCommand.Parameters.AddWithValue("authorID", obj.AuthorID);

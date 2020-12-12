@@ -70,6 +70,7 @@ namespace AnyReadOnline.Controllers
                 GetItem.PublishHouseID = book.PublishHouseID;
                 GetItem.AuthorID = book.AuthorID;
                 GetItem.Title = book.Title;
+                GetItem.Description = book.Description;
                 GetItem.PublishYear = book.PublishYear;
                 GetItem.PublishPlace = book.PublishPlace;
                 GetItem.ISBN = book.ISBN;

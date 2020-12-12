@@ -94,7 +94,7 @@ namespace AnyReadOnline.DAL
                 {
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteGenre", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("GenreID", id);
+                        sqlCommand.Parameters.AddWithValue("genreID", id);
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -122,7 +122,7 @@ namespace AnyReadOnline.DAL
                 {
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetByIDGenre", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("GenreID", id);
+                        sqlCommand.Parameters.AddWithValue("genreID", id);
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
                             if (sqlDataReader.Read())

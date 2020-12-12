@@ -46,7 +46,7 @@
     <Compile Include="BookBLL.cs" />
     <Compile Include="ClientBLL.cs" />
     <Compile Include="GenreBLL.cs" />
-    <Compile Include="LanguageDAL.cs" />
+    <Compile Include="LanguageBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublishHouseBLL.cs" />
     <Compile Include="StaffBLL.cs" />
