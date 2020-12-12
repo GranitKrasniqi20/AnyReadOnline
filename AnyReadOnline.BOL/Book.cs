@@ -25,11 +25,11 @@ namespace AnyReadOnline.BOL
         public int Quantity { get; set; }
         public int PageNumber { get; set; }
         public string BookCover { get; set; }
-        public double Price { get; set; }
-        public double Weight { get; set; }
-        public double Length { get; set; }
-        public double Width { get; set; }
-        public double Height { get; set; }
+        public decimal Price { get; set; }
+        public decimal Weight { get; set; }
+        public decimal Length { get; set; }
+        public decimal Width { get; set; }
+        public decimal Height { get; set; }
 
 
         public Book()

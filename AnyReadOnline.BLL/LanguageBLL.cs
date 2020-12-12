@@ -9,7 +9,7 @@ using AnyReadOnline.DAL;
 
 namespace AnyReadOnline.BLL
 {
-    public class LanguageDAL : ICrud<Language>
+    public class LanguageBLL : ICrud<Language>
     {
         private readonly LanguageDAL languageDAL = new LanguageDAL();
 

@@ -37,5 +37,14 @@ namespace AnyReadOnline.BLL
         {
             return genreDAL.Update(obj);
         }
+
+        public Genre UpdateObj(int id, Genre obj)
+        {
+            var GetItem = Get(id);
+
+            GetItem.GenreName = obj.GenreName;
+
+            return GetItem;
+        }
     }
 }
