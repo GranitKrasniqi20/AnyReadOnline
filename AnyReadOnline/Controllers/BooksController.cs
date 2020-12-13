@@ -5,12 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 namespace AnyReadOnline.Controllers
 {
     public class BooksController : Controller
     {
         private readonly BookBLL bookBLL = new BookBLL();
+        AuthorBLL authorBLL = new AuthorBLL();
+        GenreBLL genreBLL = new GenreBLL();
+        PublishHouseBLL publishHouseBLL = new PublishHouseBLL();
+        LanguageBLL languageBLL = new LanguageBLL();
+
         // GET: Books
         public ActionResult Index()
         {
@@ -26,6 +32,11 @@ namespace AnyReadOnline.Controllers
         // GET: Books/Create
         public ActionResult Create()
         {
+            ViewBag.Genres = genreBLL.GetAll();
+            ViewBag.Languages = languageBLL.GetAll();
+            ViewBag.PublishHouses = publishHouseBLL.GetAll();
+            ViewBag.Authors = authorBLL.GetAll();
+
             return View();
         }
 
@@ -35,7 +46,14 @@ namespace AnyReadOnline.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                bookBLL.AddForeignKeys(book);
+
+                /*string fileName = Path.GetFileNameWithoutExtension(image.ImageFile.FileName);
+                string extension = Path.GetExtension(image.ImageFile.FileName);
+                fileName += DateTime.Now.ToString("yymmssfff") + extension;
+                image.ImagePath = "~/Image/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
+                image.ImageFile.SaveAs(fileName);*/
 
                 if (bookBLL.Add(book) > 0)
                 {
@@ -52,6 +70,11 @@ namespace AnyReadOnline.Controllers
         // GET: Books/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.Genres = genreBLL.GetAll();
+            ViewBag.Languages = languageBLL.GetAll();
+            ViewBag.PublishHouses = publishHouseBLL.GetAll();
+            ViewBag.Authors = authorBLL.GetAll();
+
             return View(bookBLL.Get(id));
         }
 
@@ -61,14 +84,46 @@ namespace AnyReadOnline.Controllers
         {
             try
             {
-                // TODO: Add update logic here
-
                 var GetItem = bookBLL.Get(id);
 
-                GetItem.GenreID = book.GenreID;
-                GetItem.LanguageID = book.LanguageID;
-                GetItem.PublishHouseID = book.PublishHouseID;
-                GetItem.AuthorID = book.AuthorID;
+                bookBLL.UpdateForeignKeys(GetItem, book);
+
+               /* foreach (var item in genreBLL.GetAll())
+                {
+                    if (item.GenreID == book.Genre.GenreID)
+                    {
+                        GetItem.GenreID = item.GenreID;
+                        break;
+                    }
+                }
+
+                foreach (var item in languageBLL.GetAll())
+                {
+                    if (item.LanguageID == book.Language.LanguageID)
+                    {
+                        GetItem.LanguageID = item.LanguageID;
+                        break;
+                    }
+                }
+
+                foreach (var item in publishHouseBLL.GetAll())
+                {
+                    if (item.PublishHouseID == book.PublishHouse.PublishHouseID)
+                    {
+                        GetItem.PublishHouseID = item.PublishHouseID;
+                        break;
+                    }
+                }
+
+                foreach (var item in authorBLL.GetAll())
+                {
+                    if (item.AuthorID == book.Author.AuthorID)
+                    {
+                        GetItem.AuthorID = item.AuthorID;
+                        break;
+                    }
+                }*/
+
                 GetItem.Title = book.Title;
                 GetItem.Description = book.Description;
                 GetItem.PublishYear = book.PublishYear;

@@ -13,6 +13,11 @@ namespace AnyReadOnline.BLL
     {
         private readonly BookDAL bookDAL = new BookDAL();
 
+        AuthorDAL authorDAL = new AuthorDAL();
+        GenreDAL genreDAL = new GenreDAL();
+        PublishHouseDAL publishHouseDAL = new PublishHouseDAL();
+        LanguageDAL languageDAL = new LanguageDAL();
+
         public int Add(Book obj)
         {
             return bookDAL.Add(obj);
@@ -36,6 +41,84 @@ namespace AnyReadOnline.BLL
         public int Update(Book obj)
         {
             return bookDAL.Update(obj);
+        }
+
+        public void AddForeignKeys(Book book)
+        {
+            foreach (var item in genreDAL.GetAll())
+            {
+                if (item.GenreID == book.Genre.GenreID)
+                {
+                    book.GenreID = item.GenreID;
+                    break;
+                }
+            }
+
+            foreach (var item in languageDAL.GetAll())
+            {
+                if (item.LanguageID == book.Language.LanguageID)
+                {
+                    book.LanguageID = item.LanguageID;
+                    break;
+                }
+            }
+
+            foreach (var item in publishHouseDAL.GetAll())
+            {
+                if (item.PublishHouseID == book.PublishHouse.PublishHouseID)
+                {
+                    book.PublishHouseID = item.PublishHouseID;
+                    break;
+                }
+            }
+
+            foreach (var item in authorDAL.GetAll())
+            {
+                if (item.AuthorID == book.Author.AuthorID)
+                {
+                    book.AuthorID = item.AuthorID;
+                    break;
+                }
+            }
+        }
+
+        public  void UpdateForeignKeys(Book GetItem, Book book)
+        {
+            foreach (var item in genreDAL.GetAll())
+            {
+                if (item.GenreID == book.Genre.GenreID)
+                {
+                    GetItem.GenreID = item.GenreID;
+                    break;
+                }
+            }
+
+            foreach (var item in languageDAL.GetAll())
+            {
+                if (item.LanguageID == book.Language.LanguageID)
+                {
+                    GetItem.LanguageID = item.LanguageID;
+                    break;
+                }
+            }
+
+            foreach (var item in publishHouseDAL.GetAll())
+            {
+                if (item.PublishHouseID == book.PublishHouse.PublishHouseID)
+                {
+                    GetItem.PublishHouseID = item.PublishHouseID;
+                    break;
+                }
+            }
+
+            foreach (var item in authorDAL.GetAll())
+            {
+                if (item.AuthorID == book.Author.AuthorID)
+                {
+                    GetItem.AuthorID = item.AuthorID;
+                    break;
+                }
+            }
         }
     }
 }

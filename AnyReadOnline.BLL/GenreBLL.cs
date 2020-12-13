@@ -9,7 +9,7 @@ using AnyReadOnline.DAL;
 
 namespace AnyReadOnline.BLL
 {
-    public class GenreBLL : ICrud<Genre>
+    public class GenreBLL 
     {
         private readonly GenreDAL genreDAL = new GenreDAL();
 

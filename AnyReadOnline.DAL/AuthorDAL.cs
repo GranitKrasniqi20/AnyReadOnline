@@ -52,9 +52,13 @@ namespace AnyReadOnline.DAL
             {
                 author.AuthorID = int.Parse(sqlDataReader["AuthorID"].ToString());
             }
-            if (sqlDataReader["FirstName"] != DBNull.Value)
+            if (sqlDataReader["Name"] != DBNull.Value)
             {
-                author.FirstName = sqlDataReader["FirstName"].ToString();
+                author.FirstName = sqlDataReader["Name"].ToString();
+            }
+            if (sqlDataReader["LastName"] != DBNull.Value)
+            {
+                author.LastName = sqlDataReader["LastName"].ToString();
             }
             if (sqlDataReader["InsBy"] != DBNull.Value)
             {
