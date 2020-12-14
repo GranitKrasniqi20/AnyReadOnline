@@ -54,7 +54,16 @@ namespace AnyReadOnline.Controllers
 
         public ActionResult Searching(string text)
         {
-            return View();
+            List<Book> searchedBooks = new List<Book>();
+            bookBLL = new BookBLL();
+
+            searchedBooks = bookBLL.GetAll();
+
+            return View(searchedBooks.Where(b => b.Genre.GenreName.StartsWith(text) ||
+                                            b.Author.FirstName.StartsWith(text) ||
+                                            b.Author.LastName.StartsWith(text) ||
+                                            b.Title.StartsWith(text) ||
+                                            text == null));
         }
     }
 }

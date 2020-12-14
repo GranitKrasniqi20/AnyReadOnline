@@ -98,7 +98,7 @@ namespace AnyReadOnline.DAL
             }
             if (sqlDataReader["Description"] != DBNull.Value)
             {
-                book.Description = (string)sqlDataReader["Description"];
+                book.Description = sqlDataReader["Description"].ToString();
             }
             if (sqlDataReader["Year"] != DBNull.Value)
             {

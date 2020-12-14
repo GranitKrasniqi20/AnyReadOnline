@@ -34,10 +34,7 @@ namespace AnyReadOnline.BOL
         public string ISBN { get; set; }
         public int Quantity { get; set; }
         public int PageNumber { get; set; }
-
-        [DisplayName("Upload File")]
         public string ImagePath { get; set; }
-
         public decimal Price { get; set; }
         public decimal Weight { get; set; }
         public decimal Length { get; set; }
