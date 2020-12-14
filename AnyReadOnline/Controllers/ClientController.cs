@@ -1,4 +1,6 @@
-﻿using AnyReadOnline.BLL;
+﻿
+
+using AnyReadOnline.BLL;
 using AnyReadOnline.BOL;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -76,12 +78,12 @@ namespace AnyReadOnline.Controllers
         {
 
             RegisterViewModel registerClient = new RegisterViewModel();
-            
+
 
             registerClient.Email = client.Email;
             registerClient.Password = client.Password;
             registerClient.ConfirmPassword = client.Password;
-            
+
             try
             {
                 if (ModelState.IsValid)
@@ -91,8 +93,18 @@ namespace AnyReadOnline.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        ClientBLL clientbll = new ClientBLL();
+                        ;
 
-                        return RedirectToAction("Index", "Home");
+                        if (clientbll.Add(client) == 1)
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            throw new Exception();
+                        }
+
                     }
                 }
 
@@ -198,3 +210,4 @@ namespace AnyReadOnline.Controllers
         }
     }
 }
+

@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="AccountViewModels.cs" />
     <Compile Include="Address.cs" />
+    <Compile Include="AdminLoginViewModel.cs" />
     <Compile Include="Audit.cs" />
     <Compile Include="Author.cs" />
     <Compile Include="Book.cs" />

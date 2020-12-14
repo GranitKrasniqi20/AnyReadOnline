@@ -181,6 +181,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
@@ -2082,16 +2083,21 @@
     <Content Include="Views\Genres\Edit.cshtml" />
     <Content Include="Views\Genres\Index.cshtml" />
     <Content Include="Views\Client\Register.cshtml" />
-    <Content Include="Views\Client\Registerr.cshtml" />
     <Content Include="Views\Shared\AdminLayout.cshtml" />
     <Content Include="Views\Home\Testt.cshtml" />
     <Content Include="Views\Client\Login.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admins\Login.cshtml" />
+    <Content Include="Views\Admins\Register.cshtml" />
+=======
     <Content Include="Views\Books\Index.cshtml" />
     <Content Include="Views\Books\Create.cshtml" />
     <Content Include="Views\Books\Edit.cshtml" />
     <Content Include="Views\Books\Delete.cshtml" />
     <Content Include="Views\Books\Details.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+>>>>>>> fcf3bfd7e13139a8f9614f64e612856d14226a0b
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
