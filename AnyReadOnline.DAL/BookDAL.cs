@@ -33,7 +33,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("iSBN", obj.ISBN);
                         sqlCommand.Parameters.AddWithValue("quantity", obj.Quantity);
                         sqlCommand.Parameters.AddWithValue("pageNumber", obj.PageNumber);
-                        sqlCommand.Parameters.AddWithValue("bookCover", obj.BookCover);
+                        sqlCommand.Parameters.AddWithValue("imagePath", obj.ImagePath);
                         sqlCommand.Parameters.AddWithValue("price", obj.Price);
                         sqlCommand.Parameters.AddWithValue("weight", obj.Weight);
                         sqlCommand.Parameters.AddWithValue("length", obj.Length);
@@ -120,9 +120,9 @@ namespace AnyReadOnline.DAL
             {
                 book.PageNumber = (int)sqlDataReader["PageNo"];
             }
-            if (sqlDataReader["BookCover"] != DBNull.Value)
+            if (sqlDataReader["ImagePath"] != DBNull.Value)
             {
-                book.BookCover = (string)sqlDataReader["BookCover"];
+                book.ImagePath = (string)sqlDataReader["ImagePath"];
             }
             if (sqlDataReader["Price"] != DBNull.Value)
             {
@@ -279,7 +279,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("iSBN", obj.ISBN);
                         sqlCommand.Parameters.AddWithValue("quantity", obj.Quantity);
                         sqlCommand.Parameters.AddWithValue("pageNumber", obj.PageNumber);
-                        sqlCommand.Parameters.AddWithValue("bookCover", obj.BookCover);
+                        sqlCommand.Parameters.AddWithValue("imagePath", obj.ImagePath);
                         sqlCommand.Parameters.AddWithValue("price", obj.Price);
                         sqlCommand.Parameters.AddWithValue("weight", obj.Weight);
                         sqlCommand.Parameters.AddWithValue("length", obj.Length);

@@ -49,7 +49,7 @@ namespace AnyReadOnline.DAL
 
             if (sqlDataReader["PublishHouseID"] != DBNull.Value)
             {
-                publishHouse.PublishHouseID = int.Parse(sqlDataReader["PublishHouseID"].ToString());
+                publishHouse.PublishHouseID = (int)sqlDataReader["PublishHouseID"];
             }
             if (sqlDataReader["PublishHouse"] != DBNull.Value)
             {

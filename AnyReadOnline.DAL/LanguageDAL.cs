@@ -43,15 +43,15 @@ namespace AnyReadOnline.DAL
                 return -1;
             }
         }
-
+        
         public Language ConvertToObject(SqlDataReader sqlDataReader)
         {
             language = new Language();
 
             if (sqlDataReader["LanguageID"] != DBNull.Value)
             {
-                language.LanguageID = int.Parse(sqlDataReader["LanguageID"].ToString());
-            }
+                language.LanguageID = (int)sqlDataReader["LanguageID"];
+            } 
             if (sqlDataReader["Language"] != DBNull.Value)
             {
                 language.LanguageName = sqlDataReader["Language"].ToString();
@@ -85,7 +85,7 @@ namespace AnyReadOnline.DAL
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteGenre", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteLanguage", CommandType.StoredProcedure))
                     {
                         sqlCommand.Parameters.AddWithValue("LanguageID", id);
 
@@ -145,7 +145,7 @@ namespace AnyReadOnline.DAL
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAllGenre", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAllLanguage", CommandType.StoredProcedure))
                     {
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel;
 using System.Web;
 
 namespace AnyReadOnline.BOL
@@ -12,7 +13,8 @@ namespace AnyReadOnline.BOL
         public int AuthorID { get; set; }
         public string  FirstName { get; set; }
         public string LastName { get ; set; }
-        public string ImagePath { get; set; }
+        public  string ImagePath { get; set; }
+
         public HttpPostedFileBase ImageFile { get; set; }
     }
 }

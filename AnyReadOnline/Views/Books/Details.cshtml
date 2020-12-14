@@ -140,11 +140,12 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BookCover)
+            @Html.DisplayNameFor(model => model.ImagePath)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BookCover)
+            @*@Html.DisplayFor(model => model.BookCover)*@
+            <img src="@Url.Content(Model.ImagePath)" width="350" height="350" />
         </dd>
 
         <dt>

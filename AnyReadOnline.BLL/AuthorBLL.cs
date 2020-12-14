@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using AnyReadOnline.BOL;
 using AnyReadOnline.BOL.Interfaces;
 using AnyReadOnline.DAL;
+using System.IO;
+using System.Web;
 
 namespace AnyReadOnline.BLL
 {
@@ -36,6 +38,18 @@ namespace AnyReadOnline.BLL
         public int Update(Author obj)
         {
             return authorDAL.Update(obj);
+        }
+
+        public string AuthorImagePath(Author author)
+        {
+            string fileName = Path.GetFileNameWithoutExtension(author.ImageFile.FileName);
+            string extension = Path.GetExtension(author.ImageFile.FileName);
+            fileName += DateTime.Now.ToString("yymmssfff") + extension;
+            author.ImagePath = "~/Content/img/" + fileName;
+            fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/img/"), fileName);
+            author.ImageFile.SaveAs(fileName);
+
+            return author.ImagePath;
         }
 
         public List<Author> GetTop4EarliestAuthors()

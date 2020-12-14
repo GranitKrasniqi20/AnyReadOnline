@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AnyReadOnline.BOL.Interfaces;
+using System.ComponentModel;
+using System.Web;
 
 namespace AnyReadOnline.BOL
 {
     public class Book : Audit
     {
+        public Book()
+        {
+            Genre = new Genre();
+            Language = new Language();
+            PublishHouse = new PublishHouse();
+            Author = new Author();
+        }
+
         public int BookID { get; set; }
         public int GenreID { get; set; }
         public Genre Genre { get; set; }
@@ -24,20 +34,16 @@ namespace AnyReadOnline.BOL
         public string ISBN { get; set; }
         public int Quantity { get; set; }
         public int PageNumber { get; set; }
-        public string BookCover { get; set; }
+
+        [DisplayName("Upload File")]
+        public string ImagePath { get; set; }
+
         public decimal Price { get; set; }
         public decimal Weight { get; set; }
         public decimal Length { get; set; }
         public decimal Width { get; set; }
         public decimal Height { get; set; }
 
-
-        public Book()
-        {
-            Genre = new Genre();
-            Language = new Language();
-            PublishHouse = new PublishHouse();
-            Author = new Author();
-        }
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }
