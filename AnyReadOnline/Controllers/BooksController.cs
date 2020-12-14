@@ -12,10 +12,10 @@ namespace AnyReadOnline.Controllers
     public class BooksController : Controller
     {
         private readonly BookBLL bookBLL = new BookBLL();
-        AuthorBLL authorBLL = new AuthorBLL();
-        GenreBLL genreBLL = new GenreBLL();
-        PublishHouseBLL publishHouseBLL = new PublishHouseBLL();
-        LanguageBLL languageBLL = new LanguageBLL();
+        private readonly AuthorBLL authorBLL = new AuthorBLL();
+        private readonly GenreBLL genreBLL = new GenreBLL();
+        private readonly PublishHouseBLL publishHouseBLL = new PublishHouseBLL();
+        private readonly LanguageBLL languageBLL = new LanguageBLL();
 
         // GET: Books
         public ActionResult Index()
@@ -47,14 +47,7 @@ namespace AnyReadOnline.Controllers
             try
             {
                 bookBLL.AddForeignKeys(book);
-
-                /*string fileName = Path.GetFileNameWithoutExtension(image.ImageFile.FileName);
-                string extension = Path.GetExtension(image.ImageFile.FileName);
-                fileName += DateTime.Now.ToString("yymmssfff") + extension;
-                image.ImagePath = "~/Image/" + fileName;
-                fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
-                image.ImageFile.SaveAs(fileName);*/
-
+                book.BookCover = bookBLL.BookCoverPath(book);
                 if (bookBLL.Add(book) > 0)
                 {
                     return RedirectToAction("Index");
@@ -75,6 +68,8 @@ namespace AnyReadOnline.Controllers
             ViewBag.PublishHouses = publishHouseBLL.GetAll();
             ViewBag.Authors = authorBLL.GetAll();
 
+            ViewBag.MyBook = bookBLL.Get(id);
+
             return View(bookBLL.Get(id));
         }
 
@@ -88,42 +83,6 @@ namespace AnyReadOnline.Controllers
 
                 bookBLL.UpdateForeignKeys(GetItem, book);
 
-               /* foreach (var item in genreBLL.GetAll())
-                {
-                    if (item.GenreID == book.Genre.GenreID)
-                    {
-                        GetItem.GenreID = item.GenreID;
-                        break;
-                    }
-                }
-
-                foreach (var item in languageBLL.GetAll())
-                {
-                    if (item.LanguageID == book.Language.LanguageID)
-                    {
-                        GetItem.LanguageID = item.LanguageID;
-                        break;
-                    }
-                }
-
-                foreach (var item in publishHouseBLL.GetAll())
-                {
-                    if (item.PublishHouseID == book.PublishHouse.PublishHouseID)
-                    {
-                        GetItem.PublishHouseID = item.PublishHouseID;
-                        break;
-                    }
-                }
-
-                foreach (var item in authorBLL.GetAll())
-                {
-                    if (item.AuthorID == book.Author.AuthorID)
-                    {
-                        GetItem.AuthorID = item.AuthorID;
-                        break;
-                    }
-                }*/
-
                 GetItem.Title = book.Title;
                 GetItem.Description = book.Description;
                 GetItem.PublishYear = book.PublishYear;
@@ -131,7 +90,7 @@ namespace AnyReadOnline.Controllers
                 GetItem.ISBN = book.ISBN;
                 GetItem.Quantity = book.Quantity;
                 GetItem.PageNumber = book.PageNumber;
-                GetItem.BookCover = book.BookCover;
+                GetItem.BookCover = bookBLL.BookCoverPath(book);
                 GetItem.Price = book.Price;
                 GetItem.Weight = book.Weight;
                 GetItem.Length = book.Length;
@@ -162,8 +121,6 @@ namespace AnyReadOnline.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
                 if (bookBLL.Delete(id) > 0)
                 {
                     return RedirectToAction("Index");

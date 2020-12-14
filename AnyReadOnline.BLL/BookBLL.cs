@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using AnyReadOnline.BOL;
 using AnyReadOnline.BOL.Interfaces;
 using AnyReadOnline.DAL;
+using System.Web.Mvc;
+using System.IO;
+using System.Web;
 
 namespace AnyReadOnline.BLL
 {
@@ -13,10 +16,10 @@ namespace AnyReadOnline.BLL
     {
         private readonly BookDAL bookDAL = new BookDAL();
 
-        AuthorDAL authorDAL = new AuthorDAL();
-        GenreDAL genreDAL = new GenreDAL();
-        PublishHouseDAL publishHouseDAL = new PublishHouseDAL();
-        LanguageDAL languageDAL = new LanguageDAL();
+        private readonly AuthorDAL authorDAL = new AuthorDAL();
+        private readonly GenreDAL genreDAL = new GenreDAL();
+        private readonly PublishHouseDAL publishHouseDAL = new PublishHouseDAL();
+        private readonly LanguageDAL languageDAL = new LanguageDAL();
 
         public int Add(Book obj)
         {
@@ -119,6 +122,18 @@ namespace AnyReadOnline.BLL
                     break;
                 }
             }
+        }
+
+        public string BookCoverPath(Book book)
+        {
+            string fileName = Path.GetFileNameWithoutExtension(book.ImageFile.FileName);
+            string extension = Path.GetExtension(book.ImageFile.FileName);
+            fileName += DateTime.Now.ToString("yymmssfff") + extension;
+            book.BookCover = "~/Image/" + fileName;
+            fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Image/"), fileName);
+            book.ImageFile.SaveAs(fileName);
+
+            return book.BookCover;
         }
     }
 }

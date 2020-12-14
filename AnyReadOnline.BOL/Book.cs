@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AnyReadOnline.BOL.Interfaces;
 using System.ComponentModel;
-using System.Web.Mvc;
+using System.Web;
 
 namespace AnyReadOnline.BOL
 {
@@ -43,5 +43,7 @@ namespace AnyReadOnline.BOL
         public decimal Length { get; set; }
         public decimal Width { get; set; }
         public decimal Height { get; set; }
+
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }
