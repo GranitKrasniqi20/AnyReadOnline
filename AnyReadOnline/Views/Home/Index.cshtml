@@ -1,5 +1,6 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
 }
 
 <!-- MAIN -->
@@ -101,38 +102,17 @@
                 </div>
             </div>
             <div class="row my-3">
+                @foreach (AnyReadOnline.BOL.Book item in ViewBag.myEarlyBooks)
+                {
                 <div class="col">
                     <div class="custom-image-container">
-                        <img src="~/Content/img/bio_leonardo_davinci.jpg" width="253" />
-                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Leonardo Da Vinci</a></h4>
-                        <p class="text-muted">Walter Isaacson</p>
-                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
+                        <img src="@Url.Content(item.BookCover)" width="253" />
+                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">@item.Title</a></h4>
+                        <p class="text-muted">@string.Format(item.Author.FirstName + " " + item.Author.LastName)</p>
+                        <h4 class="text-danger font-weight-bold my-book-price">€@item.Price</h4>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="custom-image-container">
-                        <img src="~/Content/img/cs_understanding_crypto.jpg" width="253" />
-                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Understanding Crypt...</a></h4>
-                        <p class="text-muted">Christof Paar / Jan Pelzl</p>
-                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="custom-image-container">
-                        <img src="~/Content/img/fic_tess_road.jpg" width="253" />
-                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Tess of the Road</a></h4>
-                        <p class="text-muted">Rachel Hartman</p>
-                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="custom-image-container">
-                        <img src="~/Content/img/sd_48_laws_power.jpg" width="253" />
-                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">The 48 Laws of Power</a></h4>
-                        <p class="text-muted">Robert Greene</p>
-                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
-                    </div>
-                </div>
+                }    
             </div>
         </section>
         <!-- Newest Releases Section -->
@@ -146,38 +126,18 @@
                 </div>
             </div>
             <div class="row my-3">
-                <div class="col">
-                    <div class="custom-image-container">
-                        <img src="~/Content/img/bio_steve_jobs.jpg" width="253" />
-                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Steve Jobs</a></h4>
-                        <p class="text-muted">Walter Isaacson</p>
-                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
+                @foreach (AnyReadOnline.BOL.Book item in ViewBag.myLateBooks)
+                {
+                    <div class="col">
+                        <div class="custom-image-container">
+                            <img src="@Url.Content(item.BookCover)" width="253" />
+                            <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">@item.Title</a></h4>
+                            <p class="text-muted">@string.Format(item.Author.FirstName + " " + item.Author.LastName)</p>
+                            <h4 class="text-danger font-weight-bold my-book-price">€@item.Price</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="custom-image-container">
-                        <img src="~/Content/img/fic_embodied_hope.jpg" width="253" />
-                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Embodied Hope</a></h4>
-                        <p class="text-muted">Kelly M. Kapic</p>
-                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="custom-image-container">
-                        <img src="~/Content/img/fic_ice_and_fire.jpg" width="253" />
-                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Ice and Fire</a></h4>
-                        <p class="text-muted">George R. R. Martin</p>
-                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="custom-image-container">
-                        <img src="~/Content/img/sd_art_of_public_speaking.jpg" width="253" />
-                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">The Art of Public Spe...</a></h4>
-                        <p class="text-muted">Dale Carnegie</p>
-                        <h4 class="text-danger font-weight-bold my-book-price">€30</h4>
-                    </div>
-                </div>
+                }
+                
             </div>
         </section>
         <!-- Favorite Authors Section -->
@@ -191,31 +151,17 @@
                 </div>
             </div>
             <div class="row my-3">
-                <div class="col">
-                    <div class="custom-image-container">
-                        <img src="~/Content/img/dale_carnegie.jpg" width="253" />
-                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Dale Carnegie</a></h4>
+                @foreach (AnyReadOnline.BOL.Author item in ViewBag.myEarlyAuthors)
+                {
+                    <div class="col">
+                        <div class="custom-image-container">
+                            <img src="@Url.Content(item.ImagePath)" width="253" />
+                            <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">@string.Format(item.FirstName + " " + item.LastName)</a></h4>
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="custom-image-container">
-                        <img src="~/Content/img/george_rr_martin.jpg" width="253" />
-                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">George R. R. Martin</a></h4>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="custom-image-container">
-                        <img src="~/Content/img/kelly_kapic.jpg" width="253" />
-                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Kelly M. Kapic</a></h4>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="custom-image-container">
-                        <img src="~/Content/img/walter_isaacson.jpg" width="253" />
-                        <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">Walter Isaacson</a></h4>
-                    </div>
-                </div>
+                }
             </div>
         </section>
     </div>
 </main>
+

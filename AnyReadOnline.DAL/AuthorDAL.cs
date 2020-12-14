@@ -24,6 +24,7 @@ namespace AnyReadOnline.DAL
                     {
                         sqlCommand.Parameters.AddWithValue("firstName", obj.FirstName);
                         sqlCommand.Parameters.AddWithValue("lastName", obj.LastName);
+                        sqlCommand.Parameters.AddWithValue("imagePath", obj.ImagePath);
                         sqlCommand.Parameters.AddWithValue("insBy", 1);// obj.InsBy);//Dergojme 1 derisa te krijojme User
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
@@ -52,9 +53,17 @@ namespace AnyReadOnline.DAL
             {
                 author.AuthorID = int.Parse(sqlDataReader["AuthorID"].ToString());
             }
-            if (sqlDataReader["FirstName"] != DBNull.Value)
+            if (sqlDataReader["Name"] != DBNull.Value)
             {
-                author.FirstName = sqlDataReader["FirstName"].ToString();
+                author.FirstName = sqlDataReader["Name"].ToString();
+            }
+            if (sqlDataReader["LastName"] != DBNull.Value)
+            {
+                author.LastName = sqlDataReader["LastName"].ToString();
+            }
+            if (sqlDataReader["ImagePath"] != DBNull.Value)
+            {
+                author.ImagePath = sqlDataReader["ImagePath"].ToString();
             }
             if (sqlDataReader["InsBy"] != DBNull.Value)
             {
@@ -182,6 +191,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("authorID", obj.AuthorID);
                         sqlCommand.Parameters.AddWithValue("firstName", obj.FirstName);
                         sqlCommand.Parameters.AddWithValue("lastName", obj.LastName);
+                        sqlCommand.Parameters.AddWithValue("imagePath", obj.ImagePath);
                         sqlCommand.Parameters.AddWithValue("updBy", 1);//obj.UpdBy);//Dergojme 1 derisa te krijojme User
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
@@ -199,6 +209,74 @@ namespace AnyReadOnline.DAL
             {
                 MessageBox.Show(e.Message);
                 return -1;
+            }
+        }
+
+        public List<Author> GetTop4EarliestAuthors()
+        {
+            List<Author> topAuthors = new List<Author>();
+
+            try
+            {
+                using (SqlConnection sqlConnection = DbHelper.GetConnection())
+                {
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetTop4EarliestAuthors", CommandType.StoredProcedure))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.HasRows)
+                            {
+                                while (sqlDataReader.Read())
+                                {
+                                    if (ConvertToObject(sqlDataReader) == null)
+                                    {
+                                        throw new Exception();
+                                    }
+                                    topAuthors.Add(ConvertToObject(sqlDataReader));
+                                }
+                            }
+                            return topAuthors;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public List<Author> GetTop4LatestAuthors()
+        {
+            List<Author> topAuthors = new List<Author>();
+
+            try
+            {
+                using (SqlConnection sqlConnection = DbHelper.GetConnection())
+                {
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetTop4LatestAuthors", CommandType.StoredProcedure))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.HasRows)
+                            {
+                                while (sqlDataReader.Read())
+                                {
+                                    if (ConvertToObject(sqlDataReader) == null)
+                                    {
+                                        throw new Exception();
+                                    }
+                                    topAuthors.Add(ConvertToObject(sqlDataReader));
+                                }
+                            }
+                            return topAuthors;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception();
             }
         }
     }

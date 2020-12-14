@@ -37,5 +37,15 @@ namespace AnyReadOnline.BLL
         {
             return authorDAL.Update(obj);
         }
+
+        public List<Author> GetTop4EarliestAuthors()
+        {
+            return authorDAL.GetTop4EarliestAuthors();
+        }
+
+        public List<Author> GetTop4LatestAuthors()
+        {
+            return authorDAL.GetTop4LatestAuthors();
+        }
     }
 }

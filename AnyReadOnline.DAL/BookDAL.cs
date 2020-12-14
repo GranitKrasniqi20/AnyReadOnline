@@ -304,5 +304,71 @@ namespace AnyReadOnline.DAL
                 return -1;
             }
         }
+
+        public List<Book> GetTop4EarliestBooks()
+        {
+            List<Book> topBooks = new List<Book>();
+            try
+            {
+                using (SqlConnection sqlConnection = DbHelper.GetConnection())
+                {
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetTop4EarliestBooks", CommandType.StoredProcedure))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.HasRows)
+                            {
+                                while (sqlDataReader.Read())
+                                {
+                                    if (ConvertToObject(sqlDataReader) == null)
+                                    {
+                                        throw new Exception();
+                                    }
+                                    topBooks.Add(ConvertToObject(sqlDataReader));
+                                }
+                            }
+                            return topBooks;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public List<Book> GetTop4LatestBooks()
+        {
+            List<Book> topBooks = new List<Book>();
+            try
+            {
+                using (SqlConnection sqlConnection = DbHelper.GetConnection())
+                {
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetTop4LatestBooks", CommandType.StoredProcedure))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.HasRows)
+                            {
+                                while (sqlDataReader.Read())
+                                {
+                                    if (ConvertToObject(sqlDataReader) == null)
+                                    {
+                                        throw new Exception();
+                                    }
+                                    topBooks.Add(ConvertToObject(sqlDataReader));
+                                }
+                            }
+                            return topBooks;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
     }
 }

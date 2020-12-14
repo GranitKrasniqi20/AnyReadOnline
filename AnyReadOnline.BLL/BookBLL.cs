@@ -37,5 +37,15 @@ namespace AnyReadOnline.BLL
         {
             return bookDAL.Update(obj);
         }
+
+        public List<Book> GetTop4EarliestBooks()
+        {
+            return bookDAL.GetTop4EarliestBooks();
+        }
+
+        public List<Book> GetTop4LatestBooks()
+        {
+            return bookDAL.GetTop4LatestBooks();
+        }
     }
 }
