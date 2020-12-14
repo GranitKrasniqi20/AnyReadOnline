@@ -76,6 +76,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DbScript\15.12.sql" />
     <Content Include="DbScript\script-5Dhjetor2020.sql" />
     <Content Include="DbScript\scripta-11Dhjetor.sql" />
   </ItemGroup>

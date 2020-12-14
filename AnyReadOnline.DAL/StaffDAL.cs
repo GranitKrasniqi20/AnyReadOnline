@@ -30,6 +30,11 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("Email", obj.Email);
                         sqlCommand.Parameters.AddWithValue("InsBy", 1);
                         sqlCommand.Parameters.AddWithValue("RoleId", obj.Role.RoleID);
+                        sqlCommand.Parameters.AddWithValue("CountryId", obj.Country.CountryID);
+                        sqlCommand.Parameters.AddWithValue("Address", obj.Address);
+                        sqlCommand.Parameters.AddWithValue("City", obj.City);
+                        sqlCommand.Parameters.AddWithValue("PostalCode", obj.PostalCode);
+                        sqlCommand.Parameters.AddWithValue("PhoneNumber", obj.PhoneNumber);
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {

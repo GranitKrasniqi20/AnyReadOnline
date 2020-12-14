@@ -12,10 +12,12 @@ namespace AnyReadOnline.BOL
         public int AddressID { get; set; }
         public int ClientID { get; set; }
         public virtual Client Client { get; set; }
-        public int CountryID { get; set; }
+
         public virtual Country Country { get; set; }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public int CountryID { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string City { get; set; }
