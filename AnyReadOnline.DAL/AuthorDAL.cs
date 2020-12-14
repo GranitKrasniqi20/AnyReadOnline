@@ -211,5 +211,73 @@ namespace AnyReadOnline.DAL
                 return -1;
             }
         }
+
+        public List<Author> GetTop4EarliestAuthors()
+        {
+            List<Author> topAuthors = new List<Author>();
+
+            try
+            {
+                using (SqlConnection sqlConnection = DbHelper.GetConnection())
+                {
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetTop4EarliestAuthors", CommandType.StoredProcedure))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.HasRows)
+                            {
+                                while (sqlDataReader.Read())
+                                {
+                                    if (ConvertToObject(sqlDataReader) == null)
+                                    {
+                                        throw new Exception();
+                                    }
+                                    topAuthors.Add(ConvertToObject(sqlDataReader));
+                                }
+                            }
+                            return topAuthors;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public List<Author> GetTop4LatestAuthors()
+        {
+            List<Author> topAuthors = new List<Author>();
+
+            try
+            {
+                using (SqlConnection sqlConnection = DbHelper.GetConnection())
+                {
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetTop4LatestAuthors", CommandType.StoredProcedure))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.HasRows)
+                            {
+                                while (sqlDataReader.Read())
+                                {
+                                    if (ConvertToObject(sqlDataReader) == null)
+                                    {
+                                        throw new Exception();
+                                    }
+                                    topAuthors.Add(ConvertToObject(sqlDataReader));
+                                }
+                            }
+                            return topAuthors;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
     }
 }

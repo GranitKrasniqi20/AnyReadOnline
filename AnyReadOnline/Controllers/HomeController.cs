@@ -4,13 +4,33 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AnyReadOnline.BOL;
+using AnyReadOnline.BLL;
 
 namespace AnyReadOnline.Controllers
 {
     public class HomeController : Controller
     {
+        BookBLL bookBLL;
+        AuthorBLL authorBLL;
+
+        [HttpGet]
         public ActionResult Index()
         {
+            bookBLL = new BookBLL();
+            authorBLL = new AuthorBLL();
+            List<Book> top4EarliestBooks = new List<Book>();
+            List<Book> top4LatestBooks = new List<Book>();
+            List<Author> top4EarliestAuthors = new List<Author>();
+            
+
+            top4EarliestBooks = bookBLL.GetTop4EarliestBooks();
+            top4LatestBooks = bookBLL.GetTop4LatestBooks();
+            top4EarliestAuthors = authorBLL.GetTop4EarliestAuthors();
+
+            ViewBag.myEarlyBooks = top4EarliestBooks;
+            ViewBag.myLateBooks = top4LatestBooks;
+            ViewBag.myEarlyAuthors = top4EarliestAuthors;
+
             return View();
         }
         public ActionResult Test()
@@ -29,6 +49,11 @@ namespace AnyReadOnline.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Searching(string text)
+        {
             return View();
         }
     }

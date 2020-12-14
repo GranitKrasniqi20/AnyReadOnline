@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <!-- Required meta tags -->
@@ -43,8 +42,11 @@
         <nav id="lowerNav" class="navbar navbar-light">
             <div class="container">
                 <div class="col">
-                    <form class="form-group my-auto">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <form asp-controller="..." asp-action="..." class="form-group my-auto">
+                        @using (Html.BeginForm("Searching", "Home"))
+                        {
+                            <input class="form-control" name="text" type="search" placeholder="Search" aria-label="Search">
+                        }  
                     </form>
                 </div>
                 <div class="col">

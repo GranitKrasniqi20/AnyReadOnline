@@ -135,5 +135,15 @@ namespace AnyReadOnline.BLL
 
             return book.ImagePath;
         }
+
+        public List<Book> GetTop4EarliestBooks()
+        {
+            return bookDAL.GetTop4EarliestBooks();
+        }
+
+        public List<Book> GetTop4LatestBooks()
+        {
+            return bookDAL.GetTop4LatestBooks();
+        }
     }
 }

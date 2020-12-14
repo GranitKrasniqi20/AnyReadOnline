@@ -28,6 +28,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("LastName", obj.LastName);
                         sqlCommand.Parameters.AddWithValue("Email", obj.Email);
                         sqlCommand.Parameters.AddWithValue("Gender", obj.Gender);
+                        sqlCommand.Parameters.AddWithValue("PhoneNumber", obj.PhoneNo);
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -59,7 +60,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("lastname", obj.LastName);
                         sqlCommand.Parameters.AddWithValue("email", obj.Email);
                         sqlCommand.Parameters.AddWithValue("gender", obj.Gender);
-                        sqlCommand.Parameters.AddWithValue("updby", 1);
+                        sqlCommand.Parameters.AddWithValue("PhoneNumber", obj.PhoneNo);
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -215,22 +216,22 @@ namespace AnyReadOnline.DAL
             {
                 client.LastName = sqlDataReader["LastName"].ToString();
             }
-            if (sqlDataReader["Gender"] != DBNull.Value)
-            {
-                client.Gender = (Gender)int.Parse(sqlDataReader["Gender"].ToString());
-            }
             if (sqlDataReader["Email"] != DBNull.Value)
             {
                 client.Email = sqlDataReader["Email"].ToString();
                 client.ConfirmEmail = sqlDataReader["Email"].ToString();
             }
+            if (sqlDataReader["Gender"] != DBNull.Value)
+            {
+                client.Gender = (Gender)int.Parse(sqlDataReader["Gender"].ToString());
+            }
+            if (sqlDataReader["PhoneNo"] != DBNull.Value)
+            {
+                client.PhoneNo = sqlDataReader["PhoneNo"].ToString();
+            }
             if (sqlDataReader["InsDate"] != DBNull.Value)
             {
                 client.InsDate = (DateTime)sqlDataReader["InsDate"];
-            }
-            if (sqlDataReader["UpdBy"] != DBNull.Value)
-            {
-                client.UpdBy = (int)sqlDataReader["UpdBy"];
             }
             if (sqlDataReader["UpdDate"] != DBNull.Value)
             {
