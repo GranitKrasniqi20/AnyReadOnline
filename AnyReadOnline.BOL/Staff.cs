@@ -10,10 +10,5 @@ namespace AnyReadOnline.BOL
     {
         public string UserName { get; set; }
         public virtual Role Role { get; set; }
-        public Country Country { get; set; }
-        public int CountryID { get; set; }
-        public string Address{ get; set; }
-        public string City { get; set; }
-        public string PostalCode { get; set; }
     }
 }
