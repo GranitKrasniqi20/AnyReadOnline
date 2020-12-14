@@ -37,7 +37,7 @@ namespace AnyReadOnline.Controllers
         {
             try
             {
-                author.ImagePath = authorBLL.AuthorCoverPath(author);
+                author.ImagePath = authorBLL.AuthorImagePath(author);
 
                 if (authorBLL.Add(author) > 0)
                 {
@@ -68,7 +68,7 @@ namespace AnyReadOnline.Controllers
                 var GetItem = authorBLL.Get(id);
                 GetItem.FirstName = author.FirstName;
                 GetItem.LastName = author.LastName;
-                GetItem.ImagePath = authorBLL.AuthorCoverPath(author);
+                GetItem.ImagePath = authorBLL.AuthorImagePath(author);
 
                 if (authorBLL.Update(GetItem) > 0)
                 {

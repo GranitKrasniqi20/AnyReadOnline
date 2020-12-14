@@ -124,7 +124,7 @@ namespace AnyReadOnline.BLL
             }
         }
 
-        public string BookCoverPath(Book book)
+        public string BookImagePath(Book book)
         {
             string fileName = Path.GetFileNameWithoutExtension(book.ImageFile.FileName);
             string extension = Path.GetExtension(book.ImageFile.FileName);

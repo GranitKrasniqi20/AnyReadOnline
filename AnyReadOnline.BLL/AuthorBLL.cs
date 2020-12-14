@@ -40,7 +40,7 @@ namespace AnyReadOnline.BLL
             return authorDAL.Update(obj);
         }
 
-        public string AuthorCoverPath(Author author)
+        public string AuthorImagePath(Author author)
         {
             string fileName = Path.GetFileNameWithoutExtension(author.ImageFile.FileName);
             string extension = Path.GetExtension(author.ImageFile.FileName);
