@@ -15,7 +15,7 @@ namespace AnyReadOnline.DAL
         public static string ConnectionStringName()
         {
             string pathGranit = "PC-GRANIT";
-            string pathBeis = "";
+            string pathBeis = "BEISPRESHEV9DEA";
             string pathEndrit = "DESKTOP-CMMTF7M";
 
             if (string.Equals(Environment.MachineName, pathGranit))

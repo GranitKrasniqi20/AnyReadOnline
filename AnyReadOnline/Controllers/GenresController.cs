@@ -37,8 +37,6 @@ namespace AnyReadOnline.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-
                 if (genreBLL.Add(genre) > 0)
                 {
                     return RedirectToAction("Index");
@@ -63,12 +61,10 @@ namespace AnyReadOnline.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                /* var GetItem = genreBLL.Get(id);
+                 GetItem.GenreName = genre.GenreName;*/
 
-                var GetItem = genreBLL.Get(id);
-                GetItem.GenreName = genre.GenreName;
-
-                if (genreBLL.Update(GetItem) > 0)
+                if (genreBLL.Update(genreBLL.UpdateObj(id, genre)) > 0)
                 {
                     return RedirectToAction("Index");
                 }

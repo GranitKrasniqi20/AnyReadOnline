@@ -33,7 +33,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("iSBN", obj.ISBN);
                         sqlCommand.Parameters.AddWithValue("quantity", obj.Quantity);
                         sqlCommand.Parameters.AddWithValue("pageNumber", obj.PageNumber);
-                        sqlCommand.Parameters.AddWithValue("bookCover", obj.BookCover);
+                        sqlCommand.Parameters.AddWithValue("imagePath", obj.ImagePath);
                         sqlCommand.Parameters.AddWithValue("price", obj.Price);
                         sqlCommand.Parameters.AddWithValue("weight", obj.Weight);
                         sqlCommand.Parameters.AddWithValue("length", obj.Length);
@@ -98,7 +98,7 @@ namespace AnyReadOnline.DAL
             }
             if (sqlDataReader["Description"] != DBNull.Value)
             {
-                book.Title = (string)sqlDataReader["Description"];
+                book.Description = (string)sqlDataReader["Description"];
             }
             if (sqlDataReader["Year"] != DBNull.Value)
             {
@@ -120,29 +120,29 @@ namespace AnyReadOnline.DAL
             {
                 book.PageNumber = (int)sqlDataReader["PageNo"];
             }
-            if (sqlDataReader["BookCover"] != DBNull.Value)
+            if (sqlDataReader["ImagePath"] != DBNull.Value)
             {
-                book.BookID = (int)sqlDataReader["BookCover"];
+                book.ImagePath = (string)sqlDataReader["ImagePath"];
             }
             if (sqlDataReader["Price"] != DBNull.Value)
             {
-                book.Price = (double)sqlDataReader["Price"];
+                book.Price = (decimal)sqlDataReader["Price"];
             }
             if (sqlDataReader["Weight"] != DBNull.Value)
             {
-                book.Weight = (double)sqlDataReader["Weight"];
+                book.Weight = (decimal)sqlDataReader["Weight"];
             }
             if (sqlDataReader["Length"] != DBNull.Value)
             {
-                book.Length = (double)sqlDataReader["Length"];
+                book.Length = (decimal)sqlDataReader["Length"];
             }
             if (sqlDataReader["Width"] != DBNull.Value)
             {
-                book.Width = (double)sqlDataReader["Width"];
+                book.Width = (decimal)sqlDataReader["Width"];
             }
             if (sqlDataReader["Height"] != DBNull.Value)
             {
-                book.Height = (double)sqlDataReader["Height"];
+                book.Height = (decimal)sqlDataReader["Height"];
             }
             if (sqlDataReader["InsBy"] != DBNull.Value)
             {
@@ -175,7 +175,7 @@ namespace AnyReadOnline.DAL
                 {
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteBook", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("BookID", id);
+                        sqlCommand.Parameters.AddWithValue("bookID", id);
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -203,7 +203,7 @@ namespace AnyReadOnline.DAL
                 {
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetByIDBook", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("BookID", id);
+                        sqlCommand.Parameters.AddWithValue("bookID", id);
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
                             if (sqlDataReader.Read())
@@ -265,9 +265,10 @@ namespace AnyReadOnline.DAL
             {
                 using (var sqlConnection = DbHelper.GetConnection())
                 {
-                    using (var sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_UpdateBoook", CommandType.StoredProcedure))
+                    using (var sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_UpdateBook", CommandType.StoredProcedure))
                     {
                         sqlCommand.Parameters.AddWithValue("bookID", obj.BookID);
+                        sqlCommand.Parameters.AddWithValue("genreID", obj.GenreID);
                         sqlCommand.Parameters.AddWithValue("languageID", obj.LanguageID);
                         sqlCommand.Parameters.AddWithValue("publishHouseID", obj.PublishHouseID);
                         sqlCommand.Parameters.AddWithValue("authorID", obj.AuthorID);
@@ -278,7 +279,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("iSBN", obj.ISBN);
                         sqlCommand.Parameters.AddWithValue("quantity", obj.Quantity);
                         sqlCommand.Parameters.AddWithValue("pageNumber", obj.PageNumber);
-                        sqlCommand.Parameters.AddWithValue("bookCover", obj.BookCover);
+                        sqlCommand.Parameters.AddWithValue("imagePath", obj.ImagePath);
                         sqlCommand.Parameters.AddWithValue("price", obj.Price);
                         sqlCommand.Parameters.AddWithValue("weight", obj.Weight);
                         sqlCommand.Parameters.AddWithValue("length", obj.Length);
@@ -301,6 +302,72 @@ namespace AnyReadOnline.DAL
             {
                 MessageBox.Show(e.Message);
                 return -1;
+            }
+        }
+
+        public List<Book> GetTop4EarliestBooks()
+        {
+            List<Book> topBooks = new List<Book>();
+            try
+            {
+                using (SqlConnection sqlConnection = DbHelper.GetConnection())
+                {
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetTop4EarliestBooks", CommandType.StoredProcedure))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.HasRows)
+                            {
+                                while (sqlDataReader.Read())
+                                {
+                                    if (ConvertToObject(sqlDataReader) == null)
+                                    {
+                                        throw new Exception();
+                                    }
+                                    topBooks.Add(ConvertToObject(sqlDataReader));
+                                }
+                            }
+                            return topBooks;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public List<Book> GetTop4LatestBooks()
+        {
+            List<Book> topBooks = new List<Book>();
+            try
+            {
+                using (SqlConnection sqlConnection = DbHelper.GetConnection())
+                {
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetTop4LatestBooks", CommandType.StoredProcedure))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.HasRows)
+                            {
+                                while (sqlDataReader.Read())
+                                {
+                                    if (ConvertToObject(sqlDataReader) == null)
+                                    {
+                                        throw new Exception();
+                                    }
+                                    topBooks.Add(ConvertToObject(sqlDataReader));
+                                }
+                            }
+                            return topBooks;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception();
             }
         }
     }

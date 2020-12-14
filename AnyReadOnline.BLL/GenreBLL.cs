@@ -9,7 +9,7 @@ using AnyReadOnline.DAL;
 
 namespace AnyReadOnline.BLL
 {
-    public class GenreBLL : ICrud<Genre>
+    public class GenreBLL 
     {
         private readonly GenreDAL genreDAL = new GenreDAL();
 
@@ -36,6 +36,15 @@ namespace AnyReadOnline.BLL
         public int Update(Genre obj)
         {
             return genreDAL.Update(obj);
+        }
+
+        public Genre UpdateObj(int id, Genre obj)
+        {
+            var GetItem = Get(id);
+
+            GetItem.GenreName = obj.GenreName;
+
+            return GetItem;
         }
     }
 }
