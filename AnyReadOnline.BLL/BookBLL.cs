@@ -129,11 +129,11 @@ namespace AnyReadOnline.BLL
             string fileName = Path.GetFileNameWithoutExtension(book.ImageFile.FileName);
             string extension = Path.GetExtension(book.ImageFile.FileName);
             fileName += DateTime.Now.ToString("yymmssfff") + extension;
-            book.BookCover = "~/Image/" + fileName;
-            fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Image/"), fileName);
+            book.ImagePath = "~/Content/img/" + fileName;
+            fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/img/"), fileName);
             book.ImageFile.SaveAs(fileName);
 
-            return book.BookCover;
+            return book.ImagePath;
         }
     }
 }

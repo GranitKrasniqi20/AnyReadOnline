@@ -36,7 +36,7 @@ namespace AnyReadOnline.BOL
         public int PageNumber { get; set; }
 
         [DisplayName("Upload File")]
-        public string BookCover { get; set; }
+        public string ImagePath { get; set; }
 
         public decimal Price { get; set; }
         public decimal Weight { get; set; }

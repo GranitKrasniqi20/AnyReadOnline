@@ -47,7 +47,7 @@ namespace AnyReadOnline.Controllers
             try
             {
                 bookBLL.AddForeignKeys(book);
-                book.BookCover = bookBLL.BookCoverPath(book);
+                book.ImagePath = bookBLL.BookCoverPath(book);
                 if (bookBLL.Add(book) > 0)
                 {
                     return RedirectToAction("Index");
@@ -90,7 +90,7 @@ namespace AnyReadOnline.Controllers
                 GetItem.ISBN = book.ISBN;
                 GetItem.Quantity = book.Quantity;
                 GetItem.PageNumber = book.PageNumber;
-                GetItem.BookCover = bookBLL.BookCoverPath(book);
+                GetItem.ImagePath = bookBLL.BookCoverPath(book);
                 GetItem.Price = book.Price;
                 GetItem.Weight = book.Weight;
                 GetItem.Length = book.Length;
