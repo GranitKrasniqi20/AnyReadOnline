@@ -100,155 +100,31 @@
 
                     <hr />
 
-                    <div class="row p-3">
-                        <div class="col-3">
-                            <img src="img/bio_steve_jobs.jpg" class="search-image-size" />
-                        </div>
-                        <div class="col-7">
-                            <h4><a href="#" class="black-text text-decoration-none">Steve Jobs</a></h4>
-                            <p class="text-muted font-weight-bold">Walter Isaacson</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo dapibus nibh ut convallis. Vivamus vitae quam ipsum. Cras sit amet neque ut dolor suscipit finibus.</p>
-                            <h4 class="text-danger">€30</h4>
-                        </div>
-                        <div class="col-2">
-                            <div class="search-cart-btn-height d-flex align-items-center">
-                                <a href="#" class="orange-text bigger-text-1"><i class="fas fa-shopping-bag"></i></a>
+                    @foreach (var item in Model)
+                    {
+                        <div class="row p-3">
+                            <div class="col-3">
+                                <img src="@Url.Content(item.ImagePath)" class="search-image-size" />
+                            </div>
+                            <div class="col-7">
+                                <h4><a href="@Url.Action("Details", "Books", new { id=item.BookID })" class="black-text text-decoration-none">@item.Title</a></h4>
+                                <p class="text-muted font-weight-bold">@string.Format(item.Author.FirstName + " " + item.Author.LastName)</p>
+                                <p>@item.Description</p>
+                                <h4 class="text-danger">€@item.Price</h4>
+                            </div>
+                            <div class="col-2">
+                                <div class="search-cart-btn-height d-flex align-items-center">
+                                    <a href="#" class="orange-text bigger-text-1"><i class="fas fa-shopping-bag"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <hr />
+                        <hr />
+                    }
 
-                    <div class="row p-3">
-                        <div class="col-3">
-                            <img src="img/bio_leonardo_davinci.jpg" class="search-image-size" />
-                        </div>
-                        <div class="col-7">
-                            <h4><a href="#" class="black-text text-decoration-none">Leonardo Da Vinci</a></h4>
-                            <p class="text-muted font-weight-bold">Walter Isaacson</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo dapibus nibh ut convallis. Vivamus vitae quam ipsum. Cras sit amet neque ut dolor suscipit finibus.</p>
-                            <h4 class="text-danger">€30</h4>
-                        </div>
-                        <div class="col-2">
-                            <div class="search-cart-btn-height d-flex align-items-center">
-                                <a href="#" class="orange-text bigger-text-1"><i class="fas fa-shopping-bag"></i></a>
-                            </div>
-                        </div>
-                    </div>
 
-                    <hr />
 
-                    <div class="row p-3">
-                        <div class="col-3">
-                            <img src="img/bio_mamba_mentality.jpg" class="search-image-size" />
-                        </div>
-                        <div class="col-7">
-                            <h4><a href="#" class="black-text text-decoration-none">Mamba Mentality</a></h4>
-                            <p class="text-muted font-weight-bold">Kobe Bryant</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo dapibus nibh ut convallis. Vivamus vitae quam ipsum. Cras sit amet neque ut dolor suscipit finibus.</p>
-                            <h4 class="text-danger">€30</h4>
-                        </div>
-                        <div class="col-2">
-                            <div class="search-cart-btn-height d-flex align-items-center">
-                                <a href="#" class="orange-text bigger-text-1"><i class="fas fa-shopping-bag"></i></a>
-                            </div>
-                        </div>
-                    </div>
 
-                    <hr />
-
-                    <div class="row p-3">
-                        <div class="col-3">
-                            <img src="img/fic_lotr_1.jpg" class="search-image-size" />
-                        </div>
-                        <div class="col-7">
-                            <h4><a href="#" class="black-text text-decoration-none">Lord of the Rings</a></h4>
-                            <p class="text-muted font-weight-bold">George Tolkien</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo dapibus nibh ut convallis. Vivamus vitae quam ipsum. Cras sit amet neque ut dolor suscipit finibus.</p>
-                            <h4 class="text-danger">€30</h4>
-                        </div>
-                        <div class="col-2">
-                            <div class="search-cart-btn-height d-flex align-items-center">
-                                <a href="#" class="orange-text bigger-text-1"><i class="fas fa-shopping-bag"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr />
-
-                    <div class="row p-3">
-                        <div class="col-3">
-                            <img src="img/fic_embodied_hope.jpg" class="search-image-size" />
-                        </div>
-                        <div class="col-7">
-                            <h4><a href="#" class="black-text text-decoration-none">Embodied Hope</a></h4>
-                            <p class="text-muted font-weight-bold">Kelly M. Kapic</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo dapibus nibh ut convallis. Vivamus vitae quam ipsum. Cras sit amet neque ut dolor suscipit finibus.</p>
-                            <h4 class="text-danger">€30</h4>
-                        </div>
-                        <div class="col-2">
-                            <div class="search-cart-btn-height d-flex align-items-center">
-                                <a href="#" class="orange-text bigger-text-1"><i class="fas fa-shopping-bag"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr />
-
-                    <div class="row p-3">
-                        <div class="col-3">
-                            <img src="img/bio_napoleon_bonaparta.jpg" class="search-image-size" />
-                        </div>
-                        <div class="col-7">
-                            <h4><a href="#" class="black-text text-decoration-none">Citizen Emperor: Napoleon at Power</a></h4>
-                            <p class="text-muted font-weight-bold">Philip Dwyer</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo dapibus nibh ut convallis. Vivamus vitae quam ipsum. Cras sit amet neque ut dolor suscipit finibus.</p>
-                            <h4 class="text-danger">€30</h4>
-                        </div>
-                        <div class="col-2">
-                            <div class="search-cart-btn-height d-flex align-items-center">
-                                <a href="#" class="orange-text bigger-text-1"><i class="fas fa-shopping-bag"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr />
-
-                    <div class="row p-3">
-                        <div class="col-3">
-                            <img src="img/bio_obama.jpg" class="search-image-size" />
-                        </div>
-                        <div class="col-7">
-                            <h4><a href="#" class="black-text text-decoration-none">A Promised Land</a></h4>
-                            <p class="text-muted font-weight-bold">Walter Isaacson</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo dapibus nibh ut convallis. Vivamus vitae quam ipsum. Cras sit amet neque ut dolor suscipit finibus.</p>
-                            <h4 class="text-danger">€30</h4>
-                        </div>
-                        <div class="col-2">
-                            <div class="search-cart-btn-height d-flex align-items-center">
-                                <a href="#" class="orange-text bigger-text-1"><i class="fas fa-shopping-bag"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr />
-
-                    <div class="row p-3">
-                        <div class="col-3">
-                            <img src="img/sd_48_laws_power.jpg" class="search-image-size" />
-                        </div>
-                        <div class="col-7">
-                            <h4><a href="#" class="black-text text-decoration-none">The 48 Laws of Power</a></h4>
-                            <p class="text-muted font-weight-bold">Robert Greene</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo dapibus nibh ut convallis. Vivamus vitae quam ipsum. Cras sit amet neque ut dolor suscipit finibus.</p>
-                            <h4 class="text-danger">€30</h4>
-                        </div>
-                        <div class="col-2">
-                            <div class="search-cart-btn-height d-flex align-items-center">
-                                <a href="#" class="orange-text bigger-text-1"><i class="fas fa-shopping-bag"></i></a>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row p-3">
                         <nav aria-label="...">
                             <ul class="pagination">
@@ -275,7 +151,6 @@
         </div>
     </section>
 </main>
-
 
 
 <h2>Searching</h2>
@@ -357,7 +232,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.InsBy)
+            @Html.DisplayFor(modelItem => item.ImagePath)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.InsDate)
