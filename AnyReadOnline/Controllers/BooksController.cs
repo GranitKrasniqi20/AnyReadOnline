@@ -68,7 +68,10 @@ namespace AnyReadOnline.Controllers
             ViewBag.PublishHouses = publishHouseBLL.GetAll();
             ViewBag.Authors = authorBLL.GetAll();
 
-            ViewBag.MyBook = bookBLL.Get(id);
+            ViewBag.MyGenre = bookBLL.Get(id).GenreID;
+            ViewBag.MyPublishHouse = bookBLL.Get(id).PublishHouseID;
+            ViewBag.MyLanguage = bookBLL.Get(id).LanguageID;
+            ViewBag.MyAuthor = bookBLL.Get(id).AuthorID;
 
             return View(bookBLL.Get(id));
         }

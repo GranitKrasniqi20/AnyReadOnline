@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AnyReadOnline.DAL
 {
@@ -30,12 +31,12 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("Email", obj.Email);
                         sqlCommand.Parameters.AddWithValue("InsBy", 1);
                         sqlCommand.Parameters.AddWithValue("RoleId", obj.Role.RoleID);
-                        sqlCommand.Parameters.AddWithValue("CountryId", obj.Country.CountryID);
+                        sqlCommand.Parameters.AddWithValue("CountryId", obj.CountryID);
                         sqlCommand.Parameters.AddWithValue("Address", obj.Address);
-                        sqlCommand.Parameters.AddWithValue("City", obj.City);
                         sqlCommand.Parameters.AddWithValue("PostalCode", obj.PostalCode);
-                        sqlCommand.Parameters.AddWithValue("PhoneNumber", obj.PhoneNumber);
+                        sqlCommand.Parameters.AddWithValue("City", obj.City);
 
+                        sqlCommand.Parameters.AddWithValue("PhoneNumber", obj.PhoneNumber);
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
                             return 1;
@@ -47,10 +48,11 @@ namespace AnyReadOnline.DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (SqlException ex)
             {
 
-                throw new Exception();
+                MessageBox.Show(ex.Message);
+                return 0;
             }
         }
 
