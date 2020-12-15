@@ -32,7 +32,7 @@
 
                 @foreach (AnyReadOnline.BOL.Genre item in ViewBag.Genres)
                 {
-                    if (item.GenreID == ViewBag.MyBook.GenreID)
+                    if (item.GenreID == ViewBag.MyGenre)
                     {
                         <option value="@item.GenreID" selected>@item.GenreName</option>
                     }
@@ -58,7 +58,14 @@
             <select class="form-control" name="Language.LanguageID">
                 @foreach (AnyReadOnline.BOL.Language item in ViewBag.Languages)
                 {
-                    <option value="@item.LanguageID">@item.LanguageName</option>
+                    if (item.LanguageID == ViewBag.MyLanguage)
+                    {
+                        <option value="@item.LanguageID" selected>@item.LanguageName</option>
+                    }
+                    else
+                    {
+                        <option value="@item.LanguageID">@item.LanguageName</option>
+                    }
                 }
             </select>
         </div>
@@ -76,7 +83,15 @@
             <select class="form-control" name="PublishHouse.PublishHouseID">
                 @foreach (AnyReadOnline.BOL.PublishHouse item in ViewBag.PublishHouses)
                 {
-                    <option value="@item.PublishHouseID">@item.PublishHouseName</option>
+                    if (item.PublishHouseID == ViewBag.MyPublishHouse)
+                    {
+                        <option value="@item.PublishHouseID" selected>@item.PublishHouseName</option>
+                    }
+                    else
+                    {
+                        <option value="@item.PublishHouseID">@item.PublishHouseName</option>
+                    }
+
                 }
             </select>
         </div>
@@ -94,7 +109,15 @@
             <select class="form-control" name="Author.AuthorID">
                 @foreach (AnyReadOnline.BOL.Author item in ViewBag.Authors)
                 {
-                    <option value="@item.AuthorID">@string.Format(item.FirstName + " " + item.LastName)</option>
+                    if (item.AuthorID == ViewBag.MyAuthor)
+                    {
+                        <option value="@item.AuthorID" selected>@string.Format(item.FirstName + " " + item.LastName)</option>
+                    }
+                    else
+                    {
+                        <option value="@item.AuthorID">@string.Format(item.FirstName + " " + item.LastName)</option>
+                    }
+
                 }
             </select>
         </div>

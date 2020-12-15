@@ -24,7 +24,7 @@ namespace AnyReadOnline.DAL
                     {
                         sqlCommand.Parameters.AddWithValue("firstName", obj.FirstName);
                         sqlCommand.Parameters.AddWithValue("lastName", obj.LastName);
-                        sqlCommand.Parameters.AddWithValue("imagePath", obj.ImagePath);
+                        sqlCommand.Parameters.AddWithValue("authorImagePath", obj.ImagePath);
                         sqlCommand.Parameters.AddWithValue("insBy", 1);// obj.InsBy);//Dergojme 1 derisa te krijojme User
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
@@ -61,9 +61,9 @@ namespace AnyReadOnline.DAL
             {
                 author.LastName = sqlDataReader["LastName"].ToString();
             }
-            if (sqlDataReader["ImagePath"] != DBNull.Value)
+            if (sqlDataReader["AuthorImagePath"] != DBNull.Value)
             {
-                author.ImagePath = sqlDataReader["ImagePath"].ToString();
+                author.ImagePath = sqlDataReader["AuthorImagePath"].ToString();
             }
             if (sqlDataReader["InsBy"] != DBNull.Value)
             {
@@ -191,7 +191,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("authorID", obj.AuthorID);
                         sqlCommand.Parameters.AddWithValue("firstName", obj.FirstName);
                         sqlCommand.Parameters.AddWithValue("lastName", obj.LastName);
-                        sqlCommand.Parameters.AddWithValue("imagePath", obj.ImagePath);
+                        sqlCommand.Parameters.AddWithValue("authorImagePath", obj.ImagePath);
                         sqlCommand.Parameters.AddWithValue("updBy", 1);//obj.UpdBy);//Dergojme 1 derisa te krijojme User
 
                         if (sqlCommand.ExecuteNonQuery() > 0)

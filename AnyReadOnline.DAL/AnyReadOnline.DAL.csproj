@@ -116,13 +116,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DbScript\15.12.2020.sql" />
-    <Content Include="DbScript\script-5Dhjetor2020.sql" />
-    <Content Include="DbScript\scripta-11Dhjetor.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DbScript\ScriptaFundit-15Dhjetor.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Grpc.Core.2.34.0\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.2.34.0\build\net45\Grpc.Core.targets')" />
