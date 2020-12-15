@@ -319,7 +319,7 @@ namespace AnyReadOnline.DAL
                         {
                             if (sqlDataReader.HasRows)
                             {
-                                while (sqlDataReader.Read())
+                                while (sqlDataReader.Read()) 
                                 {
                                     if (ConvertToObject(sqlDataReader) == null)
                                     {
