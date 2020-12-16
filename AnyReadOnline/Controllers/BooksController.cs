@@ -18,7 +18,7 @@ namespace AnyReadOnline.Controllers
         private readonly LanguageBLL languageBLL = new LanguageBLL();
 
         // GET: Books
-        [Authorize(Roles = "SuperAdmin,Admin")]
+       /* [Authorize(Roles = "SuperAdmin,Admin")]*/
         public ActionResult Index()
         {
             return View(bookBLL.GetAll());
@@ -49,7 +49,7 @@ namespace AnyReadOnline.Controllers
 
 
         // GET: Books/Create
-        [Authorize(Roles = "SuperAdmin,Admin")]
+        /*[Authorize(Roles = "SuperAdmin,Admin")]*/
         public ActionResult Create()
         {
             ViewBag.Genres = genreBLL.GetAll();
@@ -62,7 +62,7 @@ namespace AnyReadOnline.Controllers
 
         // POST: Books/Create
         [HttpPost]
-        [Authorize(Roles = "SuperAdmin,Admin")]
+        /*[Authorize(Roles = "SuperAdmin,Admin")]*/
         public ActionResult Create(Book book, HttpPostedFileBase imageFile)
         {
             try
@@ -84,7 +84,7 @@ namespace AnyReadOnline.Controllers
 
 
         // GET: Books/Edit/5
-        [Authorize(Roles = "SuperAdmin,Admin")]
+        /*[Authorize(Roles = "SuperAdmin,Admin")]*/
         public ActionResult Edit(int id)
         {
             ViewBag.Genres = genreBLL.GetAll();
@@ -102,7 +102,7 @@ namespace AnyReadOnline.Controllers
 
         // POST: Books/Edit/5
         [HttpPost]
-        [Authorize(Roles = "SuperAdmin,Admin")]
+      /*  [Authorize(Roles = "SuperAdmin,Admin")]*/
         public ActionResult Edit(int id, Book book, HttpPostedFileBase imageFile)
         {
             try
@@ -120,15 +120,15 @@ namespace AnyReadOnline.Controllers
         }
 
         // GET: Books/Delete/5
-        [Authorize(Roles = "SuperAdmin,Admin")]
-        public ActionResult Delete(int id)
+        /*[Authorize(Roles = "SuperAdmin,Admin")]*/
+       public ActionResult Delete(int id)
         {
             return View(bookBLL.Get(id));
         }
 
         // POST: Books/Delete/5
         [HttpPost]
-        [Authorize(Roles = "SuperAdmin,Admin")]
+       /* [Authorize(Roles = "SuperAdmin,Admin")]*/
         public ActionResult Delete(int id, Book book)
         {
             try
