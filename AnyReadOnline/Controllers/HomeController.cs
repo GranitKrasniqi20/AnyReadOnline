@@ -8,10 +8,13 @@ using AnyReadOnline.BLL;
 
 namespace AnyReadOnline.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         BookBLL bookBLL;
         AuthorBLL authorBLL;
+
+
 
         [HttpGet]
         public ActionResult Index()

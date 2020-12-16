@@ -15,9 +15,13 @@ namespace AnyReadOnline.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        List<Role> roles;
         public AdminsController()
         {
+
+            roles = new List<Role>();
+            roles.Add(new Role { RoleID = 2, RoleName = "Admin" });
+            roles.Add(new Role { RoleID = 3, RoleName = "SuperAdmin" });
         }
 
         public AdminsController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -52,7 +56,7 @@ namespace AnyReadOnline.Controllers
         // GET: Admins
 
 
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Index()
         {
             List<DataPoint> dataPoints = new List<DataPoint>();
@@ -85,10 +89,7 @@ namespace AnyReadOnline.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(AdminLoginViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -106,18 +107,16 @@ namespace AnyReadOnline.Controllers
                     return View(model);
             }
         }
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult Register()
         {
             CountryBLL countryBll = new CountryBLL();
-            List<Country> countries = new List<Country>();
-            countries.Add(new Country { CountryID = 1, CountryName = "Albania" });
-            countries.Add(new Country { CountryID = 2, CountryName = "Kosovo" });
-            countries.Add(new Country { CountryID = 3, CountryName = "Germany" });
+            List<Country> countries = countryBll.GetAll();
 
-            List<Role> roles = new List<Role>();
 
-            roles.Add(new Role { RoleID = 1, RoleName = "Admin" });
-            roles.Add(new Role { RoleID = 1, RoleName = "Super Admin" });
+
+
+
 
 
             ViewBag.roles = new SelectList(roles, "RoleID", "RoleName");
@@ -126,9 +125,14 @@ namespace AnyReadOnline.Controllers
 
         }
 
+        string GetRole(int id)
+        {
+            return roles.Where(x => x.RoleID == id).FirstOrDefault().RoleName;
+        }
 
 
         // POST: Client/Create
+        [Authorize(Roles = "SuperAdmin")]
         [HttpPost]
         public async Task<ActionResult> Register(Staff staff)
         {
@@ -146,12 +150,22 @@ namespace AnyReadOnline.Controllers
 
                 var user = new ApplicationUser { UserName = staff.UserName, Email = staff.Email };
                 var result = await UserManager.CreateAsync(user, staff.Password);
+                string uid = user.Id;
+
                 if (result.Succeeded)
                 {
                     StaffBLL clientbll = new StaffBLL();
 
                     if (clientbll.Add(staff) == 1)
                     {
+                        if (staff.RoleId == 2)
+                        {
+                            await UserManager.AddToRoleAsync(uid, "Admin");
+                        }
+                        else if (staff.RoleId == 3)
+                        {
+                            await UserManager.AddToRoleAsync(uid, "SuperAdmin");
+                        }
                         return RedirectToAction("Index", "Admins");
                     }
                     else
@@ -166,7 +180,13 @@ namespace AnyReadOnline.Controllers
             }
             catch
             {
-                return View();
+
+                CountryBLL countryBll = new CountryBLL();
+                List<Country> countries = countryBll.GetAll();
+                ViewBag.roles = new SelectList(roles, "RoleID", "RoleName");
+                ViewBag.Countries = new SelectList(countries, "CountryID", "CountryName");
+
+                return View(new Staff());
             }
         }
     }

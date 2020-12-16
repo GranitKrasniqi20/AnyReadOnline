@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace AnyReadOnline.Controllers
 {
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class PublishHousesController : Controller
     {
         private readonly PublishHouseBLL publishHouseBLL = new PublishHouseBLL();

@@ -14,11 +14,12 @@ namespace AnyReadOnline.Controllers
         private readonly AuthorBLL authorBLL = new AuthorBLL();
 
         // GET: Authors
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Index()
         {
             return View(authorBLL.GetAll());
         }
-
+        [Authorize(Roles = "SuperAdmin,Admin")]
         // GET: Authors/Details/5
         public ActionResult Details(int id)
         {
@@ -26,6 +27,7 @@ namespace AnyReadOnline.Controllers
         }
 
         // GET: Authors/Create
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Create()
         {
             return View();
@@ -33,6 +35,7 @@ namespace AnyReadOnline.Controllers
 
         // POST: Authors/Create
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Create(Author author)
         {
             try
@@ -52,6 +55,7 @@ namespace AnyReadOnline.Controllers
         }
 
         // GET: Authors/Edit/5
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Edit(int id)
         {
             return View(authorBLL.Get(id));
@@ -59,6 +63,7 @@ namespace AnyReadOnline.Controllers
 
         // POST: Authors/Edit/5
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Edit(int id, Author author)
         {
             try
@@ -83,6 +88,7 @@ namespace AnyReadOnline.Controllers
         }
 
         // GET: Authors/Delete/5
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Delete(int id)
         {
             return View(authorBLL.Get(id));
@@ -90,6 +96,7 @@ namespace AnyReadOnline.Controllers
 
         // POST: Authors/Delete/5
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Delete(int id, Author author)
         {
             try
