@@ -157,8 +157,14 @@ namespace AnyReadOnline.Controllers
                         return View(model);
                 }
             }
+            return View(model);
         }
 
+
+        public ActionResult NotFound()
+        {
+            return View();
+        }
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
