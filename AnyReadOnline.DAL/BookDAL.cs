@@ -336,7 +336,7 @@ namespace AnyReadOnline.DAL
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
-                return topBooks;
+                return null;
             }
         }
 
@@ -410,7 +410,7 @@ namespace AnyReadOnline.DAL
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
-                return topBooks;
+                return null;
             }
         }
     }
