@@ -9,8 +9,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet"/>
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/fontawesome-free-5.15.1-web/css/all.css" rel="stylesheet">
+
+
+    <!-- Jquery DataTables-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -27,7 +31,7 @@
         <!-- Sidebar -->
         <div class="bg-light border-right text-light bg-dark " style="width:20vw;" id="sidebar-wrapper">
 
-            <nav class="navbar navbar-expand-lg  navbar-dark bg-primary" >
+            <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
 
                 <button class="btn btn-primary" id="menu-toggle">
                     <i class="fas fa-2x fa-bars"></i>
@@ -36,11 +40,11 @@
             <div class="bg-dark " style="height:100vh;">
                 <div class="list-group list-group-flush">
                     <a href="#" class="list-group-item list-group-item-action text-light bg-dark"><i class="fas fa-2x fa-globe" style="margin-right:0.4em;"></i> Dashboard </a>
-                    <a href="#" class="list-group-item list-group-item-action  text-light bg-dark"><i class="fas fa-2x  fa-file"  style="margin-right:0.4em;"></i> Shortcuts</a>
-                    <a href="#" class="list-group-item list-group-item-action  text-light bg-dark"><i class="fas fa-2x  fa-pen-fancy"  style="margin-right:0.4em;"></i>Overview</a>
-                    <a href="#" class="list-group-item list-group-item-action  text-light bg-dark"><i class="fas fa-2x  fa-book-open"  style="margin-right:0.4em;"></i>Events</a>
-                    <a href="#" class="list-group-item list-group-item-action  text-light bg-dark"><i class="far fa-2x  fa-file-alt"  style="margin-right:0.4em;"></i>Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action  text-light bg-dark"><i class="fas fa-2x   fa-users"  style="margin-right:0.4em;"></i>Status</a>
+                    <a href="#" class="list-group-item list-group-item-action  text-light bg-dark"><i class="fas fa-2x  fa-file" style="margin-right:0.4em;"></i> Shortcuts</a>
+                    <a href="#" class="list-group-item list-group-item-action  text-light bg-dark"><i class="fas fa-2x  fa-pen-fancy" style="margin-right:0.4em;"></i>Overview</a>
+                    <a href="#" class="list-group-item list-group-item-action  text-light bg-dark"><i class="fas fa-2x  fa-book-open" style="margin-right:0.4em;"></i>Events</a>
+                    <a href="#" class="list-group-item list-group-item-action  text-light bg-dark"><i class="far fa-2x  fa-file-alt" style="margin-right:0.4em;"></i>Profile</a>
+                    <a href="#" class="list-group-item list-group-item-action  text-light bg-dark"><i class="fas fa-2x   fa-users" style="margin-right:0.4em;"></i>Status</a>
                 </div>
             </div>
         </div>
@@ -56,7 +60,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                
+
             </nav>
 
             <div class="container-fluid" style="width:80vw;">
@@ -83,10 +87,12 @@
     <footer>
         <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
     </footer>
-    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    <!--Jquery DataTables-->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

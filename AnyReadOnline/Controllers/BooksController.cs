@@ -42,12 +42,13 @@ namespace AnyReadOnline.Controllers
 
         // POST: Books/Create
         [HttpPost]
-        public ActionResult Create(Book book)
+        public ActionResult Create(Book book, HttpPostedFileBase imageFile)
         {
             try
             {
-                bookBLL.AddForeignKeys(book);
-                book.ImagePath = bookBLL.BookImagePath(book);
+                bookBLL.AddDropDownListValues(book);
+                book.ImagePath = bookBLL.BookImagePath(book, imageFile);
+
                 if (bookBLL.Add(book) > 0)
                 {
                     return RedirectToAction("Index");
@@ -59,6 +60,7 @@ namespace AnyReadOnline.Controllers
                 return View(book);
             }
         }
+
 
         // GET: Books/Edit/5
         public ActionResult Edit(int id)
@@ -78,29 +80,11 @@ namespace AnyReadOnline.Controllers
 
         // POST: Books/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Book book)
+        public ActionResult Edit(int id, Book book, HttpPostedFileBase imageFile)
         {
             try
             {
-                var GetItem = bookBLL.Get(id);
-
-                bookBLL.UpdateForeignKeys(GetItem, book);
-
-                GetItem.Title = book.Title;
-                GetItem.Description = book.Description;
-                GetItem.PublishYear = book.PublishYear;
-                GetItem.PublishPlace = book.PublishPlace;
-                GetItem.ISBN = book.ISBN;
-                GetItem.Quantity = book.Quantity;
-                GetItem.PageNumber = book.PageNumber;
-                GetItem.ImagePath = bookBLL.BookImagePath(book);
-                GetItem.Price = book.Price;
-                GetItem.Weight = book.Weight;
-                GetItem.Length = book.Length;
-                GetItem.Width = book.Width;
-                GetItem.Height = book.Height;
-
-                if (bookBLL.Update(GetItem) > 0)
+                if (bookBLL.Update(bookBLL.UpdateObj(id, book, imageFile)) > 0)
                 {
                     return RedirectToAction("Index");
                 }

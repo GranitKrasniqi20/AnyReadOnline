@@ -33,11 +33,11 @@ namespace AnyReadOnline.Controllers
 
         // POST: Authors/Create
         [HttpPost]
-        public ActionResult Create(Author author)
+        public ActionResult Create(Author author, HttpPostedFileBase imageFile)
         {
             try
             {
-                author.ImagePath = authorBLL.AuthorImagePath(author);
+                author.ImagePath = authorBLL.AuthorImagePath(author, imageFile);
 
                 if (authorBLL.Add(author) > 0)
                 {
@@ -59,7 +59,7 @@ namespace AnyReadOnline.Controllers
 
         // POST: Authors/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Author author)
+        public ActionResult Edit(int id, Author author, HttpPostedFileBase imageFile)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace AnyReadOnline.Controllers
                 var GetItem = authorBLL.Get(id);
                 GetItem.FirstName = author.FirstName;
                 GetItem.LastName = author.LastName;
-                GetItem.ImagePath = authorBLL.AuthorImagePath(author);
+                GetItem.ImagePath = authorBLL.AuthorImagePath(author, imageFile);
 
                 if (authorBLL.Update(GetItem) > 0)
                 {

@@ -103,7 +103,7 @@ namespace AnyReadOnline.DAL
             }
             if (sqlDataReader["Year"] != DBNull.Value)
             {
-                book.PublishYear = (DateTime)sqlDataReader["Year"];
+                book.PublishYear = (int)sqlDataReader["Year"];
             }
             if (sqlDataReader["PublishPlace"] != DBNull.Value)
             {
