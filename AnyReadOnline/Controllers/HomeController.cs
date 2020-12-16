@@ -56,9 +56,13 @@ namespace AnyReadOnline.Controllers
             return View();
         }
 
-        public ActionResult Searching(string text, int? page)
+        public ActionResult Searching(string text, string SortDropdown, int? page)
         {
-            if(text == null)
+            
+
+
+
+            if (text == null)
             {
                 text = "";
             }
@@ -76,12 +80,33 @@ namespace AnyReadOnline.Controllers
             searchedBooks = bookBLL.GetAll();
             ViewBag.booksCount = searchedBooks.Count();
 
-
-            return View(searchedBooks.Where(b => b.Genre.GenreName.StartsWith(text) ||
+            
+            if (SortDropdown == "Sort by Latest")
+            {
+                return View(searchedBooks.Where(b => b.Genre.GenreName.StartsWith(text) ||
                                             b.Author.FirstName.StartsWith(text) ||
                                             b.Author.LastName.StartsWith(text) ||
                                             b.Title.StartsWith(text) ||
-                                            text == null).ToList().ToPagedList(page ?? 1,3));
+                                            text == null).ToList().OrderByDescending(b => b.BookID).ToPagedList(page ?? 1, 3));
+            }
+            else
+            {
+                //return View(searchedBooks.Where(b => b.Genre.GenreName.StartsWith(text) ||
+                //                            b.Author.FirstName.StartsWith(text) ||
+                //                            b.Author.LastName.StartsWith(text) ||
+                //                            b.Title.StartsWith(text) ||
+                //                            text == null).ToList().ToPagedList(page ?? 1, 3));
+
+                return View(searchedBooks.Where(b => b.Genre.GenreName.StartsWith(text) ||
+                                            b.Author.FirstName.StartsWith(text) ||
+                                            b.Author.LastName.StartsWith(text) ||
+                                            b.Title.StartsWith(text) ||
+                                            text == null).ToList().OrderByDescending(b => b.BookID).ToPagedList(page ?? 1, 3));
+            }
+            
+
+
+
         }
     }
 }
