@@ -45,7 +45,7 @@ namespace AnyReadOnline.BOL
         public string Description { get; set; }
 
         [Required]
-        [Range(1, 2020, ErrorMessage = "The field PublishYear must be between 1 and actual Year.")]
+        [NumberValidation(ErrorMessage = "The field PublishYear must be between 1 and actual Year.")]
         public int PublishYear { get; set; }
 
         [Required]

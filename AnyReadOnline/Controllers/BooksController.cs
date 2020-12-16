@@ -33,6 +33,12 @@ namespace AnyReadOnline.Controllers
 
 
 
+       /* [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Details(int id, int quantity)
+        {
+            return View(bookBLL.Get(id));
+        }*/
         //[HttpPost]
         //[AllowAnonymous]
         //public ActionResult Details(int id, int quantity)

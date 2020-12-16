@@ -113,6 +113,7 @@
     <Compile Include="Interfaces\IUpdate.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="ManageViewModels.cs" />
+    <Compile Include="NumberValidation.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderDetails.cs" />
     <Compile Include="Payment.cs" />

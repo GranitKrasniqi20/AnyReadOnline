@@ -24,7 +24,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.InsDate)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.UpdBy)
                 </th>
                 <th>
@@ -32,7 +32,7 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.UpdNo)
-                </th>
+                </th>*@
 
                 <th></th>
             </tr>
@@ -46,23 +46,23 @@
                         @Html.DisplayFor(modelItem => item.GenreName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.InsBy)
+                        @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.InsDate).ToString()))
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.InsDate)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UpdBy)
+                   @* <td>
+                        @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.UpdDate).ToString()))
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.UpdDate)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.UpdNo)
-                    </td>
+                    </td>*@
                     <td>
-                        <input type="button" class="btn btn-primary mx-3 lx-5" @* title="..."*@ value="Edit" onclick="location.href='@Url.Action("Edit"@*, "Genres"*@, new { id = item.GenreID })'" />
-                        <input type="button" class="btn btn-secondary mx-3 lx-5" @* title="..."*@ value="Details" onclick="location.href='@Url.Action("Details"@*, "Genres"*@, new { id = item.GenreID })'" />
+                        <input type="button" class="btn btn-secondary mx-3 lx-5" @* title="..."*@ value="Edit" onclick="location.href='@Url.Action("Edit"@*, "Genres"*@, new { id = item.GenreID })'" />
+                        <!--<input type="button" class="btn btn-secondary mx-3 lx-5"--> @* title="..."*@ <!--value="Details" onclick="location.href='@Url.Action("Details"-->@*, "Genres"*@<!--, new { id = item.GenreID })'" />-->
                         <input type="button" class="btn btn-danger mx-3 lx-5" @* title="..."*@ value="Delete" onclick="location.href='@Url.Action("Delete"@*, "Genres"*@, new { id = item.GenreID })'" />
                     </td>
                 </tr>
