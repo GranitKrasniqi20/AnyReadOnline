@@ -62,6 +62,7 @@ namespace AnyReadOnline.Controllers
         [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Index()
         {
+
             List<DataPoint> dataPoints = new List<DataPoint>();
 
             dataPoints.Add(new DataPoint("Albert", 10));
@@ -85,6 +86,8 @@ namespace AnyReadOnline.Controllers
             return View(new AdminLoginViewModel());
         }
 
+
+
         //
         // POST: /Account/Login
         [HttpPost]
@@ -99,20 +102,27 @@ namespace AnyReadOnline.Controllers
 
            string uid= db.Users.Where(x => x.UserName == model.Username).FirstOrDefault().Id;
             var role = UserManager.GetRoles(uid);
-            if (role[0] != "Client")
+            try
             {
-                switch (result)
+                if (role[0] != "Client")
                 {
+                    switch (result)
+                    {
 
-                    case SignInStatus.Success:
-                        return View("Index");
-                    case SignInStatus.LockedOut:
-                        return View("Lockout");
-                    case SignInStatus.Failure:
-                    default:
-                        ModelState.AddModelError("", "Invalid login attempt.");
-                        return View(model);
+                        case SignInStatus.Success:
+                            return View("Index");
+                        case SignInStatus.LockedOut:
+                            return View("Lockout");
+                        case SignInStatus.Failure:
+                        default:
+                            ModelState.AddModelError("", "Invalid login attempt.");
+                            return View(model);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                return View(model);
             }
             return View(model);
 
@@ -124,12 +134,6 @@ namespace AnyReadOnline.Controllers
         {
             CountryBLL countryBll = new CountryBLL();
             List<Country> countries = countryBll.GetAll();
-
-
-
-
-
-
 
             ViewBag.roles = new SelectList(roles, "RoleID", "RoleName");
             ViewBag.Countries = new SelectList(countries, "CountryID", "CountryName");

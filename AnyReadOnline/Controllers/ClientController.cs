@@ -164,6 +164,11 @@ namespace AnyReadOnline.Controllers
         }
 
 
+        public ActionResult NotFound()
+        {
+            return View();
+        }
+
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))

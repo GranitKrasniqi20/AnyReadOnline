@@ -53,72 +53,133 @@
 
                 </div>
 
-
                 <div class="row justify-content-end">
+
+
 
                     <div class="col btnContainer mt-5">
 
+
+
                         <div class=" ProductDetailsBtn d-flex">
+
                             <button class="minusBtn m-1 btn-dark" style="width:2.8em; height:2.5em;">-</button>
+
                             <button class="mainBtn m-1 btn-dark" style="width:2.8em; height:2.5em;">1</button>
+
                             <button class="plusBtn m-1 btn-dark" style="width:2.8em; height:2.5em;">+</button>
+
                         </div>
+
                     </div>
+
+
 
                     <div class="col mt-5">
+
                         <button class="minusBtn text-light m-1 btn-dark" style="width:15em; height:2.5em;">ADD TO CART</button>
 
+
+
                     </div>
+
                 </div>
 
 
                 <script>
+
                     let btn = document.querySelector('.mainBtn');
+
                     let mbtn = document.querySelector('.minusBtn');
+
                     let pbtn = document.querySelector('.plusBtn');
+
+
 
                     btn.addEventListener("click", () => {
 
+
+
                             btn.innerText = 1;
+
                         pbtn.style.display = 'inline-block'
+
                         mbtn.style.display = 'inline-block'
 
+
+
                     })
+
+
 
                     mbtn.addEventListener("click", () => {
 
 
+
+
+
                         if (btn.innerText < 2) {
+
                             mbtn.style.display = 'none'
+
                         }
-                        else {
+
+                       else {
+
                             btn.innerText = btn.innerText - 1;
+
                         }
+
+
+
 
 
                     })
+
+
+
 
 
                     pbtn.addEventListener("click", () => {
 
 
 
+
+
+
+
                         btn.innerText = +(btn.innerText) + +1;
 
 
+
+
+
                         if (btn.innerText > 1) {
+
                             mbtn.style.display = 'inline-block'
+
                         }
 
+
+
                         if (btn.innerText == @Model.Quantity) {
+
                             pbtn.style.display = 'none';
+
                         }
+
+
+
+
+
+
 
 
 
 
 
                     })
+
                 </script>
 
 
