@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
 <head>
@@ -22,49 +22,43 @@
 
 <body style="background-color: #eeeeee; font-weight:bold;">
     <div class="container">
-        <br>
-        <p style="font-size: large;">Add New Book</p><br>
-
+        <br><p style="font-size: large;">Add New Book</p><br>
+        
         @using (Html.BeginForm("Create", "Books", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
+            <!--Table-->
             <div class="table">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <!--Row-->
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label for="Title">Book Title</label>
-                            <input type="text" class="form-control input-sm" name="Book.Title" id="title" placeholder="">
+                            <input type="text" class="form-control input-sm" name="Title" id="title" placeholder="">
                             @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                         </div>
-
-                        @*<div class="form-group">
-                            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
                     </div>
                 </div>
-
+                
+                <!--Row-->
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                            </div>
+                            <label for="Description">Book Description</label>
+                            <textarea class="form-control" name="Description" id="description"></textarea>
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
-
+                
+                <!--Row-->
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label class="control-label col-md-2">Author</label>
+                            <label for="Author">Author</label>
                             <select class="form-control" name="Author.AuthorID">
                                 @foreach (AnyReadOnline.BOL.Author item in ViewBag.Authors)
                                 {
@@ -72,9 +66,9 @@
                                 }
                             </select>
                         </div>
-
+                        
                         <div class="form-group">
-                            <label class="control-label col-md-2">Genre</label>
+                            <label for="Genre">Genre</label>
                             <select class="form-control" name="Genre.GenreID">
                                 @foreach (AnyReadOnline.BOL.Genre item in ViewBag.Genres)
                                 {
@@ -82,47 +76,29 @@
                                 }
                             </select>
                         </div>
-                        @*<div class="form-group">
+                        
+                        <div class="form-group">
                             <label for="PublishPlace">Publish Place</label>
-                            <input type="text" class="form-control" name="publishHouse" id="publishPlace" placeholder="">
-                        </div>*@
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.PublishPlace, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.PublishPlace, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.PublishPlace, "", new { @class = "text-danger" })
-                            </div>
+                            <input type="text" class="form-control" name="PublishPlace" id="publishPlace" placeholder="">
+                            @Html.ValidationMessageFor(model => model.PublishPlace, "", new { @class = "text-danger" })
                         </div>
-                        @*<div class="form-group">
+                        
+                        <div class="form-group">
                             <label for="Quantity">Quantity</label>
-                            <input type="text" class="form-control" name="quantity" id="quantity" placeholder="">
-                        </div>*@
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
-                            </div>
+                            <input type="text" class="form-control" name="Quantity" id="quantity" placeholder="">
+                            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
                         </div>
-                        @*<div class="form-group">
+                        
+                        <div class="form-group">
                             <label for="ISBN">ISBN</label>
-                            <input type="text" class="form-control" name="isbn" id="isbn" placeholder="">
-                        </div>*@
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ISBN, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.ISBN, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
-                            </div>
+                            <input type="text" class="form-control" name="ISBN" id="isbn" placeholder="">
+                            @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
                         </div>
-
                     </div>
+                    
                     <div class="col">
                         <div class="form-group">
-                            <label class="control-label col-md-2">Language</label>
+                            <label for="Language">Language</label>
                             <select class="form-control" name="Language.LanguageID">
                                 @foreach (AnyReadOnline.BOL.Language item in ViewBag.Languages)
                                 {
@@ -130,8 +106,9 @@
                                 }
                             </select>
                         </div>
+                        
                         <div class="form-group">
-                            <label class="control-label col-md-2">PublishHouse</label>
+                            <label for="PublishHouse">PublishHouse</label>
                             <select class="form-control" name="PublishHouse.PublishHouseID">
                                 @foreach (AnyReadOnline.BOL.PublishHouse item in ViewBag.PublishHouses)
                                 {
@@ -139,152 +116,84 @@
                                 }
                             </select>
                         </div>
-                        @*<div class="form-group">
-                            <label for="Year">Publish Year</label>
-                            <input type="text" class="form-control" name="publishYear" id="publishYear" placeholder="">
-                        </div>*@
-
+                        
                         <div class="form-group">
-                            @Html.LabelFor(model => model.PublishYear, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.PublishYear, new { htmlAttributes = new { @class = "datepicker" } })
-                                @Html.ValidationMessageFor(model => model.PublishYear, "", new { @class = "text-danger" })
-                            </div>
+                            <label for="PublishYear">Publish Year</label>
+                            <input type="text" class="form-control" name="PublishYear" id="publishYear" placeholder="">
+                            @Html.ValidationMessageFor(model => model.PublishYear, "", new { @class = "text-danger" })
                         </div>
-                        @*<div class="form-group">
-                            <label for="NumberOfPages">Number of Pages</label>
-                            <input type="text" class="form-control" name="numberOfPages" id="numberOfPages" placeholder="">
-                        </div>*@
-
+                        
                         <div class="form-group">
-                            @Html.LabelFor(model => model.PageNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.PageNumber, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.PageNumber, "", new { @class = "text-danger" })
-                            </div>
+                            <label for="PageNumber">Number of Pages</label>
+                            <input type="text" class="form-control" name="PageNumber" id="numberOfPages" placeholder="">
+                            @Html.ValidationMessageFor(model => model.PageNumber, "", new { @class = "text-danger" })
                         </div>
-
-                        @*<div class="form-group">
+                        
+                        <div class="form-group">
                             <label for="Price">Price</label>
-                            <input type="text" class="form-control" name="price" id="price" placeholder="">
-                        </div>*@
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-                            </div>
+                            <input type="text" class="form-control" name="Price" id="price" placeholder="">
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                         </div>
-
-                        @*<br><button type="submit" class="btn btn-primary btn-lg">Publish Book</button>*@
                     </div>
                 </div>
-
+                
+                <!--Row-->
                 <div class="row">
-
                     <div class="col-6">
-                        @*<div class="form-group">
+                        <div class="form-group">
                             <label for="Weight">Weight</label>
-                            <input type="text" class="form-control input-sm" name="weight" id="weight" placeholder="">
-                        </div>*@
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
-                            </div>
+                            <input type="text" class="form-control input-sm" name="Weight" id="weight" placeholder="">
+                            @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
                         </div>
-
-                        @*<div class="form-group">
+                        
+                        <div class="form-group">
                             <label for="Length">Length</label>
-                            <input type="text" class="form-control input-sm" name="length" id="length" placeholder="">
-                        </div>*@
+                            <input type="text" class="form-control input-sm" name="Length" id="length" placeholder="">
+                            @Html.ValidationMessageFor(model => model.Length, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    
+                    <div class="col-6">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Length, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Length, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Length, "", new { @class = "text-danger" })
-                            </div>
+                            <label for="Width">Width</label>
+                            <input type="text" class="form-control input-sm" name="Width" id="width" placeholder="">
+                            @Html.ValidationMessageFor(model => model.Width, "", new { @class = "text-danger" })
                         </div>
-
-                        @*  <div class="form-group">
-                                <label>Book Cover</label><br>
-                                <span class="border" style="display: inline-block; width: 250px; height: 300px;background-color: #ffffff; text-align: center; color: rgba(0, 0, 0, 0.1);">
-                                    <br><br><br>
-                                    <h1>Cover</h1>
-                                    <h1>Goes</h1>
-                                    <h1>Here</h1>
-                                </span>
-                            </div>
+                        
+                        <div class="form-group">
+                            <label for="Height">Height</label>
+                            <input type="text" class="form-control input-sm" name="Height" id="height" placeholder="">
+                            @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
                         </div>
-                        <div class="col-3">
-                            <div class="form-group">
-                                <br>
-                                <button type="submit" class="btn btn-dark" style="width:250px; margin-top: 10px;">Add Media</button><br><br>
-                                <h6>Dimensions should be:</h6><br>
-                                <h6>1400x2100 or</h6>
-                                <h6>1200x1800 or</h6>
-                                <h6>1000x1600.</h6>
-                            </div>*@
-
+                    </div>
+                </div>
+                
+                <br />
+                <!--Row-->
+                <div class="row">
+                    <div class="col-6">
                         <div class="form-group">
                             <label>Upload Book Cover</label>
-                            @* @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
                                 <input type="file" name="ImageFile" required />
                             </div>
                         </div>
-
-
+                        <br />
+                        <div>
+                            @Html.ActionLink("Go Back", "Index")
+                        </div>
                     </div>
 
                     <div class="col-6">
-
-                        @*<div class="form-group">
-            <label for="width">Width</label>
-            <input type="text" class="form-control input-sm" name="width" id="width" placeholder="">
-        </div>*@
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Width, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Width, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Width, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        @*<div class="form-group">
-            <label for="Height">Height</label>
-            <input type="text" class="form-control input-sm" name="height" id="height" placeholder="">
-        </div>*@
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Height, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Create" class="btn btn-default" />
+                                <input type="submit" value="Publish Book" class="btn btn-primary btn-lg" />
                             </div>
                         </div>
-
-                        @* <br><button type="submit" class="btn btn-primary btn-lg">Publish Book</button>*@
                     </div>
                 </div>
             </div>
-
-
         }
-
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
     </div>
 </body>
 

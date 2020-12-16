@@ -21,7 +21,7 @@ namespace AnyReadOnline.Controllers
             List<Book> top4EarliestBooks = new List<Book>();
             List<Book> top4LatestBooks = new List<Book>();
             List<Author> top4EarliestAuthors = new List<Author>();
-            
+
 
             top4EarliestBooks = bookBLL.GetTop4EarliestBooks();
             top4LatestBooks = bookBLL.GetTop4LatestBooks();
