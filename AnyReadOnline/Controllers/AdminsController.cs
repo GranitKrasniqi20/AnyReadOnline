@@ -1,5 +1,6 @@
 ﻿using AnyReadOnline.BLL;
 using AnyReadOnline.BOL;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Newtonsoft.Json;
 using System;
@@ -86,7 +87,6 @@ namespace AnyReadOnline.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(AdminLoginViewModel model)
         {
 
@@ -94,7 +94,7 @@ namespace AnyReadOnline.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+                switch (result)
             {
 
                 case SignInStatus.Success:
@@ -106,7 +106,10 @@ namespace AnyReadOnline.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+            
         }
+
+
         [Authorize(Roles = "SuperAdmin")]
         public ActionResult Register()
         {
@@ -132,8 +135,8 @@ namespace AnyReadOnline.Controllers
 
 
         // POST: Client/Create
-        [Authorize(Roles = "SuperAdmin")]
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<ActionResult> Register(Staff staff)
         {
 
@@ -176,7 +179,7 @@ namespace AnyReadOnline.Controllers
                 }
 
 
-                return RedirectToAction("Index");
+                return View();
             }
             catch
             {
