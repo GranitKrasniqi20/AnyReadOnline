@@ -10,12 +10,15 @@ using PagedList;
 
 namespace AnyReadOnline.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         BookBLL bookBLL;
         GenreBLL genreBLL;
         LanguageBLL languageBLL;
         AuthorBLL authorBLL;
+
+
 
         [HttpGet]
         public ActionResult Index()

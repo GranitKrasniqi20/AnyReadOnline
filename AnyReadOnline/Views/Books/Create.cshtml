@@ -23,7 +23,7 @@
 <body style="background-color: #eeeeee; font-weight:bold;">
     <div class="container">
         <br><p style="font-size: large;">Add New Book</p><br>
-        
+
         @using (Html.BeginForm("Create", "Books", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
@@ -37,23 +37,23 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="Title">Book Title</label>
-                            <input type="text" class="form-control input-sm" name="Title" id="title" placeholder="">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
-                
+
                 <!--Row-->
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label for="Description">Book Description</label>
-                            <textarea class="form-control" name="Description" id="description"></textarea>
+                            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
-                
+
                 <!--Row-->
                 <div class="row">
                     <div class="col">
@@ -66,7 +66,7 @@
                                 }
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="Genre">Genre</label>
                             <select class="form-control" name="Genre.GenreID">
@@ -76,26 +76,26 @@
                                 }
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="PublishPlace">Publish Place</label>
-                            <input type="text" class="form-control" name="PublishPlace" id="publishPlace" placeholder="">
+                            @Html.EditorFor(model => model.PublishPlace, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.PublishPlace, "", new { @class = "text-danger" })
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="Quantity">Quantity</label>
-                            <input type="text" class="form-control" name="Quantity" id="quantity" placeholder="">
+                            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="ISBN">ISBN</label>
-                            <input type="text" class="form-control" name="ISBN" id="isbn" placeholder="">
+                            @Html.EditorFor(model => model.ISBN, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    
+
                     <div class="col">
                         <div class="form-group">
                             <label for="Language">Language</label>
@@ -106,7 +106,7 @@
                                 }
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="PublishHouse">PublishHouse</label>
                             <select class="form-control" name="PublishHouse.PublishHouseID">
@@ -116,58 +116,58 @@
                                 }
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="PublishYear">Publish Year</label>
-                            <input type="text" class="form-control" name="PublishYear" id="publishYear" placeholder="">
+                            @Html.EditorFor(model => model.PublishYear, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.PublishYear, "", new { @class = "text-danger" })
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="PageNumber">Number of Pages</label>
-                            <input type="text" class="form-control" name="PageNumber" id="numberOfPages" placeholder="">
+                            @Html.EditorFor(model => model.PageNumber, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.PageNumber, "", new { @class = "text-danger" })
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="Price">Price</label>
-                            <input type="text" class="form-control" name="Price" id="price" placeholder="">
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
-                
+
                 <!--Row-->
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="Weight">Weight</label>
-                            <input type="text" class="form-control input-sm" name="Weight" id="weight" placeholder="">
+                            @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="Length">Length</label>
-                            <input type="text" class="form-control input-sm" name="Length" id="length" placeholder="">
+                            @Html.EditorFor(model => model.Length, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Length, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    
+
                     <div class="col-6">
                         <div class="form-group">
                             <label for="Width">Width</label>
-                            <input type="text" class="form-control input-sm" name="Width" id="width" placeholder="">
+                            @Html.EditorFor(model => model.Width, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Width, "", new { @class = "text-danger" })
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="Height">Height</label>
-                            <input type="text" class="form-control input-sm" name="Height" id="height" placeholder="">
+                            @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
-                
+
                 <br />
                 <!--Row-->
                 <div class="row">
@@ -197,39 +197,42 @@
     </div>
 </body>
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
-    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<!--<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 
-    <link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
 
-    <!-- JS includes -->
-    @*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>*@
+<!-- JS includes -->
+<!--@*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>*@-->
 
-    @section scripts{
-        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+@*@section scripts{*@
+    <!--<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
 
-        <script>
-        $(function () {
-            $(".datepicker").datepicker({
-                //dateFormat: "yy-mm-dd",
-                changeMonth: true,
-                changeYear: true,
-                //yearChange: -10:+10,
-                //minDate: new Date(1000, 1, 1),
-                //maxDate: new Date(2030, 1, 1),
-                //showOn: "both",
-                autoClose: true,
-                showOn: "button",
-                buttonImage: '@Url.Content("http://jqueryui.com/resources/demos/datepicker/images/calendar.gif")',
-			    buttonImageOnly: true,
-                buttonText: "Select date",
-                beforeShow: function () {
-                    $(".ui-datepicker").css('text', 50)
-                }
-            });
+    <script>
+    $(function () {
+        $(".datepicker").datepicker({
+            //dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true,
+            //yearChange: -10:+10,
+            //minDate: new Date(1000, 1, 1),
+            //maxDate: new Date(2030, 1, 1),
+            //showOn: "both",
+            autoClose: true,
+            showOn: "button",-->
+@*buttonImage:'@Url.Content("http://jqueryui.com/resources/demos/datepicker/images/calendar.gif")',*@
+@*buttonImageOnly: true,
+            buttonText: "Select date",
+            beforeShow: function () {
+                $(".ui-datepicker").css('text', 50)
+            }
         });
-        </script>
-    }
+    });
+    </script>
+}*@

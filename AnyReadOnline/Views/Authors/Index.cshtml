@@ -1,69 +1,92 @@
 ﻿@model IEnumerable<AnyReadOnline.BOL.Author>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.InsBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InsDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.InsBy)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.InsDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.UpdBy)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.UpdDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.UpdNo)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.FirstName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.LastName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ImagePath)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.AuthorID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.AuthorID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.AuthorID })
-    </td>
-</tr>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-</table>
+<div class="container">
+    <br /><br />
+    <h2>List of Authors</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table id="authorTable" class="display" border="1">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImagePath)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InsBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InsDate)
+                </th>
+               @* <th>
+                    @Html.DisplayNameFor(model => model.UpdBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UpdDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UpdNo)
+                </th>*@
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImagePath)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InsBy)
+                    </td>
+                    <td>
+                        @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.InsDate).ToString()))
+                    </td>
+                   @* <td>
+                        @Html.DisplayFor(modelItem => item.UpdBy)
+                    </td>
+                    <td>
+                        @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.UpdDate).ToString()))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdNo)
+                    </td>*@
+                <td>
+                    <input type="button" class="btn btn-secondary mx-3 lx-5" @* title="..."*@ value="Edit" onclick="location.href='@Url.Action("Edit"@*, "Genres"*@, new { id = item.AuthorID})'" />
+                    <!--<input type="button" class="btn btn-secondary mx-3 lx-5"--> @* title="..."*@ <!--value="Details" onclick="location.href='@@Url.Action("Details"-->@*, "Genres"*@<!--, new { id = item.AuthorID })'" />-->
+                    <input type="button" class="btn btn-danger mx-3 lx-5" @* title="..."*@ value="Delete" onclick="location.href='@Url.Action("Delete"@*, "Genres"*@, new { id = item.AuthorID })'" />
+                </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#authorTable').DataTable();
+        });
+    </script>
+}
+
+

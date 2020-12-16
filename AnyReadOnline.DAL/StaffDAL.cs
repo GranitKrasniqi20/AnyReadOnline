@@ -23,7 +23,7 @@ namespace AnyReadOnline.DAL
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_ClientRegister", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_RegisterUser", CommandType.StoredProcedure))
                     {
                         sqlCommand.Parameters.AddWithValue("Username", obj.UserName);
                         sqlCommand.Parameters.AddWithValue("Name", obj.FirstName);

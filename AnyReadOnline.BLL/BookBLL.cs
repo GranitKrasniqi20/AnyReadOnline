@@ -21,6 +21,11 @@ namespace AnyReadOnline.BLL
         private readonly PublishHouseDAL publishHouseDAL = new PublishHouseDAL();
         private readonly LanguageDAL languageDAL = new LanguageDAL();
 
+
+        public List<SalesMonth> GetSalesMonths()
+        {
+            return bookDAL.GetSalesForMonth();
+        }
         public int Add(Book obj)
         {
             return bookDAL.Add(obj);
@@ -46,7 +51,7 @@ namespace AnyReadOnline.BLL
             return bookDAL.Update(obj);
         }
 
-        public void AddForeignKeys(Book book)
+        public void AddDropDownListValues(Book book)
         {
             foreach (var item in genreDAL.GetAll())
             {
@@ -85,7 +90,7 @@ namespace AnyReadOnline.BLL
             }
         }
 
-        public  void UpdateForeignKeys(Book GetItem, Book book)
+        public  void UpdateDropDownListValues(Book GetItem, Book book)
         {
             foreach (var item in genreDAL.GetAll())
             {
@@ -124,14 +129,37 @@ namespace AnyReadOnline.BLL
             }
         }
 
-        public string BookImagePath(Book book)
+        public Book UpdateObj(int id, Book book, HttpPostedFileBase imageFile)
         {
-            string fileName = Path.GetFileNameWithoutExtension(book.ImageFile.FileName);
-            string extension = Path.GetExtension(book.ImageFile.FileName);
+            var GetItem = Get(id);
+
+            UpdateDropDownListValues(GetItem, book);
+
+            GetItem.Title = book.Title;
+            GetItem.Description = book.Description;
+            GetItem.PublishYear = book.PublishYear;
+            GetItem.PublishPlace = book.PublishPlace;
+            GetItem.ISBN = book.ISBN;
+            GetItem.Quantity = book.Quantity;
+            GetItem.PageNumber = book.PageNumber;
+            GetItem.ImagePath = BookImagePath(book, imageFile);
+            GetItem.Price = book.Price;
+            GetItem.Weight = book.Weight;
+            GetItem.Length = book.Length;
+            GetItem.Width = book.Width;
+            GetItem.Height = book.Height;
+
+            return GetItem;
+        }
+
+        public string BookImagePath(Book book, HttpPostedFileBase imageFile)
+        {
+            string fileName = Path.GetFileNameWithoutExtension(imageFile.FileName);
+            string extension = Path.GetExtension(imageFile.FileName);
             fileName += DateTime.Now.ToString("yymmssfff") + extension;
             book.ImagePath = "~/Content/img/" + fileName;
             fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/img/"), fileName);
-            book.ImageFile.SaveAs(fileName);
+            imageFile.SaveAs(fileName);
 
             return book.ImagePath;
         }
