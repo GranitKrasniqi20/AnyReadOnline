@@ -9,11 +9,39 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet"/>
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/fontawesome-free-5.15.1-web/css/all.css" rel="stylesheet">
+    <link href="~/Content/LineChart.css" rel="stylesheet" />
+    <link href="~/Content/barchart.css" rel="stylesheet" />
+    <link href="~/Content/barchart.css" rel="stylesheet" />
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+
+
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+		text: "Number of Employees under Each Manager"
+	},
+	axisY: {
+		title: "No. of Employees"
+	},
+	data: [{
+		type: "column",
+		dataPoints: @Html.Raw(ViewBag.DataPoints)
+	}]
+});
+chart.render();
+
+}
+</script>
+
 
 </head>
 

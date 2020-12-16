@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+
+    <div class="row mt-3">
+        <div class="col">
+
+        </div>
+
+        <div class="col"></div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <div class="  p-2 bg-danger" style="        width: 15em;
+        border-radius: 0.7em;
+        height: 5em;
+        margin: 0 auto;">
+                <p class="mt-2">
+                    Total Clients
+                </p>
+                <p>
+                    5
+                </p>
+            </div>
+        </div>
+        <div class="col ">
+            <div class=" bg-info  p-2" style="        width: 15em;
+        border-radius: 0.7em;
+        height: 5em;
+        margin: 0 auto;">
+                <p class="mt-2">
+                    Total Clients
+                </p>
+                <p>
+                    5
+                </p>
+            </div>
+        </div>
+        <div class="col ">
+            <div class="bg-primary  p-2 " style="    border-radius:0.7em;  width: 15em; height: 5em; margin: 0 auto;
+">
+                <p>
+                    Total Clients
+                </p>
+                <p>
+                    5
+                </p>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col">
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+            <script src="https://code.highcharts.com/modules/export-data.js"></script>
+            <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+
+            </figure>
+            <script>
+
+                Highcharts.chart('container', {
+                    chart: {
+                        type: 'line'
+                    },
+                    title: {
+                        text: 'Product Sales'
+                    },
+                    subtitle: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    },
+                    yAxis: {
+                        title: {
+                            text: ''
+                        }
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: true
+                        }
+                    },
+                    series: [{
+                        name: 'Tokyo',
+                        data: [7, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                    }]
+                });
+
+            </script>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        </div>
+    </div>
+
+
+</div>

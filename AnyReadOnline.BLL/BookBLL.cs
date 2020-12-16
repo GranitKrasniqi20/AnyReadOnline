@@ -21,6 +21,11 @@ namespace AnyReadOnline.BLL
         private readonly PublishHouseDAL publishHouseDAL = new PublishHouseDAL();
         private readonly LanguageDAL languageDAL = new LanguageDAL();
 
+
+        public List<SalesMonth> GetSalesMonths()
+        {
+            return bookDAL.GetSalesForMonth();
+        }
         public int Add(Book obj)
         {
             return bookDAL.Add(obj);

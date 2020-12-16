@@ -338,6 +338,46 @@ namespace AnyReadOnline.DAL
             }
         }
 
+
+        public List<SalesMonth> GetSalesForMonth()
+        {
+            List<SalesMonth> SalesMonths = new List<SalesMonth>();
+            try
+            {
+                using (SqlConnection sqlConnection = DbHelper.GetConnection())
+                {
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetTop4LatestBooks", CommandType.StoredProcedure))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.HasRows)
+                            {
+                                while (sqlDataReader.Read())
+                                {
+                                    if (ConvertToObject(sqlDataReader) != null)
+                                    {
+                                        if (sqlDataReader["TotalSales"] != DBNull.Value && sqlDataReader["Month"] != DBNull.Value)
+                                        {
+                                            SalesMonth salesmonth = new SalesMonth();
+                                            salesmonth.TotalSales = (int)sqlDataReader["TotalSales"];
+                                             salesmonth.SetMonth((int)sqlDataReader["Month"]);
+                                        }
+
+                                    }
+                                }
+                            }
+                            return SalesMonths;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+   
+
         public List<Book> GetTop4LatestBooks()
         {
             List<Book> topBooks = new List<Book>();

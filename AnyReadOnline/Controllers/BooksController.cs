@@ -24,10 +24,21 @@ namespace AnyReadOnline.Controllers
         }
 
         // GET: Books/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
             return View(bookBLL.Get(id));
         }
+
+
+
+        [HttpPost]
+        public ActionResult Details(int id, int quantity)
+        {
+            return View(bookBLL.Get(id));
+        }
+
+
 
         // GET: Books/Create
         public ActionResult Create()
