@@ -5,12 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using AnyReadOnline.BOL;
 using AnyReadOnline.BLL;
+using PagedList.Mvc;
+using PagedList;
 
 namespace AnyReadOnline.Controllers
 {
     public class HomeController : Controller
     {
         BookBLL bookBLL;
+        GenreBLL genreBLL;
+        LanguageBLL languageBLL;
         AuthorBLL authorBLL;
 
         [HttpGet]
@@ -52,22 +56,32 @@ namespace AnyReadOnline.Controllers
             return View();
         }
 
-        public ActionResult Searching(string text)
+        public ActionResult Searching(string text, int? page)
         {
+            if(text == null)
+            {
+                text = "";
+            }
 
             List<Book> searchedBooks = new List<Book>();
             bookBLL = new BookBLL();
+            genreBLL = new GenreBLL();
+            languageBLL = new LanguageBLL();
+            authorBLL = new AuthorBLL();
 
-            searchedBooks = bookBLL.GetTop4EarliestBooks();
-            
+            ViewBag.myGenres = genreBLL.GetAll();
+            ViewBag.myLanguages = languageBLL.GetAll();
+            ViewBag.myAuthors = authorBLL.GetAll();
 
+            searchedBooks = bookBLL.GetAll();
+            ViewBag.booksCount = searchedBooks.Count();
 
 
             return View(searchedBooks.Where(b => b.Genre.GenreName.StartsWith(text) ||
                                             b.Author.FirstName.StartsWith(text) ||
                                             b.Author.LastName.StartsWith(text) ||
                                             b.Title.StartsWith(text) ||
-                                            text == null).ToList());
+                                            text == null).ToList().ToPagedList(page ?? 1,3));
         }
     }
 }
