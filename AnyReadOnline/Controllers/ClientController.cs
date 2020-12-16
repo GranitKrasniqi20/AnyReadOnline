@@ -52,18 +52,21 @@ namespace AnyReadOnline.Controllers
         }
 
         // GET: Client
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Index()
         {
             return View();
         }
 
         // GET: Client/Details/5
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Client/Create
+        [AllowAnonymous]
         public ActionResult Register()
         {
 
@@ -72,6 +75,7 @@ namespace AnyReadOnline.Controllers
 
         // POST: Client/Create
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult> Register(Client client)
         {
 
@@ -90,6 +94,9 @@ namespace AnyReadOnline.Controllers
                     var result = await UserManager.CreateAsync(user, client.Password);
                     if (result.Succeeded)
                     {
+
+                        ClientBLL clientbll = new ClientBLL();
+                        clientbll.Add(client);
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                         return RedirectToAction("Index", "Home");
@@ -154,12 +161,14 @@ namespace AnyReadOnline.Controllers
 
 
         // GET: Client/Edit/5
+        [Authorize(Roles = "Client")]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
         // POST: Client/Edit/5
+        [Authorize(Roles = "Client")]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -176,6 +185,8 @@ namespace AnyReadOnline.Controllers
         }
 
         // GET: Client/Delete/5
+
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Delete(int id)
         {
             return View();
@@ -183,6 +194,7 @@ namespace AnyReadOnline.Controllers
 
         // POST: Client/Delete/5
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

@@ -2,194 +2,130 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container my-5" style="height:75vh;">
+    <div class="row mt-5">
+        <div class="col mt-5">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block" width="315" height="440" src="@Model.ImagePath" alt="First slide">
+                    </div>
 
-<div>
-    <h4>Book</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.InsBy)
-        </dt>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col mt-5 text-left">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col ProductTitle">
+                        <h1>
+                            @Model.Title
+                        </h1>
 
-        <dd>
-            @Html.DisplayFor(model => model.InsBy)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.InsDate)
-        </dt>
+                        <p>By (author)  @Model.Author.FirstName @Model.Author.LastName</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.InsDate)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdBy)
-        </dt>
+                        <br />
+                        <h4 class="price mt-3">Price: EUR 	&euro;@Model.Price </h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.UpdBy)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdDate)
-        </dt>
+                        <p>Dimension: @Model.Height x @Model.Width x @Model.Length mm | @Model.Weight g</p>
+                        <br />
 
-        <dd>
-            @Html.DisplayFor(model => model.UpdDate)
-        </dd>
+                        <p><b>Publish House: @Model.PublishHouse.PublishHouseName</b></p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdNo)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UpdNo)
-        </dd>
+                        <p class="mt-2">@Model.Description</p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.GenreID)
-        </dt>
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.GenreID)
-        </dd>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LanguageID)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LanguageID)
-        </dd>
+                <div class="row justify-content-end">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PublishHouseID)
-        </dt>
+                    <div class="col btnContainer mt-5">
 
-        <dd>
-            @Html.DisplayFor(model => model.PublishHouseID)
-        </dd>
+                        <div class=" ProductDetailsBtn d-flex">
+                            <button class="minusBtn m-1 btn-dark" style="width:2.8em; height:2.5em;">-</button>
+                            <button class="mainBtn m-1 btn-dark" style="width:2.8em; height:2.5em;">1</button>
+                            <button class="plusBtn m-1 btn-dark" style="width:2.8em; height:2.5em;">+</button>
+                        </div>
+                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorID)
-        </dt>
+                    <div class="col mt-5">
+                        <button class="minusBtn text-light m-1 btn-dark" style="width:15em; height:2.5em;">ADD TO CART</button>
 
-        <dd>
-            @Html.DisplayFor(model => model.AuthorID)
-        </dd>
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                <script>
+                    let btn = document.querySelector('.mainBtn');
+                    let mbtn = document.querySelector('.minusBtn');
+                    let pbtn = document.querySelector('.plusBtn');
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                    btn.addEventListener("click", () => {
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                            btn.innerText = 1;
+                        pbtn.style.display = 'inline-block'
+                        mbtn.style.display = 'inline-block'
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PublishYear)
-        </dt>
+                    })
 
-        <dd>
-            @Html.DisplayFor(model => model.PublishYear)
-        </dd>
+                    mbtn.addEventListener("click", () => {
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PublishPlace)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PublishPlace)
-        </dd>
+                        if (btn.innerText < 2) {
+                            mbtn.style.display = 'none'
+                        }
+                        else {
+                            btn.innerText = btn.innerText - 1;
+                        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ISBN)
-        </dt>
+                      
+                    })
 
-        <dd>
-            @Html.DisplayFor(model => model.ISBN)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
+                    pbtn.addEventListener("click", () => {
 
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PageNumber)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PageNumber)
-        </dd>
+                        btn.innerText = +(btn.innerText) + +1;
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
 
-        <dd>
-            @*@Html.DisplayFor(model => model.BookCover)*@
-            <img src="@Url.Content(Model.ImagePath)" width="350" height="350" />
-        </dd>
+                        if (btn.innerText > 1) {
+                            mbtn.style.display = 'inline-block'
+                        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+                        if (btn.innerText == @Model.Quantity) {
+                            pbtn.style.display = 'none';
+                        }
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Weight)
-        </dt>
+                    
 
-        <dd>
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Length)
-        </dt>
+                    })
+                </script>
 
-        <dd>
-            @Html.DisplayFor(model => model.Length)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Width)
-        </dt>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Width)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Height)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Height)
-        </dd>
-
-    </dl>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
