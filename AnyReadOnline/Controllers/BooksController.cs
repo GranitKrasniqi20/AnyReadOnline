@@ -34,12 +34,12 @@ namespace AnyReadOnline.Controllers
 
 
 
-        [HttpPost]
+       /* [HttpPost]
         [AllowAnonymous]
         public ActionResult Details(int id, int quantity)
         {
             return View(bookBLL.Get(id));
-        }
+        }*/
 
 
 
@@ -57,9 +57,8 @@ namespace AnyReadOnline.Controllers
 
         // POST: Books/Create
         [HttpPost]
-        public ActionResult Create(Book book, HttpPostedFileBase imageFile)
         [Authorize(Roles = "SuperAdmin,Admin")]
-        public ActionResult Create(Book book)
+        public ActionResult Create(Book book, HttpPostedFileBase imageFile)
         {
             try
             {
@@ -98,9 +97,8 @@ namespace AnyReadOnline.Controllers
 
         // POST: Books/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Book book, HttpPostedFileBase imageFile)
         [Authorize(Roles = "SuperAdmin,Admin")]
-        public ActionResult Edit(int id, Book book)
+        public ActionResult Edit(int id, Book book, HttpPostedFileBase imageFile)
         {
             try
             {

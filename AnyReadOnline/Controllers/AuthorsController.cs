@@ -35,9 +35,8 @@ namespace AnyReadOnline.Controllers
 
         // POST: Authors/Create
         [HttpPost]
-        public ActionResult Create(Author author, HttpPostedFileBase imageFile)
         [Authorize(Roles = "SuperAdmin,Admin")]
-        public ActionResult Create(Author author)
+        public ActionResult Create(Author author, HttpPostedFileBase imageFile)
         {
             try
             {
@@ -64,9 +63,8 @@ namespace AnyReadOnline.Controllers
 
         // POST: Authors/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Author author, HttpPostedFileBase imageFile)
         [Authorize(Roles = "SuperAdmin,Admin")]
-        public ActionResult Edit(int id, Author author)
+        public ActionResult Edit(int id, Author author, HttpPostedFileBase imageFile)
         {
             try
             {
