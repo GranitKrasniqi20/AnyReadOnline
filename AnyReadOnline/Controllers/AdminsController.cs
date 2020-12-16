@@ -1,5 +1,6 @@
 ﻿using AnyReadOnline.BLL;
 using AnyReadOnline.BOL;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Newtonsoft.Json;
 using System;
@@ -13,6 +14,8 @@ namespace AnyReadOnline.Controllers
 {
     public class AdminsController : Controller
     {
+
+        ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         List<Role> roles;
@@ -86,7 +89,6 @@ namespace AnyReadOnline.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(AdminLoginViewModel model)
         {
 
@@ -94,19 +96,29 @@ namespace AnyReadOnline.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
 
-                case SignInStatus.Success:
-                    return View("Index");
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+           string uid= db.Users.Where(x => x.UserName == model.Username).FirstOrDefault().Id;
+            var role = UserManager.GetRoles(uid);
+            if (role[0] != "Client")
+            {
+                switch (result)
+                {
+
+                    case SignInStatus.Success:
+                        return View("Index");
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("", "Invalid login attempt.");
+                        return View(model);
+                }
             }
+            return View(model);
+
         }
+
+
         [Authorize(Roles = "SuperAdmin")]
         public ActionResult Register()
         {
@@ -132,8 +144,8 @@ namespace AnyReadOnline.Controllers
 
 
         // POST: Client/Create
-        [Authorize(Roles = "SuperAdmin")]
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<ActionResult> Register(Staff staff)
         {
 
@@ -176,7 +188,7 @@ namespace AnyReadOnline.Controllers
                 }
 
 
-                return RedirectToAction("Index");
+                return View();
             }
             catch
             {

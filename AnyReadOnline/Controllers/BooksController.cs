@@ -27,7 +27,6 @@ namespace AnyReadOnline.Controllers
         }
 
         // GET: Books/Details/5
-        [HttpGet]
         [AllowAnonymous]
         public ActionResult Details(int id)
         {
@@ -42,6 +41,12 @@ namespace AnyReadOnline.Controllers
         {
             return View(bookBLL.Get(id));
         }*/
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public ActionResult Details(int id, int quantity)
+        //{
+        //    return View(bookBLL.Get(id));
+        //}
 
 
 
