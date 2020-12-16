@@ -40,14 +40,14 @@ namespace AnyReadOnline.BLL
             return authorDAL.Update(obj);
         }
 
-        public string AuthorImagePath(Author author)
+        public string AuthorImagePath(Author author, HttpPostedFileBase imageFile)
         {
-            string fileName = Path.GetFileNameWithoutExtension(author.ImageFile.FileName);
-            string extension = Path.GetExtension(author.ImageFile.FileName);
+            string fileName = Path.GetFileNameWithoutExtension(imageFile.FileName);
+            string extension = Path.GetExtension(imageFile.FileName);
             fileName += DateTime.Now.ToString("yymmssfff") + extension;
             author.ImagePath = "~/Content/img/" + fileName;
             fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/img/"), fileName);
-            author.ImageFile.SaveAs(fileName);
+            imageFile.SaveAs(fileName);
 
             return author.ImagePath;
         }
