@@ -20,7 +20,7 @@ namespace AnyReadOnline.Controllers
         private readonly LanguageBLL languageBLL = new LanguageBLL();
 
         // GET: Books
-        [Authorize(Roles = "SuperAdmin,Admin")]
+        // [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Index()
         {
             return View(bookBLL.GetAll());
@@ -122,7 +122,7 @@ namespace AnyReadOnline.Controllers
         }
 
         // GET: Books/Delete/5
-        [Authorize(Roles = "SuperAdmin,Admin")]
+        // [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Delete(int id)
         {
             return View(bookBLL.Get(id));
@@ -130,7 +130,7 @@ namespace AnyReadOnline.Controllers
 
         // POST: Books/Delete/5
         [HttpPost]
-        [Authorize(Roles = "SuperAdmin,Admin")]
+        // [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Delete(int id, Book book)
         {
             try
