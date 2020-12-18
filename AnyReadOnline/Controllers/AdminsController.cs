@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows.Forms;
 
 namespace AnyReadOnline.Controllers
 {
@@ -62,6 +63,7 @@ namespace AnyReadOnline.Controllers
         [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Index()
         {
+
             List<DataPoint> dataPoints = new List<DataPoint>();
 
             dataPoints.Add(new DataPoint("Albert", 10));
@@ -85,6 +87,8 @@ namespace AnyReadOnline.Controllers
             return View(new AdminLoginViewModel());
         }
 
+
+
         //
         // POST: /Account/Login
         [HttpPost]
@@ -99,37 +103,38 @@ namespace AnyReadOnline.Controllers
 
            string uid= db.Users.Where(x => x.UserName == model.Username).FirstOrDefault().Id;
             var role = UserManager.GetRoles(uid);
-            if (role[0] != "Client")
+            try
             {
-                switch (result)
+                if (role[0] != "Client")
                 {
+                    switch (result)
+                    {
 
-                    case SignInStatus.Success:
-                        return View("Index");
-                    case SignInStatus.LockedOut:
-                        return View("Lockout");
-                    case SignInStatus.Failure:
-                    default:
-                        ModelState.AddModelError("", "Invalid login attempt.");
-                        return View(model);
+                        case SignInStatus.Success:
+                            return View("Index");
+                        case SignInStatus.LockedOut:
+                            return View("Lockout");
+                        case SignInStatus.Failure:
+                        default:
+                            ModelState.AddModelError("", "Invalid login attempt.");
+                            return View(model);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                return View(model);
             }
             return View(model);
 
         }
 
 
-        [Authorize(Roles = "SuperAdmin")]
+        /*[Authorize(Roles = "SuperAdmin")]*/
         public ActionResult Register()
         {
             CountryBLL countryBll = new CountryBLL();
             List<Country> countries = countryBll.GetAll();
-
-
-
-
-
-
 
             ViewBag.roles = new SelectList(roles, "RoleID", "RoleName");
             ViewBag.Countries = new SelectList(countries, "CountryID", "CountryName");
@@ -145,7 +150,7 @@ namespace AnyReadOnline.Controllers
 
         // POST: Client/Create
         [HttpPost]
-        [Authorize(Roles = "SuperAdmin")]
+        /*[Authorize(Roles = "SuperAdmin")]*/
         public async Task<ActionResult> Register(Staff staff)
         {
 
@@ -156,6 +161,8 @@ namespace AnyReadOnline.Controllers
 
             registerClient.Password = staff.Password;
             registerClient.ConfirmPassword = staff.Password;
+
+
 
             try
             {
@@ -190,7 +197,7 @@ namespace AnyReadOnline.Controllers
 
                 return View();
             }
-            catch
+            catch(Exception e)
             {
 
                 CountryBLL countryBll = new CountryBLL();
@@ -198,6 +205,7 @@ namespace AnyReadOnline.Controllers
                 ViewBag.roles = new SelectList(roles, "RoleID", "RoleName");
                 ViewBag.Countries = new SelectList(countries, "CountryID", "CountryName");
 
+                MessageBox.Show(e.Message);
                 return View(new Staff());
             }
         }

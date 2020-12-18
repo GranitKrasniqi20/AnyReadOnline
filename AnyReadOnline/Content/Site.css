@@ -255,40 +255,48 @@ rflow-x: hidden;
 }
 
 
-.ProductTitle h3{
-    color:#555;
+
+.ProductTitle h3 {
+    color: #555;
 }
+
+
 
 .btnContainer {
     width: 180px;
     height: 40px;
-    position:relative;
-
-}
-
-.btnContainer button {
-
-    background-color:#808080;
-}
-
-.ProductDetailsBtn{
-    border:none;
-    padding:10px 18px;
-    font-size:0.9rem;
-    color:white;
-    cursor:pointer;
-    outline:none;
-    box-shadow:0px 5px 5px white;
+    position: relative;
 }
 
 
-.minusBtn, .plusBtn{
-    display:none;
-    font-size:3rem;
-    font-weight:700;
+
+    .btnContainer button {
+        background-color: #808080;
+    }
 
 
+
+.ProductDetailsBtn {
+    border: none;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0px 5px 5px white;
 }
+
+
+
+
+
+.minusBtn, .plusBtn {
+    display: none;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+
 
 .mainBtn {
     width: 2em;
