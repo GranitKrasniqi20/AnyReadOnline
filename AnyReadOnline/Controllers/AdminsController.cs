@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows.Forms;
 
 namespace AnyReadOnline.Controllers
 {
@@ -178,11 +179,11 @@ namespace AnyReadOnline.Controllers
                     {
                         if (staff.RoleId == 2)
                         {
-                            //await UserManager.AddToRoleAsync(uid, "Admin");
+                            await UserManager.AddToRoleAsync(uid, "Admin");
                         }
                         else if (staff.RoleId == 3)
                         {
-                           // await UserManager.AddToRoleAsync(uid, "SuperAdmin");
+                            await UserManager.AddToRoleAsync(uid, "SuperAdmin");
                         }
                         return RedirectToAction("Index", "Admins");
                     }
@@ -196,7 +197,7 @@ namespace AnyReadOnline.Controllers
 
                 return View();
             }
-            catch
+            catch(Exception e)
             {
 
                 CountryBLL countryBll = new CountryBLL();
@@ -204,6 +205,7 @@ namespace AnyReadOnline.Controllers
                 ViewBag.roles = new SelectList(roles, "RoleID", "RoleName");
                 ViewBag.Countries = new SelectList(countries, "CountryID", "CountryName");
 
+                MessageBox.Show(e.Message);
                 return View(new Staff());
             }
         }

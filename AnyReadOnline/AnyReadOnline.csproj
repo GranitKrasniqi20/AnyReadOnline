@@ -197,6 +197,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DefaultConnection.mdf" />
+    <Content Include="App_Data\DefaultConnection_log.ldf">
+      <DependentUpon>DefaultConnection.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\AdminLogIn.css" />
     <Content Include="Content\AdminSideBar.css" />
     <Content Include="Content\barchart.css" />
@@ -2106,7 +2110,6 @@
     <Content Include="Views\Client\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
