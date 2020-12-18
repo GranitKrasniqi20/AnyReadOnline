@@ -129,7 +129,7 @@ namespace AnyReadOnline.Controllers
         }
 
 
-        [Authorize(Roles = "SuperAdmin")]
+        /*[Authorize(Roles = "SuperAdmin")]*/
         public ActionResult Register()
         {
             CountryBLL countryBll = new CountryBLL();
@@ -149,7 +149,7 @@ namespace AnyReadOnline.Controllers
 
         // POST: Client/Create
         [HttpPost]
-        [Authorize(Roles = "SuperAdmin")]
+        /*[Authorize(Roles = "SuperAdmin")]*/
         public async Task<ActionResult> Register(Staff staff)
         {
 

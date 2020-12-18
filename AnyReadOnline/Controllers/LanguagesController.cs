@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace AnyReadOnline.Controllers
 {
-    [Authorize(Roles = "SuperAdmin,Admin")]
+   /* [Authorize(Roles = "SuperAdmin,Admin")]*/
     public class LanguagesController : Controller
     {
         private readonly LanguageBLL languageBLL = new LanguageBLL();

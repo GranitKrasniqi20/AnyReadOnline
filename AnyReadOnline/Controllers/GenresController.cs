@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace AnyReadOnline.Controllers
 {
-    [Authorize(Roles = "SuperAdmin,Admin")]
+    /*[Authorize(Roles = "SuperAdmin,Admin")]*/
     public class GenresController : Controller
     {
         private readonly GenreBLL genreBLL = new GenreBLL();
