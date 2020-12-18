@@ -161,6 +161,8 @@ namespace AnyReadOnline.Controllers
             registerClient.Password = staff.Password;
             registerClient.ConfirmPassword = staff.Password;
 
+
+
             try
             {
 
@@ -176,11 +178,11 @@ namespace AnyReadOnline.Controllers
                     {
                         if (staff.RoleId == 2)
                         {
-                            await UserManager.AddToRoleAsync(uid, "Admin");
+                            //await UserManager.AddToRoleAsync(uid, "Admin");
                         }
                         else if (staff.RoleId == 3)
                         {
-                            await UserManager.AddToRoleAsync(uid, "SuperAdmin");
+                           // await UserManager.AddToRoleAsync(uid, "SuperAdmin");
                         }
                         return RedirectToAction("Index", "Admins");
                     }

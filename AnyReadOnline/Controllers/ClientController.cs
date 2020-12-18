@@ -93,11 +93,13 @@ namespace AnyReadOnline.Controllers
                 {
                     var user = new ApplicationUser { UserName = client.Email, Email = client.Email };
                     var result = await UserManager.CreateAsync(user, client.Password);
+                    string uid = user.Id;
                     if (result.Succeeded)
                     {
 
                         ClientBLL clientbll = new ClientBLL();
                         clientbll.Add(client);
+                        await UserManager.AddToRoleAsync(uid, "Client");
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                         return RedirectToAction("Index", "Home");
@@ -138,24 +140,31 @@ namespace AnyReadOnline.Controllers
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
 
-            string uid = db.Users.Where(x => x.UserName == model.Email).FirstOrDefault().Id;
-            var role = UserManager.GetRoles(uid);
-
-            if (role[0] == "Client")
+            try
             {
-                switch (result)
+                string uid = db.Users.Where(x => x.Email == model.Email).FirstOrDefault().Id;
+                var role = UserManager.GetRoles(uid);
+
+                if (role[0] == "Client")
                 {
-                    case SignInStatus.Success:
-                        return RedirectToLocal(returnUrl);
-                    case SignInStatus.LockedOut:
-                        return View("Lockout");
-                    case SignInStatus.RequiresVerification:
-                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                    case SignInStatus.Failure:
-                    default:
-                        ModelState.AddModelError("", "Invalid login attempt.");
-                        return View(model);
+                    switch (result)
+                    {
+                        case SignInStatus.Success:
+                            return RedirectToLocal(returnUrl);
+                        case SignInStatus.LockedOut:
+                            return View("Lockout");
+                        case SignInStatus.RequiresVerification:
+                            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                        case SignInStatus.Failure:
+                        default:
+                            ModelState.AddModelError("", "Invalid login attempt.");
+                            return View(model);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                return View(model);
             }
             return View(model);
         }
