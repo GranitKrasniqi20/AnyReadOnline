@@ -25,18 +25,22 @@ namespace AnyReadOnline.Controllers
         {
             bookBLL = new BookBLL();
             authorBLL = new AuthorBLL();
+            genreBLL = new GenreBLL();
             List<Book> top4EarliestBooks = new List<Book>();
             List<Book> top4LatestBooks = new List<Book>();
             List<Author> top4EarliestAuthors = new List<Author>();
+            List<Genre> top4Genres = new List<Genre>();
 
 
             top4EarliestBooks = bookBLL.GetTop4EarliestBooks();
             top4LatestBooks = bookBLL.GetTop4LatestBooks();
             top4EarliestAuthors = authorBLL.GetTop4EarliestAuthors();
+            top4Genres = genreBLL.GetTop4Genres();
 
             ViewBag.myEarlyBooks = top4EarliestBooks;
             ViewBag.myLateBooks = top4LatestBooks;
             ViewBag.myEarlyAuthors = top4EarliestAuthors;
+            ViewBag.myTopGenres = top4Genres;
 
             return View();
         }
@@ -59,11 +63,25 @@ namespace AnyReadOnline.Controllers
             return View();
         }
 
+        public ActionResult Categories()
+        {
+            authorBLL = new AuthorBLL();
+            genreBLL = new GenreBLL();
+            List<Author> top4EarliestAuthors = new List<Author>();
+            List<Genre> top4Genres = new List<Genre>();
+
+            top4EarliestAuthors = authorBLL.GetTop4EarliestAuthors();
+            top4Genres = genreBLL.GetTop4Genres();
+
+            ViewBag.myEarlyAuthors = top4EarliestAuthors;
+            ViewBag.myTopGenres = top4Genres;
+
+            return View();
+        }
+
         public ActionResult Searching(string text, string SortDropdown, int? page)
         {
             
-
-
 
             if (text == null)
             {
@@ -84,7 +102,7 @@ namespace AnyReadOnline.Controllers
             ViewBag.booksCount = searchedBooks.Count();
 
             
-            if (SortDropdown == "Sort by Latest")
+            if (SortDropdown == "latest")
             {
                 return View(searchedBooks.Where(b => b.Genre.GenreName.StartsWith(text) ||
                                             b.Author.FirstName.StartsWith(text) ||
@@ -104,7 +122,7 @@ namespace AnyReadOnline.Controllers
                                             b.Author.FirstName.StartsWith(text) ||
                                             b.Author.LastName.StartsWith(text) ||
                                             b.Title.StartsWith(text) ||
-                                            text == null).ToList().OrderByDescending(b => b.BookID).ToPagedList(page ?? 1, 3));
+                                            text == null).ToList().ToPagedList(page ?? 1, 3));
             }
             
 

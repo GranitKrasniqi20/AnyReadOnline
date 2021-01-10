@@ -199,6 +199,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItemModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -2119,10 +2120,15 @@
     <Content Include="Views\Admins\Index.cshtml" />
     <Content Include="Views\Books\Details.cshtml" />
     <Content Include="Views\Client\NotFound.cshtml" />
+    <Content Include="Views\Home\Categories.cshtml" />
+    <Content Include="Views\Genres\CategoryByGenre.cshtml" />
+    <Content Include="Views\Authors\CategoryByAuthor.cshtml" />
+    <Content Include="Views\Books\GetBooksByAuthor.cshtml" />
+    <Content Include="Views\Books\GetBooksByGenre.cshtml" />
+    <Content Include="Views\Books\ShoppingCart.cshtml" />
+    <Content Include="Views\Books\EmptyCart.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fontawesome-free-5.15.1-web\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fontawesome-free-5.15.1-web\fonts\glyphicons-halflings-regular.woff" />

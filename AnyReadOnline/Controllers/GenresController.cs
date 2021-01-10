@@ -102,5 +102,15 @@ namespace AnyReadOnline.Controllers
                 return View(genre);
             }
         }
+
+        public ActionResult CategoryByGenre()
+        {
+            List<Genre> myGenres = new List<Genre>();
+            myGenres = genreBLL.GetAll();
+
+            ViewBag.myGenres = myGenres;
+
+            return View();
+        }
     }
 }

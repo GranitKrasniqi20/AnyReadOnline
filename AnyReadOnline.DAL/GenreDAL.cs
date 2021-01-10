@@ -207,5 +207,40 @@ namespace AnyReadOnline.DAL
                 return -1;
             }
         }
+
+        public List<Genre> GetTop4Genres()
+        {
+            List<Genre> Genres = new List<Genre>();
+
+            try
+            {
+                using (SqlConnection sqlConnection = DbHelper.GetConnection())
+                {
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetTop4Genres", CommandType.StoredProcedure))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.HasRows)
+                            {
+                                while (sqlDataReader.Read())
+                                {
+                                    if (ConvertToObject(sqlDataReader) == null)
+                                    {
+                                        throw new Exception();
+                                    }
+                                    Genres.Add(ConvertToObject(sqlDataReader));
+                                }
+                            }
+                            return Genres;
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+                return Genres;
+            }
+        }
     }
 }

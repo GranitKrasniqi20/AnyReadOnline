@@ -87,28 +87,33 @@
                     </div>
                     <div class="row mb-1">
                         <div class="col-8">
-                            
+
                         </div>
                         <div class="col-4">
                             <div class="dropdown d-flex justify-content-end">
                                 @*<button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Sorting Options
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Sort by Latest</a>
-            <a class="dropdown-item" href="#">Sort by Alphabet</a>
-            <a class="dropdown-item" href="#">Sort by Price</a>
-        </div>*@
-                                @using (Html.BeginForm("Searching", "Home", FormMethod.Post))
-                                {
-                                    @Html.DropDownList("SortDropdown", new List<SelectListItem>
+                                        Sorting Options
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Sort by Latest</a>
+                                        <a class="dropdown-item" href="#">Sort by Alphabet</a>
+                                        <a class="dropdown-item" href="#">Sort by Price</a>
+                                    </div>*@
+                                @*@using (Html.BeginForm("Searching", "Home", FormMethod.Post))
                                     {
-                                        new SelectListItem{ Text="Sort by Latest", Value = "Sort by Latest" },
-                                        new SelectListItem{ Text="Sort by Alphabet", Value = "Sort by Alphabet" },
-                                        new SelectListItem{ Text="Sort by Price", Value = "Sort by Price" }
-                                    }, "Select Sorting")
-                                }
-                                </div>
+                                        @Html.DropDownList("SortDropdown", new List<SelectListItem>
+                                        {
+                                            new SelectListItem{ Text="Sort by Latest", Value = "Sort by Latest" },
+                                            new SelectListItem{ Text="Sort by Alphabet", Value = "Sort by Alphabet" },
+                                            new SelectListItem{ Text="Sort by Price", Value = "Sort by Price" }
+                                        }, "Select Sorting")
+                                    }*@
+                                <select id="mySelect">
+                                    <option value="latest">Sort by Latest</option>
+                                    <option value="alphabet">Sort by Alphabet</option>
+                                    <option value="price">Sort by Price</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -130,9 +135,21 @@
                                             <h4 class="text-danger">€@item.Price</h4>
                                         </div>
                                         <div class="col-2">
-                                            <div class="search-cart-btn-height d-flex align-items-center">
-                                                <a href="#" class="orange-text bigger-text-1"><i class="fas fa-shopping-bag"></i></a>
-                                            </div>
+                                            @if (item.Quantity > 0)
+                                            {
+                                                <div class="search-cart-btn-height d-flex align-items-center">
+                                                    <button type="submit" class="orange-text" style="border: none; background: none;">
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                    </button>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="search-cart-btn-height d-flex align-items-center">
+                                                    <p class="text-black">Not Available</p>
+                                                </div>
+                                            }
+                                            
                                         </div>
                                     </div>
                                     <hr />
@@ -154,8 +171,8 @@
     </section>
 </main>
 
-@*<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
-    <script>
+@*<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>*@
+@*<script>
         var table = '#searchTable'
         $('#maxRows').on('change', function () {
             $('.pagination').html()
@@ -194,4 +211,29 @@
             })
         })
     </script>*@
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#mySelect").on('change', function () {
+            var value = ($(this).val())
+            $.get("Home/Searching", { text: null, SortDropdown: value, page: 1 }).done(function (data) {
+                console.log(data);
+            });
+
+            @*$.ajax({
+            type: "POST",
+            url: '@Url.Action("Searching", "Home")',
+            contentType: "application/json; charset=utf-8",
+            data: { text: null, SortDropdown: value, page: 1 },
+            success: function() { alert('Success'); }
+
+            });*@
+
+        })
+    });
+
+
+</script>
 

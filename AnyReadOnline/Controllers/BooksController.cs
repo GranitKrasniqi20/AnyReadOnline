@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.IO;
 using PagedList.Mvc;
 using PagedList;
+using AnyReadOnline.Models;
 
 namespace AnyReadOnline.Controllers
 {
@@ -145,6 +146,110 @@ namespace AnyReadOnline.Controllers
             {
                 return View(book);
             }
+        }
+
+        public ActionResult GetBooksByAuthor(int id)
+        {
+            List<Book> tempBooks = new List<Book>();
+            tempBooks = bookBLL.GetAll().Where(b => b.AuthorID == id).ToList();
+
+            ViewBag.SelectedBooks = tempBooks;
+            return View(authorBLL.Get(id));
+        }
+
+        public ActionResult GetBooksByGenre(int id)
+        {
+            if (id == null)
+            {
+                id = 1;
+            }
+            List<Book> tempBooks = new List<Book>();
+            tempBooks = bookBLL.GetAll().Where(b => b.GenreID == id).ToList();
+
+            ViewBag.SelectedBooks = tempBooks;
+            return View(genreBLL.Get(id));
+        }
+
+        public ActionResult GoToCart()
+        {
+            if (Session["cart"] == null)
+            {
+                return View("EmptyCart");
+            }
+            else
+            {
+                return View("ShoppingCart");
+            }
+            
+        }
+
+        public ActionResult AddToCart(int id)
+        {
+            if (Session["cart"] == null)
+            {
+                List<CartItemModel> cart = new List<CartItemModel>();
+                Book cartItem = bookBLL.Get(id);
+
+                cart.Add(new CartItemModel()
+                {
+                    book = cartItem,
+                    Quantity = 1
+                });
+                Session["cart"] = cart;
+            }
+            else
+            {
+                List<CartItemModel> cart = (List<CartItemModel>)Session["cart"];
+                Book cartItem = bookBLL.Get(id);
+                bool foundItem = false;
+
+                foreach (var item in cart)
+                {
+                    if (cart.Contains(item))
+                    {
+                        if (item.book.BookID == cartItem.BookID)
+                        {
+                            item.Quantity++;
+                            foundItem = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        foundItem = false;
+                    }
+                }
+
+                if (!foundItem)
+                {
+                    cart.Add(new CartItemModel()
+                    {
+                        book = cartItem,
+                        Quantity = 1
+                    });
+                }
+                
+                Session["cart"] = cart;
+            }
+            return View("ShoppingCart");
+        }
+
+        public ActionResult RemoveFromCart(int id)
+        {
+            List<CartItemModel> cart = (List<CartItemModel>)Session["cart"];
+
+            foreach (var item in cart)
+            {
+                if (item.book.BookID == id)
+                {
+                    cart.Remove(item);
+                    break;
+                }
+            }
+
+            Session["cart"] = cart;
+
+            return Redirect("~/Home/Index");
         }
     }
 }
