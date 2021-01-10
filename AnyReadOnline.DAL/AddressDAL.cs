@@ -197,13 +197,14 @@ namespace AnyReadOnline.DAL
                 address.Client.Email = sqlDataReader["Email"].ToString();
                 address.Client.Gender = (Gender)int.Parse(sqlDataReader["Gender"].ToString());
             }
-            if (sqlDataReader["Name"] != DBNull.Value)
+            if (sqlDataReader["AddressFirstName"] != DBNull.Value)
             {
-                address.FirstName = sqlDataReader["FIrstName"].ToString();
+                address.FirstName = sqlDataReader["AddressFirstName"].ToString();
             }
-            if (sqlDataReader["LastName"] != DBNull.Value)
+
+            if (sqlDataReader["AddressLastName"] != DBNull.Value)
             {
-                address.LastName = sqlDataReader["LastName"].ToString();
+                address.LastName = sqlDataReader["AddressLastName"].ToString();
             }
             if (sqlDataReader["Address1"] != DBNull.Value)
             {
@@ -213,9 +214,9 @@ namespace AnyReadOnline.DAL
             {
                 address.Address2 = sqlDataReader["Address2"].ToString();
             }
-            if (sqlDataReader["PhoneNo"] != DBNull.Value)
+            if (sqlDataReader["AddressPhoneNumber"] != DBNull.Value)
             {
-                address.PhoneNumber = sqlDataReader["PhoneNo"].ToString();
+                address.PhoneNumber = sqlDataReader["AddressPhoneNumber"].ToString();
             }
             if (sqlDataReader["PostalCode"] != DBNull.Value)
             {

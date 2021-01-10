@@ -16,7 +16,16 @@ namespace AnyReadOnline.BOL
         public double ShippingFee { get; set; }
         public DateTime ArrivalDate { get; set; }
         public int ShippingCompanyID { get; set; }
-        // public virtual  IShippingCompany ShippingCompany { get; set; }
+        public ShippingCompany ShippingCompany { get; set; }
+        public List<OrderDetails> OrderDetails { get; set; }
 
+        public int ShippingOrderId { get; set; }
+
+        public Order()
+        {
+           
+        }
+
+  
     }
 }
