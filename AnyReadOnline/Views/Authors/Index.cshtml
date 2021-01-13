@@ -7,20 +7,24 @@
 
 <div class="container">
     <br /><br />
-    <h2>List of Authors</h2>
-    <p>
-        @Html.ActionLink("Create New", "Create")
+    <h2>Authors</h2>
+    <p style="float: right;">
+        @*@Html.ActionLink("Create New", "Create")*@
+        <input type="button" class="btn btn-success mx-3 lx-5" value="Add New" onclick="location.href='@Url.Action("Create","Authors")'" />
     </p>
     <table id="authorTable" class="display" border="1">
         <thead>
-            <tr>
+            <tr style="background-color:dodgerblue; color:white;">
+                <th>
+                    ID
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.FirstName)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.LastName)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.ImagePath)
                 </th>
                 <th>
@@ -28,54 +32,59 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.InsDate)
-                </th>
-               @* <th>
-                    @Html.DisplayNameFor(model => model.UpdBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UpdDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UpdNo)
                 </th>*@
-                <th></th>
+                @* <th>
+                        @Html.DisplayNameFor(model => model.UpdBy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpdDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpdNo)
+                    </th>*@
+                <th>
+                    <b style="margin-left:30px;">Actions</b>
+                </th>
             </tr>
         </thead>
 
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ImagePath)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.InsBy)
-                    </td>
-                    <td>
-                        @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.InsDate).ToString()))
-                    </td>
-                   @* <td>
-                        @Html.DisplayFor(modelItem => item.UpdBy)
-                    </td>
-                    <td>
-                        @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.UpdDate).ToString()))
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UpdNo)
-                    </td>*@
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AuthorID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.ImagePath)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InsBy)
+                </td>
+                <td>
+                    @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.InsDate).ToString()))
+                </td>*@
+                @* <td>
+            @Html.DisplayFor(modelItem => item.UpdBy)
+        </td>
+        <td>
+            @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.UpdDate).ToString()))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdNo)
+        </td>*@
                 <td>
                     <input type="button" class="btn btn-secondary mx-3 lx-5" @* title="..."*@ value="Edit" onclick="location.href='@Url.Action("Edit"@*, "Genres"*@, new { id = item.AuthorID})'" />
                     <!--<input type="button" class="btn btn-secondary mx-3 lx-5"--> @* title="..."*@ <!--value="Details" onclick="location.href='@@Url.Action("Details"-->@*, "Genres"*@<!--, new { id = item.AuthorID })'" />-->
                     <input type="button" class="btn btn-danger mx-3 lx-5" @* title="..."*@ value="Delete" onclick="location.href='@Url.Action("Delete"@*, "Genres"*@, new { id = item.AuthorID })'" />
                 </td>
-                </tr>
+            </tr>
             }
         </tbody>
     </table>
@@ -84,7 +93,18 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#authorTable').DataTable();
+            var table = $('#authorTable').removeAttr('width').DataTable({
+                        @* scrollY: "300px",
+                scrollX: false,*@
+                scrollCollapse: true,
+                columnDefs: [
+                    { width: 100, targets: 0 },
+                    { width: 300, targets: 1 },
+                    { width: 300, targets: 2 },
+                    { width: 200, targets: 3, orderable: false }
+                    ],
+                fixedColumns: false
+        });
         });
     </script>
 }

@@ -1,33 +1,40 @@
 ﻿@model AnyReadOnline.BOL.Language
 
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Language</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-       
-        <div class="form-group">
-            @Html.LabelFor(model => model.LanguageName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+
+<div class="form-horizontal">
+    <br /><h4>Add New Language</h4>
+    <br /><br />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <h5>Language Name</h5>
+        <div class="row">
+            <div class="col-5">
                 @Html.EditorFor(model => model.LanguageName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LanguageName, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-5">
+                <input type="submit" class="btn btn-primary mx-3 lx-5" value="Create Language" onclick="location.href='@Url.Action("Create","Languages")'" />
             </div>
         </div>
     </div>
+    <br />
+    <p>You only need to write the Name of the Language, ID will be created with UID.</p>
+    <br />
+</div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div style="font-weight: bold;">
+    @Html.ActionLink("Go to Language List", "Index")
 </div>
 
 @section Scripts {
