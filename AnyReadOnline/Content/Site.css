@@ -30,9 +30,8 @@ footer {
 /* Used at navbar */
 
 
-.loginBg{
-    background-image:url()
-
+.loginBg {
+    background-image: url()
 }
 /* COLORS */
 .white-text {
@@ -156,7 +155,26 @@ footer {
 
 
 
+/* CATEGORY CUSTOM CSS */
 
+#category-banner-image {
+    background: url("img/anyread_home_cover_1.2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#category-banner-image h1 {
+    color: #fff;
+    font-weight: 700;
+}
+
+.search-author-image-size {
+    min-height: 100%;
+    min-width: 100%;
+    width: 0;
+    border-radius: 100%;
+}
 
 
 
@@ -250,8 +268,8 @@ rflow-x: hidden;
 
 
 
-.ProductPageContainer{
-    margin-top:10vh;
+.ProductPageContainer {
+    margin-top: 10vh;
 }
 
 

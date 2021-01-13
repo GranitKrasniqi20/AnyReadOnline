@@ -114,5 +114,15 @@ namespace AnyReadOnline.Controllers
                 return View(author);
             }
         }
+
+        public ActionResult CategoryByAuthor()
+        {
+            List<Author> myAuthors = new List<Author>();
+            myAuthors = authorBLL.GetAll();
+
+            ViewBag.myAuthors = myAuthors;
+
+            return View();
+        }
     }
 }

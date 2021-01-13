@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+<main>
+    <div class="jumbotron jumbotron-fluid" id="category-banner-image">
+        <div class="container">
+            <h1 class="display-4 text-center white-text">Categories</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Featured Categories Section -->
+        <section class="my-5">
+            <div class="row">
+                <div class="col">
+                    <h4>Featured Genres</h4>
+                </div>
+                <div class="col text-right my-auto">
+                    <a href="@Url.Action("CategoryByGenre", "Genres")" class="text-danger">View All</a>
+                </div>
+            </div>
+            <div class="row my-3">
+                @foreach (AnyReadOnline.BOL.Genre item in ViewBag.myTopGenres)
+                {
+                    <div class="col">
+                        <div class="category-box my-blue">
+                            <a href="#" class="text-white"><h4>@item.GenreName</h4></a>
+                            <a href="#" class="text-white">Shop Now</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+        <!-- Featured Authors Section -->
+        <section id="authorSection" class="my-5">
+            <div class="row">
+                <div class="col">
+                    <h4>Favorite Authors</h4>
+                </div>
+                <div class="col text-right my-auto">
+                    <a href="@Url.Action("CategoryByAuthor", "Authors")" class="text-danger">View All</a>
+                </div>
+            </div>
+            <div class="row my-3">
+                @foreach (AnyReadOnline.BOL.Author item in ViewBag.myEarlyAuthors)
+                {
+                    <div class="col">
+                        <div class="custom-image-container">
+                            <img src="@Url.Content(item.ImagePath)" width="253" />
+                            <h4 class="my-book-title"><a href="#" class="text-decoration-none black-text">@string.Format(item.FirstName + " " + item.LastName)</a></h4>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+</main>
+

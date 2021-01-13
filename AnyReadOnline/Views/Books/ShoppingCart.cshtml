@@ -1,0 +1,87 @@
+﻿@model AnyReadOnline.BOL.Book
+
+@{
+    ViewBag.Title = "ShoppingCart";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+@using AnyReadOnline.Models;
+@{
+    int itemNum = 0;
+    decimal totalItemPrice = 0;
+    decimal total = 0;
+}
+
+<main style="background-color: #FDF6F6">
+    <div class="row">
+        <div class="col">
+            <div class="container">
+                <h5 class="mt-4 mx-3">Shopping Cart</h5>
+            </div>
+        </div>
+    </div>
+
+
+    <hr>
+
+    <div class="row">
+        <div class="col">
+            <div class="container">
+                <div class="mx-3">
+                    @foreach (var item in (List<CartItemModel>)Session["cart"])
+                    {
+                        itemNum++;
+                    }
+                    <div class="my-4">
+                        <h2 class="capital">Your cart include: @itemNum items</h2>
+                        <h2 class="text-uppercase font-weight-light " style="font-size: 1.3em;">Choose your total order</h2>
+                    </div>
+                    <table class="table my-5">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Options</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in (List<CartItemModel>)Session["cart"])
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@item.book.Title</td>
+                                    <td>€@item.book.Price</td>
+                                    <td>@item.Quantity</td>
+                                    @if (item.Quantity > 1)
+                                    {
+                                        totalItemPrice = 0;
+                                        totalItemPrice = item.book.Price * item.Quantity;
+                                        <td>€@totalItemPrice</td>
+                                    }
+                                    else if (item.Quantity == 1)
+                                    {
+                                        totalItemPrice = 0;
+                                        totalItemPrice = item.book.Price;
+                                        <td>€@totalItemPrice</td>
+                                    }
+                                    <td><a class="text-danger" href="@Url.Action("RemoveFromCart", "Books", new { id = item.book.BookID })">Delete</a></td>
+                                </tr>
+                            </tbody>
+
+                            total = total + totalItemPrice;
+                        }
+
+                    </table>
+                    <h3 class="text-right mb-4">Total: €@total</h3>
+                    <hr>
+                    <div class="float-right mt-2 mb-5">
+                        <button type="button" class="btn btn-dark">Proceed to Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
