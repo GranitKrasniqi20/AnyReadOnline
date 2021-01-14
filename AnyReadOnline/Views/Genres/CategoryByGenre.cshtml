@@ -1,0 +1,37 @@
+﻿@model AnyReadOnline.BOL.Genre
+
+@{
+    ViewBag.Title = "CategoryByGenre";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+<main>
+    <div class="jumbotron jumbotron-fluid" id="category-banner-image">
+        <div class="container">
+            <h1 class="display-4 text-center white-text">Genres</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Genres Section -->
+        <section class="my-5">
+            <div class="row">
+                <div class="col">
+                    <h4>View All Genres</h4>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="d-flex flex-wrap" width="250">
+                    @foreach (AnyReadOnline.BOL.Genre item in ViewBag.myGenres)
+                    {
+                        <div class="category-box my-blue m-2">
+                            <a href="@Url.Action("GetBooksByGenre", "Books", new { id = item.GenreID })" class="text-white"><h4>@item.GenreName</h4></a>
+                            <a href="@Url.Action("GetBooksByGenre", "Books", new { id = item.GenreID })" class="text-white">Shop Now</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+

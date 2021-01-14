@@ -1,0 +1,56 @@
+﻿@model AnyReadOnline.BOL.Genre
+
+@{
+    ViewBag.Title = "GetBooksByGenre";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+<main>
+    <section>
+        <div class="container">
+            <div class="row my-5 mx-3">
+                @{string myGenre = Model.GenreName; }
+                <h4>All Books from: <span>@myGenre</span></h4>
+            </div>
+            </br>
+            <table id="searchTable">
+                <tbody>
+                    @foreach (AnyReadOnline.BOL.Book item in ViewBag.SelectedBooks)
+                    {
+                        <tr>
+                            <div class="row p-3">
+                                <div class="col-3">
+                                    <img src="@Url.Content(item.ImagePath)" class="search-image-size" />
+                                </div>
+                                <div class="col-7">
+                                    <h4><a href="@Url.Action("Details", "Books", new { id=item.BookID })" class="black-text text-decoration-none">@item.Title</a></h4>
+                                    <p class="text-muted font-weight-bold">@string.Format(item.Author.FirstName + " " + item.Author.LastName)</p>
+                                    <p>@item.Description</p>
+                                    <h4 class="text-danger">€@item.Price</h4>
+                                </div>
+                                <div class="col-2">
+                                    @if (item.Quantity > 0)
+                                    {
+                                        <div class="search-cart-btn-height d-flex align-items-center">
+                                            <button type="submit" class="orange-text" style="border: none; background: none;">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </button>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="search-cart-btn-height d-flex align-items-center">
+                                            <p class="text-black">Not Available</p>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <hr />
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+

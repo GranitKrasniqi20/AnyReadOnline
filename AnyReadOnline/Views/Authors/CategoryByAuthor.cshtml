@@ -1,0 +1,48 @@
+﻿@model AnyReadOnline.BOL.Author
+
+@{
+    ViewBag.Title = "CategoryByAuthor";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+<main>
+    <section>
+        <div class="jumbotron jumbotron-fluid" id="category-banner-image">
+            <div class="container">
+                <h1 class="display-4 text-center white-text">Genres</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Genres Section -->
+            <section class="my-5">
+                <div class="row">
+                    <div class="col">
+                        <h4>View All Authors</h4>
+                    </div>
+                </div>
+                <div class="my-2">
+                    <table id="searchTable">
+                        <tbody>
+                            @foreach (AnyReadOnline.BOL.Author item in ViewBag.myAuthors)
+                            {
+                                <tr>
+                                    <div class="row p-3">
+                                        <div class="col-3">
+                                            <img src="@Url.Content(item.ImagePath)" class="search-author-image-size" />
+                                        </div>
+                                        <div class="col-7">
+                                            <h4><a href="@Url.Action("GetBooksByAuthor", "Books", new { id = item.AuthorID })" class="black-text text-decoration-none">@string.Format(item.FirstName + " " + item.LastName)</a></h4>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </section>
+</main>
+

@@ -38,6 +38,11 @@ namespace AnyReadOnline.BLL
             return genreDAL.Update(obj);
         }
 
+        public List<Genre> GetTop4Genres()
+        {
+            return genreDAL.GetTop4Genres();
+        }
+
         public Genre UpdateObj(int id, Genre obj)
         {
             var GetItem = Get(id);
