@@ -200,6 +200,7 @@
     <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2123,6 +2124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Checkout\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fontawesome-free-5.15.1-web\fonts\glyphicons-halflings-regular.woff2" />

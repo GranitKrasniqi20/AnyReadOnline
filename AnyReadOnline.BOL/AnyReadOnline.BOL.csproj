@@ -122,6 +122,8 @@
     <Compile Include="Role.cs" />
     <Compile Include="SalesMonth.cs" />
     <Compile Include="ShippingCompany.cs" />
+    <Compile Include="ShippingRate.cs" />
+    <Compile Include="ShippingRateDetails.cs" />
     <Compile Include="Staff.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>

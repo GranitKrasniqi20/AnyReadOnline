@@ -34,7 +34,25 @@ namespace AnyReadOnline.Controllers
             ViewBag.myLateBooks = top4LatestBooks;
             ViewBag.myEarlyAuthors = top4EarliestAuthors;
 
-            return View();
+            Order order = new Order();
+            order.ShippingAddress = new Address();
+            order.ShippingAddress.Address1 = "Ejup Gashi 101";
+            order.ShippingAddress.City = "Prishtine";
+            order.ShippingAddress.Country = new Country();
+            order.ShippingAddress.Country.CountryName = "Albania";
+            order.ShippingAddress.Country.CountryCode = "AL";
+            order.ShippingAddress.PostalCode = "10000";
+
+            order.OrderDetails = new List<OrderDetails>();
+
+            BookBLL BOOK = new BookBLL();
+            foreach (var item in BOOK.GetAll())
+            {
+                order.OrderDetails.Add(new OrderDetails() { Book = item });
+            }
+            FedExRates.addmore(order);
+            
+                return View();
         }
         public ActionResult Test()
         {

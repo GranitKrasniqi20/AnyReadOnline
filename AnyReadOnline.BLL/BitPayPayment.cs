@@ -11,7 +11,7 @@ using BitPayLight.Models.Invoice;
 
 namespace AnyReadOnline.BLL
 {
-    class BitPayPayment
+   public class BitPayPayment
     {
 
         public string SentPayment(Address BillingAddress, double price)
@@ -46,7 +46,9 @@ namespace AnyReadOnline.BLL
                    Currency.BTC,
                     Currency.BCH,
                     Currency.ETH
-                }
+                }//,
+               // RedirectUrl = "http://localhost:44325/Home/Index",
+               // NotificationUrl = "http://localhost:44325/Home/Index"
             };
 
 

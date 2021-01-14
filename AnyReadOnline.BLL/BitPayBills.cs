@@ -8,5 +8,6 @@ namespace AnyReadOnline.BLL
 {
    public class BitPayBills
     {
+
     }
 }
