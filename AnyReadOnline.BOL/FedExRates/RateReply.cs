@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnyReadOnline.BOL
+namespace AnyReadOnline.BOL.FedExRates
 {
-    public class ShippingRate
+    public class RateReply
     {
         public string ServiceType { get; set; }
         public string PackagingType { get; set; }
-
+        public List<RatedShipmentDetails> RatedShipmentDetails { get; set; } = new List<RatedShipmentDetails>();
     }
 }

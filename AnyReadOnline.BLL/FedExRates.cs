@@ -13,15 +13,15 @@ namespace AnyReadOnline.BLL
 {
     public class FedExRates
     {
-        public static void addmore(Order order)
+        public  BOL.FedExRates.RateReplyDetails GetRate(Order order)
         {
             RateRequest request = CreateRateRequest(order);
             //
             RateService service = new RateService();
-            if (usePropertyFile())
-            {
-                service.Url = getProperty("https://wsbeta.fedex.com/web-services/rate");
-            }
+            //if (usePropertyFile())
+            //{
+            //    service.Url = getProperty("https://wsbeta.fedex.com/web-services/rate");
+            //}
             try
             {
                 // Call the web service passing in a RateRequest and returning a RateReply
@@ -29,19 +29,22 @@ namespace AnyReadOnline.BLL
 
                 if (reply.HighestSeverity == NotificationSeverityType.SUCCESS || reply.HighestSeverity == NotificationSeverityType.NOTE || reply.HighestSeverity == RateWebServiceClient.RateServiceWebReference.NotificationSeverityType.WARNING)
                 {
-                    //ShowRateReply(reply);
+                    GetRateReply(reply);
                 }
-                //ShowNotifications(reply);
+                else
+                {
+                    return null;
+                }
+
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                return null;
             }
-            Console.WriteLine("Press any key to quit!");
-            Console.ReadKey();
+            return null;
         }
 
-        private static RateRequest CreateRateRequest(Order order)
+        private  RateRequest CreateRateRequest(Order order)
         {
             // Build a RateRequest
             RateRequest request = new RateRequest();
@@ -49,17 +52,17 @@ namespace AnyReadOnline.BLL
             request.WebAuthenticationDetail = new WebAuthenticationDetail();
             request.WebAuthenticationDetail.UserCredential = new WebAuthenticationCredential();
             request.WebAuthenticationDetail.UserCredential.Key = "s3lfZ6PldQHNadXn";
-            request.WebAuthenticationDetail.UserCredential.Password = "qfHLki6gFPYPZ8Befs3OM801J"; 
+            request.WebAuthenticationDetail.UserCredential.Password = "qfHLki6gFPYPZ8Befs3OM801J";
             request.WebAuthenticationDetail.ParentCredential = new WebAuthenticationCredential();
-            request.WebAuthenticationDetail.ParentCredential.Key = "XXX"; 
-            request.WebAuthenticationDetail.ParentCredential.Password = "XXX"; 
+            request.WebAuthenticationDetail.ParentCredential.Key = "XXX";
+            request.WebAuthenticationDetail.ParentCredential.Password = "XXX";
 
             request.ClientDetail = new ClientDetail();
-            request.ClientDetail.AccountNumber = "510087720"; 
-            request.ClientDetail.MeterNumber = "119190657"; 
+            request.ClientDetail.AccountNumber = "510087720";
+            request.ClientDetail.MeterNumber = "119190657";
 
             request.TransactionDetail = new TransactionDetail();
-            request.TransactionDetail.CustomerTransactionId = "***Rate Request using VC#***"; 
+            request.TransactionDetail.CustomerTransactionId = "***Rate Request using VC#***";
             //
             request.Version = new VersionId();
             //
@@ -71,12 +74,12 @@ namespace AnyReadOnline.BLL
             return request;
         }
 
-        private static void SetShipmentDetails(RateRequest request, Order order)
+        private  void SetShipmentDetails(RateRequest request, Order order)
         {
             request.RequestedShipment = new RequestedShipment();
             request.RequestedShipment.ShipTimestamp = DateTime.Now;
             request.RequestedShipment.ShipTimestampSpecified = true;
-            request.RequestedShipment.DropoffType = DropoffType.REGULAR_PICKUP; 
+            request.RequestedShipment.DropoffType = DropoffType.REGULAR_PICKUP;
             request.RequestedShipment.ServiceType = "INTERNATIONAL_PRIORITY"; // Service types are STANDARD_OVERNIGHT, PRIORITY_OVERNIGHT, FEDEX_GROUND ...
                                                                               // request.RequestedShipment.ServiceTypeSpecified = true;
             request.RequestedShipment.PackagingType = "YOUR_PACKAGING"; // Packaging type FEDEX_BOK, FEDEX_PAK, FEDEX_TUBE, YOUR_PACKAGING, ...
@@ -95,7 +98,7 @@ namespace AnyReadOnline.BLL
             request.RequestedShipment.PackageCount = "2";
         }
 
-        private static void SetOrigin(RateRequest request)
+        private void SetOrigin(RateRequest request)
         {
 
             //request.RequestedShipment.Shipper = new Party();
@@ -119,7 +122,7 @@ namespace AnyReadOnline.BLL
 
         }
 
-        private static void SetDestination(RateRequest request, BOL.Address address)
+        private void SetDestination(RateRequest request, BOL.Address address)
         {
             request.RequestedShipment.Recipient = new Party();
             request.RequestedShipment.Recipient.Address = new RateWebServiceClient.RateServiceWebReference.Address();
@@ -129,13 +132,13 @@ namespace AnyReadOnline.BLL
             request.RequestedShipment.Recipient.Address.CountryCode = $"{address.Country.CountryCode}";
         }
 
-        private static void SetPackageLineItems(RateRequest request, List<OrderDetails> orderDetails)
+        private void SetPackageLineItems(RateRequest request, List<OrderDetails> orderDetails)
         {
             request.RequestedShipment.RequestedPackageLineItems = new RequestedPackageLineItem[orderDetails.Count];
             for (int i = 0; i < orderDetails.Count; i++)
             {
                 request.RequestedShipment.RequestedPackageLineItems[i] = new RequestedPackageLineItem();
-                request.RequestedShipment.RequestedPackageLineItems[i].SequenceNumber = $"{i+1}"; // package sequence number
+                request.RequestedShipment.RequestedPackageLineItems[i].SequenceNumber = $"{i + 1}"; // package sequence number
                 request.RequestedShipment.RequestedPackageLineItems[i].GroupPackageCount = "1";
                 // package weight
                 request.RequestedShipment.RequestedPackageLineItems[i].Weight = new Weight();
@@ -163,37 +166,93 @@ namespace AnyReadOnline.BLL
 
         }
 
-       
-        private static bool usePropertyFile() //Set to true for common properties to be set with getProperty function.
+
+        private BOL.FedExRates.RateReplyDetails GetRateReply(RateReply reply)
         {
-            return getProperty("usefile").Equals("True");
+
+            BOL.FedExRates.RateReplyDetails ratedShipmentDetails = new BOL.FedExRates.RateReplyDetails();
+
+
+
+            foreach (RateReplyDetail rateReplyDetail in reply.RateReplyDetails)
+            {
+                ratedShipmentDetails.RateReplies.Add(FormatRateReplyDetail(rateReplyDetail));
+                ratedShipmentDetails.DeliveryTimestamp = rateReplyDetail.DeliveryTimestamp;
+                ratedShipmentDetails.TransitTime = ratedShipmentDetails.TransitTime;
+                // if (rateReplyDetail.ServiceTypeSpecified)
+
+                // if (rateReplyDetail.PackagingTypeSpecified)
+
+
+            }
+
+            return ratedShipmentDetails;
         }
-        private static String getProperty(String propertyname) //Sets common properties for testing purposes.
+
+
+
+        private  BOL.FedExRates.RateReply FormatRateReplyDetail(RateReplyDetail rateReplyDetail)
         {
-            try
+            BOL.FedExRates.RateReply rateReply = new BOL.FedExRates.RateReply();
+
+
+            rateReply.ServiceType = rateReplyDetail.ServiceType;
+            rateReply.PackagingType = rateReplyDetail.PackagingType;
+            rateReply.RatedShipmentDetails = new List<BOL.FedExRates.RatedShipmentDetails>();
+            foreach (var item in rateReplyDetail.RatedShipmentDetails)
             {
-                String filename = "D:\\CS_WSGW_Properties.txt";
-                if (System.IO.File.Exists(filename))
-                {
-                    System.IO.StreamReader sr = new System.IO.StreamReader(filename);
-                    do
-                    {
-                        String[] parts = sr.ReadLine().Split(',');
-                        if (parts[0].Equals(propertyname) && parts.Length == 2)
-                        {
-                            return parts[1];
-                        }
-                    }
-                    while (!sr.EndOfStream);
-                }
-                Console.WriteLine("Property {0} set to default 'XXX'", propertyname);
-                return "XXX";
+                rateReply.RatedShipmentDetails.Add(ShowShipmentRateDetails(item));
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Property {0} set to default 'XXX'", propertyname);
-                return "XXX";
-            }
+            return rateReply;
+
+
         }
+
+
+
+
+
+
+
+
+        private BOL.FedExRates.RatedShipmentDetails ShowShipmentRateDetails(RatedShipmentDetail shipmentDetail)
+        {
+            if (shipmentDetail == null) return null;
+            if (shipmentDetail.ShipmentRateDetail == null) return null;
+            ShipmentRateDetail rateDetail = shipmentDetail.ShipmentRateDetail;
+            //
+            BOL.FedExRates.RatedShipmentDetails FormatDetail = new BOL.FedExRates.RatedShipmentDetails();
+
+
+            FormatDetail.RateType = rateDetail.RateType.ToString();
+
+
+            FormatDetail.TotalBillingAmount = (double)rateDetail.TotalBillingWeight.Value;
+            FormatDetail.Currency = shipmentDetail.ShipmentRateDetail.TotalBillingWeight.Units.ToString();
+
+            FormatDetail.TotalBaseChargeAmount = (double)rateDetail.TotalBaseCharge.Amount;
+            FormatDetail.TotalFreightDiscountsAmount = (double)rateDetail.TotalFreightDiscounts.Amount;
+            FormatDetail.TotalSurchargesAmount = (double)rateDetail.TotalSurcharges.Amount;
+            FormatDetail.surcharges = new List<BOL.FedExRates.Surcharges>();
+            if (rateDetail.Surcharges != null)
+            {
+                foreach (Surcharge surcharge in rateDetail.Surcharges)
+                    FormatDetail.surcharges.Add(new BOL.FedExRates.Surcharges() { SurchargeAmount = (double)surcharge.Amount.Amount, SurchargeCurrency = surcharge.Amount.Currency, SurchargeType = surcharge.SurchargeType.ToString() });
+
+
+            }
+            FormatDetail.TotalNetCharge = (double)rateDetail.TotalNetCharge.Amount;
+
+            return FormatDetail;
+        }
+
+
+
+
+
+
+
+     
     }
+
 }

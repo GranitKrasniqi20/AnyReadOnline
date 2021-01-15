@@ -95,12 +95,17 @@
     <Compile Include="Audit.cs" />
     <Compile Include="Author.cs" />
     <Compile Include="Book.cs" />
+    <Compile Include="CartItemModel.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="DataPoint.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\Months.cs" />
     <Compile Include="ErrorViewModel.cs" />
+    <Compile Include="FedExRates\RatedShipmentDetails.cs" />
+    <Compile Include="FedExRates\RateReply.cs" />
+    <Compile Include="FedExRates\RateReplyDetails.cs" />
+    <Compile Include="FedExRates\Surcharges.cs" />
     <Compile Include="Genre.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Interfaces\IConvertToObject.cs" />
@@ -122,8 +127,6 @@
     <Compile Include="Role.cs" />
     <Compile Include="SalesMonth.cs" />
     <Compile Include="ShippingCompany.cs" />
-    <Compile Include="ShippingRate.cs" />
-    <Compile Include="ShippingRateDetails.cs" />
     <Compile Include="Staff.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
@@ -134,5 +137,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -19,8 +19,7 @@ namespace AnyReadOnline.Controllers
     public class AccountController : Controller
     {
 
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+
         List<Role> roles;
 
         public AccountController()
@@ -36,7 +35,8 @@ namespace AnyReadOnline.Controllers
             UserManager = userManager;
             SignInManager = signInManager;
         }
-
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
         public ApplicationSignInManager SignInManager
         {
             get
@@ -140,7 +140,8 @@ namespace AnyReadOnline.Controllers
                 Email = client.Email,
                 Password = client.Password,
                 ConfirmPassword = client.Password,
-                Role = "Client"
+                Role = "Client",
+
             };
 
             try

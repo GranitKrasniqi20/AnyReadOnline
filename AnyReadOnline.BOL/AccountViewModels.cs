@@ -82,7 +82,7 @@ namespace AnyReadOnline.BOL
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-
+        public int UserID { get; set; }
         public string Role { get; set; }
 
 
