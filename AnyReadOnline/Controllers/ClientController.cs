@@ -71,7 +71,7 @@ namespace AnyReadOnline.Controllers
         public ActionResult Register()
         {
 
-            return View();
+            return View(new Client());
         }
 
         // POST: Client/Create
@@ -102,11 +102,13 @@ namespace AnyReadOnline.Controllers
                         await UserManager.AddToRoleAsync(uid, "Client");
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                        return RedirectToAction("Index", "Home");
+                        //return RedirectToAction("Index", "Home");
+                        return Redirect("~/Home/Index");
                     }
                 }
 
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return Redirect("~/Home/Index");
             }
             catch
             {

@@ -12,6 +12,7 @@ namespace AnyReadOnline.BLL
     public class AddressBLL : ICrud<Address>
     {
         private readonly AddressDAL addressDAL = new AddressDAL();
+        private readonly CountryDAL countryDAL = new CountryDAL();
 
         public int Add(Address obj)
         {
@@ -28,9 +29,14 @@ namespace AnyReadOnline.BLL
             return addressDAL.Get(id);
         }
 
+        public List<Address> GetByClientID(int clientID)
+        {
+            return addressDAL.GetByClientID(clientID);
+        }
+
         public List<Address> GetAll()
         {
-            return addressDAL.GetAll();
+            return addressDAL.GetAll().ToList();
         }
 
         public int Update(Address obj)
