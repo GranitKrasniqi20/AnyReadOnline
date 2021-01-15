@@ -7,65 +7,75 @@
 
 <div class="container-fluid">
     <br /><br />
-    <h2>List of Genres</h2>
+    <h2>Genres</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
+    <p style="float: right;">
+        @*@Html.ActionLink("Create New", "Create")*@
+        <input type="button" class="btn btn-success mx-3 lx-5" value="Add New" onclick="location.href='@Url.Action("Create","Genres")'" />
     </p>
     <table id="genreTable" class="display" border="1">
         <thead>
-            <tr>
+            <tr style="background-color:dodgerblue; color:white;">
+                <th>
+                    @*@Html.DisplayNameFor(model => model.GenreID)*@
+                    ID
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.GenreName)
                 </th>
-                <th>
+               @* <th>
                     @Html.DisplayNameFor(model => model.InsBy)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.InsDate)
-                </th>
-                @*<th>
-                    @Html.DisplayNameFor(model => model.UpdBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UpdDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UpdNo)
                 </th>*@
+                @*<th>
+            @Html.DisplayNameFor(model => model.UpdBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdNo)
+        </th>*@
 
-                <th></th>
+            <th>
+                <b style="margin-left:30px;">Actions</b>
+            </th>
             </tr>
         </thead>
 
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.GenreName)
-                    </td>
-                    <td>
-                        @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.InsDate).ToString()))
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.InsDate)
-                    </td>
-                   @* <td>
-                        @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.UpdDate).ToString()))
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UpdDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UpdNo)
-                    </td>*@
-                    <td>
-                        <input type="button" class="btn btn-secondary mx-3 lx-5" @* title="..."*@ value="Edit" onclick="location.href='@Url.Action("Edit"@*, "Genres"*@, new { id = item.GenreID })'" />
-                        <!--<input type="button" class="btn btn-secondary mx-3 lx-5"--> @* title="..."*@ <!--value="Details" onclick="location.href='@Url.Action("Details"-->@*, "Genres"*@<!--, new { id = item.GenreID })'" />-->
-                        <input type="button" class="btn btn-danger mx-3 lx-5" @* title="..."*@ value="Delete" onclick="location.href='@Url.Action("Delete"@*, "Genres"*@, new { id = item.GenreID })'" />
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreName)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.InsBy)
+                </td>
+                <td>
+                    @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.InsDate).ToString()))
+                </td>*@
+                @* <td>
+            @string.Format("{0:dd/MMM/yyyy}", Convert.ToDateTime(Html.DisplayFor(modelItem => item.UpdDate).ToString()))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdNo)
+        </td>*@
+                <td>
+                    <input type="button" class="btn btn-secondary mx-3 lx-5" @* title="..."*@ value="Edit" onclick="location.href='@Url.Action("Edit"@*, "Genres"*@, new { id = item.GenreID })'" />
+                    <!--<input type="button" class="btn btn-secondary mx-3 lx-5"--> @* title="..."*@ <!--value="Details" onclick="location.href='@@Url.Action("Details", "Genres", new { id = item.GenreID })'" />-->
+                    <input type="button" class="btn btn-danger mx-3 lx-5" @* title="..."*@ value="Delete" onclick="location.href='@Url.Action("Delete"@*, "Genres"*@, new { id = item.GenreID })'" />
+                </td>
+            </tr>
             }
         </tbody>
     </table>
@@ -73,7 +83,17 @@
     @section Scripts{
         <script type="text/javascript">
             $(document).ready(function () {
-                $('#genreTable').DataTable();
+                var table = $('#genreTable').removeAttr('width').DataTable({
+                        @*scrollY: "300px",
+                        scrollX: false,*@
+                        scrollCollapse: true,
+                        columnDefs: [
+                        { width: 100, targets: 0 },
+                        { width: 800, targets: 1 },
+                        { width: 200, targets: 2, orderable: false }
+                    ],
+                    fixedColumns: false
+                    });
             });
         </script>
     }
