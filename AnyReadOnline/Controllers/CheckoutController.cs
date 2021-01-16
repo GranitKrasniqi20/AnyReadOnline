@@ -292,9 +292,9 @@ namespace AnyReadOnline.Controllers
 
             // }
             string confirmationLink = $"{Request.Url.Scheme}://{Request.Url.Host}:{Request.Url.Port}{this.Url.Action("Payment", "Checkout")}";
-            return RedirectToAction("Payment");
+            //return RedirectToAction("Payment");
 
-           // return Redirect(bitPay.SentPayment(payment.BillingAddres, 20, confirmationLink)) ;
+            return Redirect(bitPay.SentPayment(payment.BillingAddres, 20, confirmationLink)) ;
         }
 
 
