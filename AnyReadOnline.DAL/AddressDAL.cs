@@ -125,42 +125,6 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public List<Address> GetByClientID(int clientID)
-        {
-            List<Address> addresses = new List<Address>();
-
-            try
-            {
-                using (SqlConnection sqlConnection = DbHelper.GetConnection())
-                {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAddressByClientId", CommandType.StoredProcedure))
-                    {
-                        sqlCommand.Parameters.AddWithValue("@ClientID", clientID);
-
-                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
-                        {
-                            if (sqlDataReader.HasRows)
-                            {
-                                while (sqlDataReader.Read())
-                                {
-                                    if (ConvertToObject(sqlDataReader) == null)
-                                    {
-                                        throw new Exception();
-                                    }
-                                    addresses.Add(ConvertToObject(sqlDataReader));
-                                }
-                            }
-                            return addresses;
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-
-                throw new Exception();
-            }
-        }
 
         public List<Address> GetAll()
         {
@@ -196,8 +160,9 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public Address GetByClientID(int clientID)
+        public List<Address> GetByClientID(int clientID)
         {
+            List<Address> addresses = new List<Address>();
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
@@ -206,16 +171,20 @@ namespace AnyReadOnline.DAL
                     {
                         sqlCommand.Parameters.AddWithValue("@ClientID", clientID);
 
-                        using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
-                            if (reader.Read())
+                            if (sqlDataReader.HasRows)
                             {
-                                return ConvertToObject(reader);
+                                while (sqlDataReader.Read())
+                                {
+                                    if (ConvertToObject(sqlDataReader) == null)
+                                    {
+                                        throw new Exception();
+                                    }
+                                    addresses.Add(ConvertToObject(sqlDataReader));
+                                }
                             }
-                            else
-                            {
-                                return null;
-                            }
+                            return addresses;
                         }
                     }
                 }
