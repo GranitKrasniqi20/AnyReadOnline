@@ -60,7 +60,7 @@ namespace AnyReadOnline.Controllers
             ViewBag.PublishHouses = publishHouseBLL.GetAll();
             ViewBag.Authors = authorBLL.GetAll();
 
-            return View();
+            return View(new Book());
         }
 
         // POST: Books/Create
@@ -193,7 +193,8 @@ namespace AnyReadOnline.Controllers
                 cart.Add(new CartItemModel()
                 {
                     book = cartItem,
-                    Quantity = 1
+                    Quantity = 1,
+                    ClientID = 0
                 });
                 Session["cart"] = cart;
             }
@@ -231,7 +232,8 @@ namespace AnyReadOnline.Controllers
                 
                 Session["cart"] = cart;
             }
-            return View("ShoppingCart");
+            //return View("ShoppingCart");
+            return RedirectToAction("GoToCart");
         }
 
         public ActionResult RemoveFromCart(int id)

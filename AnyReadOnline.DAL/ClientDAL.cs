@@ -223,7 +223,7 @@ namespace AnyReadOnline.DAL
             }
             if (sqlDataReader["Gender"] != DBNull.Value)
             {
-                client.Gender = (Gender)int.Parse(sqlDataReader["Gender"].ToString());
+                client.Gender = (Gender)Convert.ToInt32(sqlDataReader["Gender"]);
             }
             if (sqlDataReader["PhoneNo"] != DBNull.Value)
             {
