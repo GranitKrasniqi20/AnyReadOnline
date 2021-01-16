@@ -221,10 +221,7 @@ namespace AnyReadOnline.DAL
                 client.Email = sqlDataReader["Email"].ToString();
                 client.ConfirmEmail = sqlDataReader["Email"].ToString();
             }
-            if (sqlDataReader["Gender"] != DBNull.Value)
-            {
-               // client.Gender = (Gender)int.Parse(sqlDataReader["Gender"].ToString());
-            }
+
             if (sqlDataReader["PhoneNo"] != DBNull.Value)
             {
                 client.PhoneNo = sqlDataReader["PhoneNo"].ToString();

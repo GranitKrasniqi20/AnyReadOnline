@@ -9,32 +9,44 @@ using System.Threading.Tasks;
 
 namespace AnyReadOnline.BLL
 {
-    class OrderBLL : ICrud<Order>
+    public class OrderBLL 
     {
         private readonly OrderDAL orderDAL = new OrderDAL();
 
 
-        public int Add(Order obj)
+        public int Add(Payment payment)
         {
-            return orderDAL.Add(obj);
+            payment.Order.ShippingFee = payment.ratedShipmentDetails.RateReplies[0].RatedShipmentDetails[0].TotalBillingAmount;
+            payment.Order.ShippingAddress.AddressID = 1; 
+            int orderid = orderDAL.Add(payment.Order);
+            if (orderid > 0)
+            {
+                OrderDetailsBLL orderDetails = new OrderDetailsBLL();
+                foreach (var item in payment.Order.OrderDetails)
+                {
+                    item.OrderID = orderid;
+                    orderDetails.Add(item);
+                }
+
+
+                payment.OrderID = orderid;
+                PaymentBLL paymentBLL = new PaymentBLL();
+                paymentBLL.Add(payment);
+
+                return 1;
+
+            }
+
+            return 0;
         }
 
-        public int Delete(int id)
-        {
-            return orderDAL.Delete(id);
-        }
 
-        public int Update(Order obj)
-        {
-            return orderDAL.Update(obj);
-        }
 
-        Order IRead<Order>.Get(int id)
-        {
-            return orderDAL.Get(id);
-        }
 
-        List<Order> IRead<Order>.GetAll()
+
+
+
+       public List<Order> GetAllByClientId()
         {
             return orderDAL.GetAll();
         }

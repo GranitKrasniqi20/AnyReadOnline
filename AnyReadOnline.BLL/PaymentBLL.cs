@@ -1,5 +1,6 @@
 ﻿using AnyReadOnline.BOL;
 using AnyReadOnline.BOL.FedExRates;
+using AnyReadOnline.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,23 @@ namespace AnyReadOnline.BLL
     {
         public double CalculatePrice(List<OrderDetails> orderDetails, double shippingCost )
         {
-            double finalPrice = 0 ;
+
+            return CalculateSubtotal(orderDetails) + shippingCost;
+        }
+
+        public int Add(Payment payment)
+        {
+            PaymentDAL paymentDAL = new PaymentDAL();
+
+          return  paymentDAL.Add(payment);
+        }
+
+        public double CalculateSubtotal(List<OrderDetails> orderDetails)
+        {
+            double finalPrice = 0;
             foreach (var item in orderDetails)
             {
-                finalPrice += shippingCost+(double)item.Book.Price * item.Quantity  ;
+                finalPrice += (double)item.Book.Price * item.Quantity;
             }
             return finalPrice;
         }

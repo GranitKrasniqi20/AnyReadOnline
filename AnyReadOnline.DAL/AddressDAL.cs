@@ -29,13 +29,16 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("Name", obj.FirstName);
                         sqlCommand.Parameters.AddWithValue("LastName", obj.LastName);
                         sqlCommand.Parameters.AddWithValue("Address1", obj.Address1);
-                        sqlCommand.Parameters.AddWithValue("Address2", obj.Address2);
-                        sqlCommand.Parameters.AddWithValue("Email", obj.Email);
+
                         sqlCommand.Parameters.AddWithValue("PhoneNo", obj.PhoneNumber);
                         sqlCommand.Parameters.AddWithValue("PostalCode", obj.PostalCode);
                         sqlCommand.Parameters.AddWithValue("City", obj.City);
                         sqlCommand.Parameters.AddWithValue("CountryID", obj.CountryID);
-                        sqlCommand.Parameters.AddWithValue("InsBy", obj.ClientID);
+
+                        sqlCommand.Parameters.AddWithValue("InsBy", 1);
+                        sqlCommand.Parameters.AddWithValue("Email", obj.Email);
+
+
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -254,14 +257,11 @@ namespace AnyReadOnline.DAL
             {
                 address.Address1 = sqlDataReader["Address1"].ToString();
             }
-            if (sqlDataReader["Address2"] != DBNull.Value)
-            {
-                address.Address2 = sqlDataReader["Address2"].ToString();
-            }
             if (sqlDataReader["AddressPhoneNumber"] != DBNull.Value)
             {
                 address.PhoneNumber = sqlDataReader["AddressPhoneNumber"].ToString();
             }
+
             if (sqlDataReader["AddressEmail"] != DBNull.Value)
             {
                 address.Email = sqlDataReader["AddressEmail"].ToString();

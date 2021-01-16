@@ -1,4 +1,4 @@
-﻿
+﻿@model AnyReadOnline.BOL.Payment
 @{
     ViewBag.Title = "OrderConfirmation";
     Layout = "~/Views/Shared/_ClientLayout.cshtml";
@@ -27,116 +27,120 @@
             </div>
         </div>
     </section>
-    <section id="confirmSection">
-        <div class="container">
-            <div class="row py-5" style="border-bottom: 2px solid #eaeaea;">
-                <div class="col">
-                    <h2 class="capital">Confirm your order</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis tincidunt quam. Donec ullamcorper lacinia risus
-                        pretium dapibus. Nam gravida quis risus vitae lobortis. Aliquam fermentum ultricies fermentum. Fusce tortor
-                        arcu, egestas sit amet nulla quis, elementum luctus purus.
-                    </p>
-                    <div class="form-check form-check-inline p-3 mt-3"
-                         style="background-color: #CDECFD; color: #287098;">
-                        <input class="form-check-input" type="checkbox" id="AgreeTermsCheckbox" value="TermsAndConditions">
-                        <label class="form-check-label" for="AgreeTermsCheckbox">
-                            I agree with these terms and conditions!
-                        </label>
+
+        <section id="confirmSection">
+            <div class="container">
+                <div class="row py-5" style="border-bottom: 2px solid #eaeaea;">
+                    <div class="col">
+                        <h2 class="capital">Confirm your order</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis tincidunt quam. Donec ullamcorper lacinia risus
+                            pretium dapibus. Nam gravida quis risus vitae lobortis. Aliquam fermentum ultricies fermentum. Fusce tortor
+                            arcu, egestas sit amet nulla quis, elementum luctus purus.
+                        </p>
+                        <div class="form-check form-check-inline p-3 mt-3"
+                             style="background-color: #CDECFD; color: #287098;">
+                            <input class="form-check-input" name="@Model.clientConfirmation"  type="checkbox" id="AgreeTermsCheckbox" value="TermsAndConditions">
+                            <label class="form-check-label" for="AgreeTermsCheckbox">
+                                I agree with these terms and conditions!
+                            </label>
+                        </div>
+                        <p class="text-danger mt-3">* You need to tick the Terms & Agreement Checkbox to move forward!</p>
                     </div>
-                    <p class="text-danger mt-3">* You need to tick the Terms & Agreement Checkbox to move forward!</p>
                 </div>
-            </div>
-            <div class="row my-5">
-                <div class="col">
-                    <h3>Billing Address</h3>
-                    <p>Beis Presheva</p>
-                    <p>044123123</p>
-                    <p>beispresheva@gmail.com</p>
-                    <p>Rruga Rumiu, nr. 120</p>
-                    <p>Prishtine, Kosove</p>
+                <div class="row my-5">
+                    <div class="col">
+                        <h3>Billing Address</h3>
+                        <p>@Model.BillingAddres.FirstName&nbsp;@Model.BillingAddres.LastName</p>
+                        <p>@Model.BillingAddres.PhoneNumber</p>
+                        <p>@Model.BillingAddres.Email</p>
+                        <p>@Model.BillingAddres.Address1</p>
+                        <p>@Model.BillingAddres.City, @Model.BillingAddres.Country.CountryName</p>
+                    </div>
+                    <div class="col">
+                        <h3>Shipping Address</h3>
+                        <p>@Model.Order.ShippingAddress.FirstName&nbsp;@Model.Order.ShippingAddress.LastName</p>
+                        <p>@Model.Order.ShippingAddress.PhoneNumber</p>
+                        <p>@Model.Order.ShippingAddress.Email</p>
+                        <p>@Model.Order.ShippingAddress.Address1</p>
+                        <p>@Model.Order.ShippingAddress.City, @Model.Order.ShippingAddress.Country.CountryName</p>
+                    </div>
+                    <div class="col">
+                        <h3>Payment Method</h3>
+                        <p>By Crypto Payment</p>
+                        <p>Bitcoin</p>
+                    </div>
                 </div>
-                <div class="col">
-                    <h3>Shipping Address</h3>
-                    <p>Beis Presheva</p>
-                    <p>044123123</p>
-                    <p>beispresheva@gmail.com</p>
-                    <p>Rruga Rumiu, nr. 120</p>
-                    <p>Prishtine, Kosove</p>
+                <div class="row">
+                    <div class="col">
+                        <table class="table my-5">
+                            <thead class="bg-danger white-text">
+                                <tr>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Author</th>
+                                    <th scope="col">Genre</th>
+                                    <th scope="col">Language</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Order.OrderDetails)
+                                {
+                                    <tr>
+                                        <td>@item.Book.Title</td>
+                                        <td>@item.Book.Author.FirstName &nbsp; @item.Book.Author.FirstName</td>
+                                        <td>@item.Book.Genre.GenreName</td>
+                                        <td>@item.Book.Language.LanguageName</td>
+                                        <td>@item.Book.Price</td>
+                                        <td>@item.Book.Quantity</td>
+                                        <td>@item.Book.Price * @item.Book.Quantity</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="col">
-                    <h3>Payment Method</h3>
-                    <p>By Crypto Payment</p>
-                    <p>Bitcoin</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <table class="table my-5">
-                        <thead class="bg-danger white-text">
-                            <tr>
-                                <th scope="col">Title</th>
-                                <th scope="col">Author</th>
-                                <th scope="col">Genre</th>
-                                <th scope="col">Language</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Steve Jobs</td>
-                                <td>Walter Isaacson</td>
-                                <td>Biography</td>
-                                <td>English</td>
-                                <td>€29.99</td>
-                                <td>3</td>
-                                <td>€89.97</td>
-                            </tr>
-                            <tr>
-                                <td>A Promised Land</td>
-                                <td>Barack Obama</td>
-                                <td>Biography</td>
-                                <td>English</td>
-                                <td>€29.99</td>
-                                <td>1</td>
-                                <td>€29.99</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="row p-4"
-                 style="border-bottom: 2px solid #eaeaea;
+                <div class="row p-4"
+                     style="border-bottom: 2px solid #eaeaea;
                                 background-color: #EAEAEA;
                                 border: 2px solid #D0D0D0;
                                 ">
-                <div class="col-11">
-                    <div class="d-flex flex-column float-right">
-                        <div class="p-2 text-right;">Subtotal:</div>
-                        <div class="p-2 text-right">Tax:</div>
-                        <div class="p-2 text-right">Total:</div>
+                    <div class="col-11">
+                        <div class="d-flex flex-column float-right">
+                            <div class="p-2 text-right;">Subtotal:</div>
+                            <div class="p-2 text-right">ShippingFee:</div>
+                            <div class="p-2 text-right">Tax:</div>
+                            <div class="p-2 text-right">Total:</div>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <div class="d-flex flex-column float-right">
+                            <div class="p-2 text-right font-weight-bold">€@Model.Subtotal</div>
+                            <div class="p-2 text-right font-weight-bold">@Model.ratedShipmentDetails.RateReplies[0].RatedShipmentDetails[0].TotalBillingAmount</div>
+                            <div class="p-2 text-right font-weight-bold">0%</div>
+                            <div class="p-2 text-right font-weight-bold orange-text">€@Model.TotalPrice</div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-1">
-                    <div class="d-flex flex-column float-right">
-                        <div class="p-2 text-right font-weight-bold">€119.96</div>
-                        <div class="p-2 text-right font-weight-bold">0%</div>
-                        <div class="p-2 text-right font-weight-bold orange-text">€119.96</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-5">
-                <div class="col">
-                    <div class="clearfix">
-                        <button type="button" class="btn btn-dark px-5 font-weight-bold white-text float-left">Back</button>
-                        <button type="button" class="btn my-orange px-5 font-weight-bold white-text float-right">Next</button>
-                    </div>
+                <div class="row my-5">
+                    <div class="col">
 
+
+                        <div class="clearfix">
+                            <button type="button" class="btn btn-dark px-5 font-weight-bold white-text float-left">Back</button>
+                            @using (Html.BeginForm("OrderConfirmation", "Checkout"))
+                            {
+                                <input type="submit" id="address" value="next" class="btn my-orange px-5 font-weight-bold white-text float-right" />
+                            }
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    
 </main>
 

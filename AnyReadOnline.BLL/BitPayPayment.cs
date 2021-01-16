@@ -14,15 +14,15 @@ namespace AnyReadOnline.BLL
    public class BitPayPayment
     {
 
-        public string SentPayment(Address BillingAddress, double price)
+        public string SentPayment(Address BillingAddress, double price, string returnUrl)
         {
-            return CreateInvoice(BillingAddress, price);
+            return CreateInvoice(BillingAddress, price, returnUrl);
         }
 
 
 
 
-       string CreateInvoice(Address BillingAddress, double price)
+       string CreateInvoice(Address BillingAddress, double price, string returnUrl)
         {
             BitPayHelper bitPayHelper = new BitPayHelper();
 
@@ -46,14 +46,14 @@ namespace AnyReadOnline.BLL
                    Currency.BTC,
                     Currency.BCH,
                     Currency.ETH
-                }//,
-               // RedirectUrl = "http://localhost:44325/Home/Index",
+                },//,
+                RedirectUrl = returnUrl,
                // NotificationUrl = "http://localhost:44325/Home/Index"
             };
 
+          Invoice inv=   bitpay.CreateInvoice(invoice).Result;
 
-
-            return bitpay.CreateInvoice(invoice).Result.Url;
+            return inv.Url;
         }
 
 

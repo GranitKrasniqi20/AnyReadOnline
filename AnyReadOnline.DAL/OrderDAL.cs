@@ -38,6 +38,7 @@ namespace AnyReadOnline.DAL
                 order.ShippingCompany.ShippingCompanyID = (int)sqlDataReader["ShippingCompanyID"];
                 order.ShippingCompany.ShippingCompanyID = (int)sqlDataReader["ShippingCompanyName"];
 
+
                 return order;
             }
             catch (Exception)
@@ -53,16 +54,25 @@ namespace AnyReadOnline.DAL
                 {
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_CreateOrder", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("ClientID", obj.ClientID);
+                        sqlCommand.Parameters.AddWithValue("ClientID", obj.Client.UserID);
                         sqlCommand.Parameters.AddWithValue("ShippingAddressID", obj.ShippingAddressID);
-                        sqlCommand.Parameters.AddWithValue("ShippingFee", obj.ShippingFee);
-                        sqlCommand.Parameters.AddWithValue("ArrivalDate", obj.ArrivalDate);
-                        sqlCommand.Parameters.AddWithValue("ShippingCompanyID", obj.ShippingCompanyID);
-                        sqlCommand.Parameters.AddWithValue("ShippingOrderId", obj.ShippingOrderId);
+                        sqlCommand.Parameters.AddWithValue("ShippingFee", (int)obj.ShippingFee);
+                        sqlCommand.Parameters.AddWithValue("ShippingCompanyID", 1);
+                        int orderid = 0;
+                        SqlParameter sqlpa = new SqlParameter();
+                        sqlpa.ParameterName = "OrderId";
+                        sqlpa.SqlDbType = SqlDbType.Int;
+                        sqlpa.Direction = ParameterDirection.Output;
+
+                        sqlCommand.Parameters.Add(sqlpa);
+
+
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
-                            return 1;
+                            orderid = (int)sqlpa.Value;
+                            return orderid;
+
                         }
                         else
                         {

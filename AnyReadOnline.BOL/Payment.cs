@@ -20,5 +20,8 @@ namespace AnyReadOnline.BOL
         public virtual Address BillingAddres { get; set; }
         public double TotalFee { get; set; }
         public RateReplyDetails ratedShipmentDetails  { get; set; }
+        public double Subtotal { get; set; }
+        public double TotalPrice { get; set; }
+        public bool clientConfirmation { get; set; }
     }
 }

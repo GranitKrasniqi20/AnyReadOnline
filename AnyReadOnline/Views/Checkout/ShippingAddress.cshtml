@@ -41,10 +41,10 @@
             {
                 foreach (var item in (List<AnyReadOnline.BOL.Address>)ViewBag.BillingAddresses)
                 {
-                    //using (Html.BeginForm("BillingAddress", "Checkout", routeValues: new { addressId = item.AddressID }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    //{
+                    using (Html.BeginForm("BillingAddress", "Checkout", routeValues: new { addressId = item.AddressID }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
                     <div class="row mb-5">
-                        <div class="col-4">
+                        <div class="col">
                             <div class="my-orange text-white p-3 mb-3"
                                  style="border-radius: 10px">
                                 <div class="row">
@@ -65,16 +65,15 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-4">
-                                        @*<a href=" @Url.Action("BillingAddress", "Checkout", new { addressId = Model.AddressID} )" >
-                                            ">*@
-                                        <button type="button" class="btn btn-light font-weight-bold orange-text">Choose</button>
-                                        @*</a>>*@
+                                        <a href=" @Url.Action("ShippingAddressO", "Checkout", new { AddressId = @item.AddressID })" class="btn btn-light font-weight-bold orange-text">
+                                        Choose
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    // }
+                     }
                 }
 
             }

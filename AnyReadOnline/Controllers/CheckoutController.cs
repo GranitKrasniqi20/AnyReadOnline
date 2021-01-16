@@ -83,6 +83,9 @@ namespace AnyReadOnline.Controllers
         public ActionResult BillingAddress()
         {
 
+            
+            
+            
             AddressBLL addressBLL = new AddressBLL();
 
             List<Address> addresses = addressBLL.GetAll().Where(x => x.ClientID == GetCurrenctClient().UserID).ToList();
@@ -102,41 +105,54 @@ namespace AnyReadOnline.Controllers
             return View(new Address());
         }
 
-        //[HttpPost]
-        //public ActionResult BillingAddress(int id)
-        //{
+        public ActionResult BillingAddresO(int AddressId)
+        {
 
 
-        //    Client client = GetCurrenctClient();
-        //    Payment payment = new Payment();
-        //    AddressBLL addressBLL = new AddressBLL(); 
-        //    payment.Order = new Order();
-        //    payment.Order.Client = client;
-        //    payment.BillingAddres = addressBLL.Get(id);
-        //    payment.Order.OrderDetails = CartItemToOrderDetails(getCardItems(client.UserID));
+            Client client = GetCurrenctClient();
+            Payment payment = new Payment();
 
-        //    Session["Orders{client.UserID}"] = payment;
-        //    return RedirectToAction("ShippingAddress");
-        //}
+            AddressBLL addressBLL = new AddressBLL();
+            payment.BillingAddres = addressBLL.Get(AddressId);
+            payment.Order = new Order();
+            CountryBLL countryBLL = new CountryBLL();
+            Country country = countryBLL.Get(payment.BillingAddres.CountryID);
+            payment.BillingAddres.Country = country;
+
+            payment.Order.Client = client;
+
+            payment.BillingAddres.ClientID = client.UserID;
+            payment.BillingAddres.Client = client;
+            payment.Order.OrderDetails = CartItemToOrderDetails(getCardItems(client.UserID));
+
+            Session[$"Orders{client.UserID}"] = payment;
+            return RedirectToAction("ShippingAddress");
+        }
 
 
 
         [HttpPost]
-        public ActionResult BillingAddress(Address address)
+        public ActionResult BillingAddress(Address model)
         {
+
 
 
 
 
             Client client = GetCurrenctClient();
             AddressBLL addressBLL = new AddressBLL();
-            address.ClientID = client.UserID;
-            address.Client = client;
-            addressBLL.Add(address);
+
+            CountryBLL countryBLL = new CountryBLL();
+            Country country = countryBLL.Get(model.CountryID);
+            model.Country = country;
+
+            model.ClientID = client.UserID;
+            model.Client = client;
+            addressBLL.Add(model);
             Payment payment = new Payment();
             payment.Order = new Order();
             payment.Order.Client = client;
-            payment.BillingAddres = address;
+            payment.BillingAddres = model;
             payment.Order.OrderDetails = CartItemToOrderDetails(getCardItems(client.UserID));
 
             Session[$"Orders{client.UserID}"] = payment;
@@ -186,6 +202,32 @@ namespace AnyReadOnline.Controllers
             return View(new Address());
         }
 
+
+        public ActionResult ShippingAddressO(int AddressId)
+        {
+
+            CountryBLL countryBLL = new CountryBLL();
+            AddressBLL addressBLL = new AddressBLL();
+            Address address = addressBLL.Get(AddressId);
+            Country country = countryBLL.Get(address.CountryID);
+            Client client = GetCurrenctClient();
+            address.ClientID = client.UserID;
+            address.Client = client;
+            address.Country = country;
+            addressBLL.Add(address);
+
+            Payment payment = Session[$"Orders{client.UserID}"] as Payment;
+            payment.Order.ShippingAddress = address;
+            FedExRates fedExRates = new FedExRates();
+            RateReplyDetails ratedShipmentDetails = fedExRates.GetRate(payment.Order);
+            if (ratedShipmentDetails.RateReplies[0].RatedShipmentDetails[0].TotalBillingAmount > 0)
+            {
+                payment.ratedShipmentDetails = ratedShipmentDetails;
+                Session[$"Orders{client.UserID}"] = payment;
+            }
+            return RedirectToAction("OrderConfirmation");
+        }
+
         [HttpPost]
         public ActionResult ShippingAddress(Address address)
         {
@@ -194,15 +236,16 @@ namespace AnyReadOnline.Controllers
 
 
 
+            CountryBLL countryBLL = new CountryBLL();
 
-
-
-
+            Country country = countryBLL.Get(address.CountryID);
             Client client = GetCurrenctClient();
             AddressBLL addressBLL = new AddressBLL();
             address.ClientID = client.UserID;
             address.Client = client;
+            address.Country = country;
             addressBLL.Add(address);
+
             Payment payment = Session[$"Orders{client.UserID}"] as Payment ;
             payment.Order.ShippingAddress = address;
             FedExRates fedExRates = new FedExRates();
@@ -212,54 +255,63 @@ namespace AnyReadOnline.Controllers
                 payment.ratedShipmentDetails = ratedShipmentDetails;
                 Session[$"Orders{client.UserID}"] = payment;
             }
-            return View(address);
+            return RedirectToAction("OrderConfirmation");
         }
+
+        
 
         public ActionResult OrderConfirmation()
         {
-
-            return View();
+            Client client = GetCurrenctClient();
+            PaymentBLL paymentBLL = new PaymentBLL();
+            Payment payment = Session[$"Orders{client.UserID}"] as Payment;
+            payment.Subtotal = paymentBLL.CalculateSubtotal(payment.Order.OrderDetails);
+            payment.TotalPrice = paymentBLL.CalculatePrice(payment.Order.OrderDetails, payment.ratedShipmentDetails.RateReplies[0].RatedShipmentDetails[0].TotalBillingAmount);
+            Session[$"Orders{client.UserID}"] = payment;
+            return View(payment);
         }
 
 
 
         [HttpPost]
-        public ActionResult OrderConfirmation(bool isConfirmed)
+        public ActionResult OrderConfirmation(Payment payment)
         {
 
-            if (isConfirmed)
-            {
+            //if (payment.clientConfirmation)
+            //{
                 Client client = GetCurrenctClient();
-                Payment payment = Session[$"Orders{client.UserID}"] as Payment;
-
-                BitPayPayment bitPay = new BitPayPayment();
+            // Payment payment = Session[$"Orders{client.UserID}"] as Payment;
+             payment = Session[$"Orders{client.UserID}"] as Payment;
+            BitPayPayment bitPay = new BitPayPayment();
                 PaymentBLL paymentBLL = new PaymentBLL();
-                FedExRates fedExRates = new FedExRates();
-                RateReplyDetails ratedShipmentDetails= fedExRates.GetRate(payment.Order);
+            // FedExRates fedExRates = new FedExRates();
+            //RateReplyDetails ratedShipmentDetails= fedExRates.GetRate(payment.Order);
 
-                    bitPay.SentPayment(payment.BillingAddres, paymentBLL.CalculatePrice(payment.Order.OrderDetails, payment.ratedShipmentDetails.RateReplies[0].RatedShipmentDetails[0].TotalBillingAmount));
-                
-               
-            }
 
-            return View();
+
+
+            // }
+            string confirmationLink = $"{Request.Url.Scheme}://{Request.Url.Host}:{Request.Url.Port}{this.Url.Action("Payment", "Checkout")}";
+            return RedirectToAction("Payment");
+
+           // return Redirect(bitPay.SentPayment(payment.BillingAddres, 20, confirmationLink)) ;
         }
 
 
         // GET: Checkout/Create
         public ActionResult Payment()
         {
+            Client client = GetCurrenctClient();
 
+            Payment payment;
+            payment = Session[$"Orders{client.UserID}"] as Payment;
+            OrderBLL orderBLL = new OrderBLL();
+            payment.Order.Client = client;
+            payment.Order.Client.UserID = client.UserID;
+            orderBLL.Add(payment);
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Payment(Payment payment)
-        {
-
-
-            return View();
-        }
 
         // POST: Checkout/Create
         [HttpPost]

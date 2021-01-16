@@ -44,7 +44,7 @@ namespace AnyReadOnline.DAL
                 {
                     using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_InsertOrderDetail", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("BookID", obj.BookID);
+                        sqlCommand.Parameters.AddWithValue("BookID", obj.Book.BookID);
                         sqlCommand.Parameters.AddWithValue("Quantity", 1);
                         sqlCommand.Parameters.AddWithValue("OrderID", obj.OrderID);
                         if (sqlCommand.ExecuteNonQuery() > 0)

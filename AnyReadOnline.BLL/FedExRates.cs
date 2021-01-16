@@ -29,7 +29,7 @@ namespace AnyReadOnline.BLL
 
                 if (reply.HighestSeverity == NotificationSeverityType.SUCCESS || reply.HighestSeverity == NotificationSeverityType.NOTE || reply.HighestSeverity == RateWebServiceClient.RateServiceWebReference.NotificationSeverityType.WARNING)
                 {
-                    GetRateReply(reply);
+                   return GetRateReply(reply);
                 }
                 else
                 {
@@ -41,7 +41,6 @@ namespace AnyReadOnline.BLL
             {
                 return null;
             }
-            return null;
         }
 
         private  RateRequest CreateRateRequest(Order order)
@@ -129,7 +128,7 @@ namespace AnyReadOnline.BLL
             request.RequestedShipment.Recipient.Address.StreetLines = new string[1] { $"{address.Address1}" };
             request.RequestedShipment.Recipient.Address.City = $"{address.City}";
             request.RequestedShipment.Recipient.Address.PostalCode = $"{address.PostalCode}";
-            request.RequestedShipment.Recipient.Address.CountryCode = $"{address.Country.CountryCode}";
+            request.RequestedShipment.Recipient.Address.CountryCode = "AL";//$"{address.Country.CountryCode}";
         }
 
         private void SetPackageLineItems(RateRequest request, List<OrderDetails> orderDetails)
@@ -227,7 +226,7 @@ namespace AnyReadOnline.BLL
             FormatDetail.RateType = rateDetail.RateType.ToString();
 
 
-            FormatDetail.TotalBillingAmount = (double)rateDetail.TotalBillingWeight.Value;
+            FormatDetail.TotalBillingAmount = (double)rateDetail.TotalNetCharge.Amount;
             FormatDetail.Currency = shipmentDetail.ShipmentRateDetail.TotalBillingWeight.Units.ToString();
 
             FormatDetail.TotalBaseChargeAmount = (double)rateDetail.TotalBaseCharge.Amount;
