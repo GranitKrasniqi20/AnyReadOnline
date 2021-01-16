@@ -9,33 +9,34 @@
 <h4>Delete This Language</h4>
 <br /><br />
 <div class="text-danger">
-    <h3 style="font-weight:bold;">Are you sure you want to delete "@Html.DisplayFor(model => model.LanguageName)"?</h3>
+    <h3 style="font-weight:bold;">Are you sure you want to delete <br />"@Html.DisplayFor(model => model.LanguageName)"?</h3>
 </div><br />
-            <div>
-                <table>
-
-                </table>
-                <dl>
-                    <dt>
-                        Language ID:        @Html.DisplayFor(model => model.LanguageID)
-                    </dt>
-                    <dt>
-                        Language Name:      @Html.DisplayFor(model => model.LanguageName)
-                    </dt>
-                    <dt>
-                        Inserted By ID:     1
-                    </dt>
-                </dl>
-
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    <input type="submit" class="btn btn-danger mx-3 lx-5" value="Delete Language" onclick="location.href='@Url.Action("Delete","Languages")'" />
-                    <br /> <br />
-                    <p>Once the Language is delted, recovery is not possible.</p>
-                    <br />
-                    <div style="font-weight:bold">
-                        @Html.ActionLink("Go to Language List", "Index")
-                    </div>
-                }
+      <div class="row" style="font-weight:bold;">
+          <div class="col-2">
+              Language ID:  <br />
+              Language Name:<br />
+              Inserted By ID:<br />
+          </div>
+          <div class="col">
+              @Html.DisplayFor(model => model.LanguageID)<br />
+              @Html.DisplayFor(model => model.LanguageName)<br />
+              1<br />
+          </div>
+      </div>
+    <br />
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" class="btn btn-danger mx-3 lx-5" value="Delete Language" onclick="location.href='@Url.Action("Delete","Languages")'" />
+            <div style="margin:20px;">
+                <p>Once the Language is deleted, recovery is not possible.</p>
+                <br />
+                <div style="font-weight:bold">
+                    @Html.ActionLink("Go to Language List", "Index")
+                </div>
             </div>
+        }
+    </div>
+
+

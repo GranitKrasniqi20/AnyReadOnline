@@ -33,6 +33,11 @@ namespace AnyReadOnline.BLL
             return addressDAL.GetAll();
         }
 
+        public Address GetByClientID(int clientID)
+        {
+            return addressDAL.GetByClientID(clientID);
+        }
+
         public int Update(Address obj)
         {
             return addressDAL.Update(obj);
