@@ -1,0 +1,165 @@
+﻿@model AnyReadOnline.BOL.Address
+@{
+    ViewBag.Title = "BillingAddress";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+<main>
+    <section class="checkout-roadmap">
+        <div class="container">
+            <div class="row py-5" style="border-bottom: 2px solid #eaeaea; font-size: 1.6em">
+                <div class="col d-flex justify-content-center">
+                    <i class="fas fa-home orange-text"></i>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <i class="fas fa-shipping-fast black-text"></i>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <i class="fas fa-money-check black-text"></i>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <i class="fas fa-thumbs-up black-text"></i>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <i class="fas fa-check-circle black-text"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="billingAddressSection">
+        <div class="container">
+            <div class="row my-5">
+                <div class="col">
+                    <h2 class="capital">Billing Address</h2>
+                    <h2 class="text-uppercase font-weight-light " style="font-size: 1.3em;">
+                        Choose your total order
+                    </h2>
+                </div>
+            </div>
+
+            @if ((bool)ViewBag.HasAddresses)
+            {
+                foreach (var item in (List<AnyReadOnline.BOL.Address>)ViewBag.BillingAddresses)
+                {
+                    //using (Html.BeginForm("BillingAddress", "Checkout", routeValues: new { addressId = item.AddressID }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    //{
+                    <div class="row mb-5">
+                        <div class="col-4">
+                            <div class="my-orange text-white p-3 mb-3"
+                                 style="border-radius: 10px">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="font-weight-bold">@item.FirstName @item.LastName</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p>@item.Email</p>
+                                        <p>@item.PhoneNumber</p>
+                                    </div>
+                                    <div class="col">
+                                        <p>@item.Address1</p>
+                                        <p>@item.City, @item.Country.CountryName</p>
+                                        <p>@item.PostalCode</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        @*<a href=" @Url.Action("BillingAddress", "Checkout", new { addressId = Model.AddressID} )" >
+                                    ">*@
+                                        <button type="button" class="btn btn-light font-weight-bold orange-text">Choose</button>
+                                        @*</a>>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    // }
+                }
+
+            }
+
+            <div class="row mb-4">
+                <div class="col">
+                    <h2 class="text-uppercase font-weight-light " style="font-size: 1.3em;">
+                        Fill the address form
+                    </h2>
+                </div>
+            </div>
+
+
+            @using (Html.BeginForm("BillingAddress", "Checkout", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+
+                //<form>
+                    <div class="row pb-5" style="border-bottom: 2px solid #eaeaea;">
+                        <div class="col">
+
+
+                            <div class="form-group">
+                                <label for="lblNameBilling" class="font-weight-bold">Name</label>
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control my-0 CenterElement" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="lblLastNameBilling" class="font-weight-bold">Last Name</label>
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control my-0 CenterElement" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="lblAddress1Billing" class="font-weight-bold">Address 1</label>
+                                @Html.EditorFor(model => model.Address1, new { htmlAttributes = new { @class = "form-control my-0 CenterElement" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="lblAddress2Billing" class="font-weight-bold">Address 2</label>
+                                @Html.EditorFor(model => model.Address2, new { htmlAttributes = new { @class = "form-control my-0 CenterElement" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="Country">Country</label>
+                                <br />
+                                @Html.DropDownListFor(model => model.CountryID, (IEnumerable<SelectListItem>)ViewBag.Countries, "Country", new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label for="lblCityBilling" class="font-weight-bold">City</label>
+                                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control my-0 CenterElement" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="lblPostalCodeBilling" class="font-weight-bold">Postal Code</label>
+                                @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control my-0 CenterElement" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="lblEmailBilling" class="font-weight-bold">Email</label>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control my-0 CenterElement" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="lblPhoneNumberBilling" class="font-weight-bold">Phone No.</label>
+                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control my-0 CenterElement" } })
+                            </div>
+
+                            
+
+                            
+                        </div>
+                    </div>
+                    <div class="row my-5">
+                        <div class="col">
+                            <div class="clearfix">
+                                <button type="button" class="btn btn-dark px-5 font-weight-bold white-text float-left">Back</button>
+
+                                <input type="submit" id="address" value="next" class="btn btn-dark px-5 font-weight-bold white-text float-right" />
+
+
+                            </div>
+                        </div>
+                    </div>
+               // </form>
+
+
+            }
+
+
+
+</section>
+</main>
+
+
+

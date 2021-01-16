@@ -21,6 +21,11 @@ namespace AnyReadOnline.Controllers
         private readonly GenreBLL genreBLL = new GenreBLL();
         private readonly PublishHouseBLL publishHouseBLL = new PublishHouseBLL();
         private readonly LanguageBLL languageBLL = new LanguageBLL();
+
+        public BooksController()
+        {
+
+        }
         public BooksController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
@@ -295,7 +300,7 @@ namespace AnyReadOnline.Controllers
                 
                 Session["cart"] = cart;
             }
-            return View("ShoppingCart");
+            return RedirectToAction("GoToCart");
         }
 
         public ActionResult RemoveFromCart(int id)

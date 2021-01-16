@@ -28,7 +28,7 @@
         <div class="col">
             <div class="container">
                 <div class="mx-3">
-                    @foreach (var item in (List<CartItemModel>)Session["cart"])
+                    @foreach (var item in (List<AnyReadOnline.BOL.CartItemModel>)Session["cart"])
                     {
                         itemNum++;
                     }
@@ -46,7 +46,7 @@
                                 <th scope="col">Options</th>
                             </tr>
                         </thead>
-                        @foreach (var item in (List<CartItemModel>)Session["cart"])
+                        @foreach (var item in (List<AnyReadOnline.BOL.CartItemModel>)Session["cart"])
                         {
                             <tbody>
                                 <tr>

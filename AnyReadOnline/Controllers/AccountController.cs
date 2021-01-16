@@ -253,9 +253,9 @@ namespace AnyReadOnline.Controllers
         {
             CountryBLL countryBll = new CountryBLL();
             List<Country> countries = countryBll.GetAll();
-
-            ViewBag.roles = new SelectList(roles, "RoleID", "RoleName");
             ViewBag.Countries = new SelectList(countries, "CountryID", "CountryName");
+            ViewBag.roles = new SelectList(roles, "RoleID", "RoleName");
+
             return View(new Staff());
         }
         string GetRole(int id)

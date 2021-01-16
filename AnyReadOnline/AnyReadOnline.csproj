@@ -2127,10 +2127,17 @@
     <Content Include="Views\Account\EmailVerification.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Client\Login.cshtml" />
+    <Content Include="Views\Checkout\ShippingAddress.cshtml" />
+    <Content Include="Views\Checkout\Payment.cshtml" />
+    <Content Include="Views\Checkout\OrderConfirmation.cshtml" />
+    <Content Include="Views\Checkout\BillingAddress.cshtml" />
+    <Content Include="Views\Books\EmptyCart.cshtml" />
+    <Content Include="Views\Books\GetBooksByAuthor.cshtml" />
+    <Content Include="Views\Books\GetBooksByGenre.cshtml" />
+    <Content Include="Views\Books\ShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Checkout\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fontawesome-free-5.15.1-web\fonts\glyphicons-halflings-regular.woff2" />

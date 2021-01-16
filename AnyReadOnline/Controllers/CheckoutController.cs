@@ -13,11 +13,17 @@ namespace AnyReadOnline.Controllers
 {
     public class CheckoutController : Controller
     {
+
         public CheckoutController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
+
+        public CheckoutController()
+        {
+        }
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         public ApplicationSignInManager SignInManager
@@ -76,25 +82,64 @@ namespace AnyReadOnline.Controllers
 
         public ActionResult BillingAddress()
         {
-            return View();
+
+            AddressBLL addressBLL = new AddressBLL();
+
+            List<Address> addresses = addressBLL.GetAll().Where(x => x.ClientID == GetCurrenctClient().UserID).ToList();
+            if (addresses.Count >0)
+            {
+                ViewBag.HasAddresses = true;
+            }
+            else
+            {
+                ViewBag.HasAddresses = false;
+            }
+            ViewBag.BillingAddresses = addresses;
+            CountryBLL countryBLL = new CountryBLL();
+            List<Country> countries = countryBLL.GetAll();
+            ViewBag.Countries = new SelectList(countries, "CountryID", "CountryName");
+
+            return View(new Address());
         }
+
+        //[HttpPost]
+        //public ActionResult BillingAddress(int id)
+        //{
+
+
+        //    Client client = GetCurrenctClient();
+        //    Payment payment = new Payment();
+        //    AddressBLL addressBLL = new AddressBLL(); 
+        //    payment.Order = new Order();
+        //    payment.Order.Client = client;
+        //    payment.BillingAddres = addressBLL.Get(id);
+        //    payment.Order.OrderDetails = CartItemToOrderDetails(getCardItems(client.UserID));
+
+        //    Session["Orders{client.UserID}"] = payment;
+        //    return RedirectToAction("ShippingAddress");
+        //}
+
+
 
         [HttpPost]
         public ActionResult BillingAddress(Address address)
         {
-            if (true)
-            {
 
-            }
+
+
 
             Client client = GetCurrenctClient();
+            AddressBLL addressBLL = new AddressBLL();
+            address.ClientID = client.UserID;
+            address.Client = client;
+            addressBLL.Add(address);
             Payment payment = new Payment();
             payment.Order = new Order();
             payment.Order.Client = client;
             payment.BillingAddres = address;
             payment.Order.OrderDetails = CartItemToOrderDetails(getCardItems(client.UserID));
 
-            Session["Orders{client.UserID}"] = payment;
+            Session[$"Orders{client.UserID}"] = payment;
             return RedirectToAction("ShippingAddress");
         }
 
@@ -122,13 +167,42 @@ namespace AnyReadOnline.Controllers
         public ActionResult ShippingAddress()
         {
 
-            return View();
+            AddressBLL addressBLL = new AddressBLL();
+
+            List<Address> addresses = addressBLL.GetAll().Where(x => x.ClientID == GetCurrenctClient().UserID).ToList();
+            if (addresses.Count > 0)
+            {
+                ViewBag.HasAddresses = true;
+            }
+            else
+            {
+                ViewBag.HasAddresses = false;
+            }
+            ViewBag.BillingAddresses = addresses;
+            CountryBLL countryBLL = new CountryBLL();
+            List<Country> countries = countryBLL.GetAll();
+            ViewBag.Countries = new SelectList(countries, "CountryID", "CountryName");
+
+            return View(new Address());
         }
 
         [HttpPost]
         public ActionResult ShippingAddress(Address address)
         {
+
+
+
+
+
+
+
+
+
             Client client = GetCurrenctClient();
+            AddressBLL addressBLL = new AddressBLL();
+            address.ClientID = client.UserID;
+            address.Client = client;
+            addressBLL.Add(address);
             Payment payment = Session[$"Orders{client.UserID}"] as Payment ;
             payment.Order.ShippingAddress = address;
             FedExRates fedExRates = new FedExRates();

@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "OrderConfirmation";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+
+<main>
+    <section class="checkout-roadmap">
+        <div class="container">
+            <div class="row py-5" style="border-bottom: 2px solid #eaeaea; font-size: 1.6em">
+                <div class="col d-flex justify-content-center">
+                    <i class="fas fa-home orange-text"></i>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <i class="fas fa-shipping-fast orange-text"></i>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <i class="fas fa-money-check orange-text"></i>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <i class="fas fa-thumbs-up orange-text"></i>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <i class="fas fa-check-circle black-text"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="confirmSection">
+        <div class="container">
+            <div class="row py-5" style="border-bottom: 2px solid #eaeaea;">
+                <div class="col">
+                    <h2 class="capital">Confirm your order</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis tincidunt quam. Donec ullamcorper lacinia risus
+                        pretium dapibus. Nam gravida quis risus vitae lobortis. Aliquam fermentum ultricies fermentum. Fusce tortor
+                        arcu, egestas sit amet nulla quis, elementum luctus purus.
+                    </p>
+                    <div class="form-check form-check-inline p-3 mt-3"
+                         style="background-color: #CDECFD; color: #287098;">
+                        <input class="form-check-input" type="checkbox" id="AgreeTermsCheckbox" value="TermsAndConditions">
+                        <label class="form-check-label" for="AgreeTermsCheckbox">
+                            I agree with these terms and conditions!
+                        </label>
+                    </div>
+                    <p class="text-danger mt-3">* You need to tick the Terms & Agreement Checkbox to move forward!</p>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col">
+                    <h3>Billing Address</h3>
+                    <p>Beis Presheva</p>
+                    <p>044123123</p>
+                    <p>beispresheva@gmail.com</p>
+                    <p>Rruga Rumiu, nr. 120</p>
+                    <p>Prishtine, Kosove</p>
+                </div>
+                <div class="col">
+                    <h3>Shipping Address</h3>
+                    <p>Beis Presheva</p>
+                    <p>044123123</p>
+                    <p>beispresheva@gmail.com</p>
+                    <p>Rruga Rumiu, nr. 120</p>
+                    <p>Prishtine, Kosove</p>
+                </div>
+                <div class="col">
+                    <h3>Payment Method</h3>
+                    <p>By Crypto Payment</p>
+                    <p>Bitcoin</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table my-5">
+                        <thead class="bg-danger white-text">
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Genre</th>
+                                <th scope="col">Language</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Steve Jobs</td>
+                                <td>Walter Isaacson</td>
+                                <td>Biography</td>
+                                <td>English</td>
+                                <td>€29.99</td>
+                                <td>3</td>
+                                <td>€89.97</td>
+                            </tr>
+                            <tr>
+                                <td>A Promised Land</td>
+                                <td>Barack Obama</td>
+                                <td>Biography</td>
+                                <td>English</td>
+                                <td>€29.99</td>
+                                <td>1</td>
+                                <td>€29.99</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row p-4"
+                 style="border-bottom: 2px solid #eaeaea;
+                                background-color: #EAEAEA;
+                                border: 2px solid #D0D0D0;
+                                ">
+                <div class="col-11">
+                    <div class="d-flex flex-column float-right">
+                        <div class="p-2 text-right;">Subtotal:</div>
+                        <div class="p-2 text-right">Tax:</div>
+                        <div class="p-2 text-right">Total:</div>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="d-flex flex-column float-right">
+                        <div class="p-2 text-right font-weight-bold">€119.96</div>
+                        <div class="p-2 text-right font-weight-bold">0%</div>
+                        <div class="p-2 text-right font-weight-bold orange-text">€119.96</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col">
+                    <div class="clearfix">
+                        <button type="button" class="btn btn-dark px-5 font-weight-bold white-text float-left">Back</button>
+                        <button type="button" class="btn my-orange px-5 font-weight-bold white-text float-right">Next</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+

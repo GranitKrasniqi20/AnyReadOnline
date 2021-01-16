@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AnyReadOnline.DAL
 {
@@ -28,13 +29,13 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("Name", obj.FirstName);
                         sqlCommand.Parameters.AddWithValue("LastName", obj.LastName);
                         sqlCommand.Parameters.AddWithValue("Address1", obj.Address1);
-                        sqlCommand.Parameters.AddWithValue("Address2", obj.Address2);
+                        //sqlCommand.Parameters.AddWithValue("Address2", obj.Address2);
                         sqlCommand.Parameters.AddWithValue("PhoneNo", obj.PhoneNumber);
                         sqlCommand.Parameters.AddWithValue("PostalCode", obj.PostalCode);
                         sqlCommand.Parameters.AddWithValue("City", obj.City);
                         sqlCommand.Parameters.AddWithValue("CountryID", obj.CountryID);
                         sqlCommand.Parameters.AddWithValue("InsBy", 1);
-
+                        sqlCommand.Parameters.AddWithValue("Email", obj.Email);
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -47,9 +48,10 @@ namespace AnyReadOnline.DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                MessageBox.Show(ex.Message);
+                return 0;
             }
         }
 
@@ -72,6 +74,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("City", obj.City);
                         sqlCommand.Parameters.AddWithValue("CountryID", obj.CountryID);
                         sqlCommand.Parameters.AddWithValue("updby", 1);
+                        sqlCommand.Parameters.AddWithValue("Email", obj.Email);
 
                         if (sqlCommand.ExecuteNonQuery() > 0)
                         {
@@ -210,10 +213,6 @@ namespace AnyReadOnline.DAL
             {
                 address.Address1 = sqlDataReader["Address1"].ToString();
             }
-            if (sqlDataReader["Address2"] != DBNull.Value)
-            {
-                address.Address2 = sqlDataReader["Address2"].ToString();
-            }
             if (sqlDataReader["AddressPhoneNumber"] != DBNull.Value)
             {
                 address.PhoneNumber = sqlDataReader["AddressPhoneNumber"].ToString();
@@ -230,7 +229,7 @@ namespace AnyReadOnline.DAL
             {
                 address.CountryID = int.Parse(sqlDataReader["CountryID"].ToString());
                 address.Country.CountryID = int.Parse(sqlDataReader["CountryID"].ToString());
-                address.Country.CountryName = sqlDataReader["Country"].ToString();
+                address.Country.CountryName = sqlDataReader["CountryName"].ToString();
             }
             if (sqlDataReader["InsBy"] != DBNull.Value)
             {
@@ -252,7 +251,10 @@ namespace AnyReadOnline.DAL
             {
                 address.UpdNo = (int)sqlDataReader["UpdNo"];
             }
+            if (true)
+            {
 
+            }
             return address;
         }
     }
