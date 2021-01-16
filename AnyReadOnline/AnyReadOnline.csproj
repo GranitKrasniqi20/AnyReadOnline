@@ -2131,6 +2131,8 @@
     <Content Include="Views\Addresses\Index.cshtml" />
     <Content Include="Views\Addresses\Create.cshtml" />
     <Content Include="Views\Addresses\Edit.cshtml" />
+    <Content Include="Views\Addresses\Delete.cshtml" />
+    <Content Include="Views\Client\MyProfile.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

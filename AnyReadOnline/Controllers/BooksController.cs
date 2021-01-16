@@ -232,7 +232,8 @@ namespace AnyReadOnline.Controllers
                 
                 Session["cart"] = cart;
             }
-            return View("ShoppingCart");
+            //return View("ShoppingCart");
+            return RedirectToAction("GoToCart");
         }
 
         public ActionResult RemoveFromCart(int id)

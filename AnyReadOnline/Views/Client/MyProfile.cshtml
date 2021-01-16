@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+<main>
+    <section>
+        <div class="container">
+            <div class="row  my-5 justify-content-center">
+                <div class="col text-center">
+                    <h2>My Account</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adisplicing elit. Praesent non dui et magna elementum pretium. Aliquam ultricues posuere vestribuloum.</p>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col mx-2 p-5 text-center"
+                     style="background-color: #EAEAEA; border: 2px solid #DBDBDB;">
+                    <p class="orange-text" style="font-size: 3em;"><i class="fas fa-user"></i></p>
+                    <h2 class="orange-text">User Settings</h2>
+                    <p>
+                        Check and update <br>
+                        your personal info for this website
+                    </p>
+                    <a href="#" class="btn my-orange text-white font-weight-bold">Open</a>
+                    @*<button type="button" class="btn my-orange text-white font-weight-bold">Open</button>*@
+                </div>
+                <div class="col mx-2 p-5 text-center"
+                     style="background-color: #EAEAEA; border: 2px solid #DBDBDB;">
+                    <p class="orange-text" style="font-size: 3em;"><i class="fas fa-map-marker-alt"></i></p>
+                    <h2 class="orange-text">Addresses</h2>
+                    <p>
+                        Check and edit <br>
+                        billing and shipping addresses
+                    </p>
+                    <a href="@Url.Action("Index", "Addresses")" class="btn my-orange text-white font-weight-bold">Open</a>
+                    @*<button type="button" class="btn my-orange text-white font-weight-bold">Open</button>*@
+                </div>
+                <div class="col mx-2 p-5 text-center"
+                     style="background-color: #EAEAEA; border: 2px solid #DBDBDB;">
+                    <p class="orange-text" style="font-size: 3em;"><i class="fas fa-shopping-cart"></i></p>
+                    <h2 class="orange-text">Shopping Cart</h2>
+                    <p>
+                        View items<br>
+                        added in your shopping cart
+                    </p>
+                    <a href="@Url.Action("GoToCart", "Books")" class="btn my-orange text-white font-weight-bold">Open</a>
+                    @*<button type="button" class="btn my-orange text-white font-weight-bold">Open</button>*@
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col mx-2 p-5 text-center"
+                     style="background-color: #EAEAEA; border: 2px solid #DBDBDB;">
+                    <p class="orange-text" style="font-size: 3em;"><i class="fas fa-file-alt"></i></p>
+                    <h2 class="orange-text">My Orders</h2>
+                    <p>
+                        View items that you bought from the store
+                    </p>
+                    <a href="#" class="btn my-orange text-white font-weight-bold">Open</a>
+                    @*<button type="button" class="btn my-orange text-white font-weight-bold">Open</button>*@
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col">
+                    <h4 class="text-center"><a href="#" class="orange-text">Log Out</a></h4>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+

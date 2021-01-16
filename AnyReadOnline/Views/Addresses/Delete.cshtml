@@ -1,27 +1,16 @@
-﻿@model IEnumerable<AnyReadOnline.BOL.Address>
+﻿@model AnyReadOnline.BOL.Address
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_ClientLayout.cshtml";
 }
 
 <main>
     <section>
         <div class="container">
-            <div class="row my-5">
-                <div class="col-8">
-                    <h2>Manage My Addresses</h2>
-                    <p>Check and edit your billing / shipping addresses</p>
-                </div>
-                <div class="col-4 d-flex justify-content-end"
-                     style="padding: 2em;">
-                    <a href="@Url.Action("Create", "Addresses")" class="btn btn-dark text-decoration-none">Add Address</a>
-                    @*<button type="button" class="btn btn-dark">Add Address</button>*@
-                </div>
-            </div>
-
-            <div class="row my-5">
+            <div class="row">
                 <div class="col">
+                    <h2 class="text-danger my-5">Are your sure you want to delete <br> this Address?</h2>
                     <table class="table my-5 table-bordered table-hover">
                         <thead class="bg-danger white-text">
                             <tr>
@@ -41,7 +30,7 @@
                                     @Html.DisplayNameFor(model => model.Address2)
                                 </th>
                                 <th scope="col">
-                                    @Html.DisplayNameFor(model => model.Country)
+                                    @Html.DisplayNameFor(model => model.Country.CountryName)
                                 </th>
                                 <th scope="col">
                                     @Html.DisplayNameFor(model => model.City)
@@ -52,61 +41,51 @@
                                 <th scope="col">
                                     @Html.DisplayNameFor(model => model.PhoneNumber)
                                 </th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
-                            {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                    @Html.DisplayFor(model => model.FirstName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.LastName)
+                                    @Html.DisplayFor(model => model.LastName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Email)
+                                    @Html.DisplayFor(model => model.Email)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Address1)
-                                </td>
-                                @if (item.Address2 == null)
-                                {
-                                    <td><i>null</i></td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Address2)
-                                    </td>
-                                }
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Country.CountryName)
+                                    @Html.DisplayFor(model => model.Address1)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.City)
+                                    @Html.DisplayFor(model => model.Address2)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.PostalCode)
+                                    @Html.DisplayFor(model => model.Country.CountryName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                    @Html.DisplayFor(model => model.City)
                                 </td>
-                                <td class="text-primary">
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.AddressID })
+                                <td>
+                                    @Html.DisplayFor(model => model.PostalCode)
                                 </td>
-                                <td class="text-danger">
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.AddressID })
+                                <td>
+                                    @Html.DisplayFor(model => model.PhoneNumber)
                                 </td>
                             </tr>
-                            }
                         </tbody>
                     </table>
+                    @using (Html.BeginForm("Delete", "Addresses", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="my-5">
+                            <p>Once the address is deleted, it can not be recovered!</p>
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                        </div>
+                        @Html.ActionLink("Back to List", "Index")
+                    }
                 </div>
             </div>
-
         </div>
     </section>
 </main>

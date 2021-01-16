@@ -235,5 +235,10 @@ namespace AnyReadOnline.Controllers
                 return View();
             }
         }
+
+        public ActionResult MyProfile()
+        {
+            return View();
+        }
     }
 }

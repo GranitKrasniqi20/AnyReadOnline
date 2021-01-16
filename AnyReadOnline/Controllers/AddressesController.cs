@@ -110,7 +110,7 @@ namespace AnyReadOnline.Controllers
                     return RedirectToAction("Index");
                 }
 
-                return Content("Error while Creating Address!");
+                return Content("Error while Editing Address!");
             }
             catch
             {
@@ -121,22 +121,24 @@ namespace AnyReadOnline.Controllers
         // GET: Addresses/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(addressBLL.Get(id));
         }
 
         // POST: Addresses/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Address address)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                if (addressBLL.Delete(id) > 0)
+                {
+                    return RedirectToAction("Index");
+                }
+                return Content("Error while Deleting Address!");
             }
             catch
             {
-                return View();
+                return View(address);
             }
         }
 
