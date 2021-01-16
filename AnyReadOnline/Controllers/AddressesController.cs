@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AnyReadOnline.BLL;
-using AnyReadOnline.BOL;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
 

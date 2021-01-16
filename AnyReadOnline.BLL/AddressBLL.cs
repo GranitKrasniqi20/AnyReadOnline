@@ -29,11 +29,6 @@ namespace AnyReadOnline.BLL
             return addressDAL.Get(id);
         }
 
-        public List<Address> GetByClientID(int clientID)
-        {
-            return addressDAL.GetByClientID(clientID);
-        }
-
         public List<Address> GetAll()
         {
             return addressDAL.GetAll().ToList();

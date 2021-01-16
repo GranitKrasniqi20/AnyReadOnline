@@ -130,7 +130,8 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public List<Address> GetByClientID(int clientID)
+
+        public List<Address> GetAll()
         {
             List<Address> addresses = new List<Address>();
 
@@ -138,10 +139,8 @@ namespace AnyReadOnline.DAL
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAddressByClientId", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAllAddresses", CommandType.StoredProcedure))
                     {
-                        sqlCommand.Parameters.AddWithValue("@ClientID", clientID);
-
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
                             if (sqlDataReader.HasRows)
@@ -162,21 +161,21 @@ namespace AnyReadOnline.DAL
             }
             catch (Exception)
             {
-
                 throw new Exception();
             }
         }
 
-        public List<Address> GetAll()
+        public List<Address> GetByClientID(int clientID)
         {
             List<Address> addresses = new List<Address>();
-
             try
             {
                 using (SqlConnection sqlConnection = DbHelper.GetConnection())
                 {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAllAddresses", CommandType.StoredProcedure))
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAddressByClientId", CommandType.StoredProcedure))
                     {
+                        sqlCommand.Parameters.AddWithValue("@ClientID", clientID);
+
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
                             if (sqlDataReader.HasRows)
