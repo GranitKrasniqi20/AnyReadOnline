@@ -57,7 +57,7 @@ namespace AnyReadOnline.Controllers
         }
 
         // GET: Client
-        [Authorize(Roles = "SuperAdmin,Admin")]
+      /*  [Authorize(Roles = "SuperAdmin,Admin")]*/
         public ActionResult Index()
         {
             return View();
@@ -224,6 +224,11 @@ namespace AnyReadOnline.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult MyProfile()
+        {
+            return View();
         }
     }
 }

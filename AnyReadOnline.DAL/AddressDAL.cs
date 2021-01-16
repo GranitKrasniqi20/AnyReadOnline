@@ -77,6 +77,7 @@ namespace AnyReadOnline.DAL
                         sqlCommand.Parameters.AddWithValue("PostalCode", obj.PostalCode);
                         sqlCommand.Parameters.AddWithValue("City", obj.City);
                         sqlCommand.Parameters.AddWithValue("CountryID", obj.CountryID);
+                        sqlCommand.Parameters.AddWithValue("Email", obj.Email);
                         sqlCommand.Parameters.AddWithValue("updby", 1);
                         sqlCommand.Parameters.AddWithValue("Email", obj.Email);
 
@@ -199,6 +200,38 @@ namespace AnyReadOnline.DAL
                 throw new Exception();
             }
         }
+
+        public Address GetByClientID(int clientID)
+        {
+            try
+            {
+                using (SqlConnection sqlConnection = DbHelper.GetConnection())
+                {
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAddressByClientId", CommandType.StoredProcedure))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@ClientID", clientID);
+
+                        using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return ConvertToObject(reader);
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
+        }
+
 
         public int Delete(int id)
         {

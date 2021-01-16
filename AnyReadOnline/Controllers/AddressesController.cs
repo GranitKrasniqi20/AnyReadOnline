@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AnyReadOnline.BLL;
+using AnyReadOnline.BOL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,6 +31,8 @@ namespace AnyReadOnline.Controllers
 
         private AddressBLL addressBLL = new AddressBLL();
         private CountryBLL countryBLL = new CountryBLL();
+
+        private CountryBLL countryBLL=new CountryBLL();
 
         // GET: Addresses
         public ActionResult Index()
@@ -76,6 +80,7 @@ namespace AnyReadOnline.Controllers
                 }
                 return Content("Error while Creating Address!");
             }
+            /*return View(address);*/
             catch
             {
                 return View(address);
@@ -110,7 +115,7 @@ namespace AnyReadOnline.Controllers
                     return RedirectToAction("Index");
                 }
 
-                return Content("Error while Creating Address!");
+                return Content("Error while Editing Address!");
             }
             catch
             {
@@ -121,22 +126,24 @@ namespace AnyReadOnline.Controllers
         // GET: Addresses/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(addressBLL.Get(id));
         }
 
         // POST: Addresses/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Address address)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                if (addressBLL.Delete(id) > 0)
+                {
+                    return RedirectToAction("Index");
+                }
+                return Content("Error while Deleting Address!");
             }
             catch
             {
-                return View();
+                return View(address);
             }
         }
 
