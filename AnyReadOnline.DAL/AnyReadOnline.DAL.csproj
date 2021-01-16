@@ -104,6 +104,9 @@
     <Compile Include="DbHelper.cs" />
     <Compile Include="GenreDAL.cs" />
     <Compile Include="LanguageDAL.cs" />
+    <Compile Include="OrderDAL.cs" />
+    <Compile Include="OrderDetailsDAL.cs" />
+    <Compile Include="PaymentDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublishHouseDAL.cs" />
     <Compile Include="RoleDAL.cs" />

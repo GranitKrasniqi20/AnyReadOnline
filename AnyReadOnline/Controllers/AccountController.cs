@@ -10,25 +10,33 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AnyReadOnline.Models;
 using AnyReadOnline.BOL;
+using System.Collections.Generic;
+using AnyReadOnline.BLL;
 
 namespace AnyReadOnline.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+
+
+        List<Role> roles;
 
         public AccountController()
         {
+            RoleBLL roleBLL = new RoleBLL();
+            roles = roleBLL.GetAll();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
+            RoleBLL roleBLL = new RoleBLL();
+            roles = roleBLL.GetAll();
             UserManager = userManager;
             SignInManager = signInManager;
         }
-
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
         public ApplicationSignInManager SignInManager
         {
             get
@@ -52,14 +60,14 @@ namespace AnyReadOnline.Controllers
                 _userManager = value;
             }
         }
-
+        
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult AdminLogin()
         {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+
+            return View(new LoginViewModel());
         }
 
         //
@@ -67,29 +75,136 @@ namespace AnyReadOnline.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public  ActionResult AdminLogin(LoginViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
+            {
+                IdentityHelper identityHelper = new IdentityHelper(UserManager, SignInManager);
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, change to shouldLockout: true
+
+
+                if (identityHelper.GetRole(model.User) != "Client")
+                {
+                    int isLoggedIn = identityHelper.LogIn(model).Result;
+
+                    switch (isLoggedIn)
+                    {
+
+                        case 1:
+                            return View("Index");
+                        case -1:
+                            return View("Lockout");
+                        case 0:
+                        default:
+                            ModelState.AddModelError("", "Invalid login attempt.");
+                            return View(model);
+                    }
+                }
+
+
+            }
+            catch (Exception)
             {
                 return View(model);
             }
+            return View(model);
+        }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+
+
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+
+            return View();
+        }
+
+
+
+        public ActionResult NotFound()
+        {
+            return View();
+        }
+
+      
+
+        // POST: Client/Create
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> Register(Client client)
+        {
+
+            RegisterViewModel registerClient = new RegisterViewModel
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                Email = client.Email,
+                Password = client.Password,
+                ConfirmPassword = client.Password,
+                Role = "Client",
+
+            };
+
+            try
+            {
+
+                IdentityHelper identity = new IdentityHelper(UserManager, SignInManager);
+                string uid = await identity.Register(registerClient) ;
+                if (uid != string.Empty)
+                {
+
+
+                    ClientBLL clientbll = new ClientBLL();
+
+                    if (clientbll.Add(client) == 1)
+                    {
+                        var token = await UserManager.GenerateEmailConfirmationTokenAsync(uid);
+                        //string confirmationLink = this.Url.Action("ConfirmEmail", "Account", new { userId = uid, code = token });
+                        var confirmationLink = $"{Request.Url.Scheme}://{Request.Url.Host}:{Request.Url.Port}{this.Url.Action("ConfirmEmail", "Account", new { userId = uid, code = token })}";
+//                        var confirmationLink = Url.Action(
+//    "ConfirmEmail",
+//    "Account",
+//    new { userId = uid, token },
+//    HttpContext.Request.Host.ToString()
+//)
+                       await UserManager.SendEmailAsync(uid, "Email Verification AnyRead", confirmationLink);
+
+
+                        return  View("EmailVerification"); 
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+
+                }
+
+
+                return View(client);
+
             }
+            catch
+            {
+                return View(client);
+            }
+        }
+
+        public ActionResult EmailVerification()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Account/ConfirmEmail
+        [AllowAnonymous]
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return View("Error");
+            }
+
+            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
         //
@@ -97,7 +212,7 @@ namespace AnyReadOnline.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
-            // Require that the user has already logged in via username/password or external login
+            
             if (!await SignInManager.HasBeenVerifiedAsync())
             {
                 return View("Error");
@@ -105,8 +220,7 @@ namespace AnyReadOnline.Controllers
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
-        //
-        // POST: /Account/VerifyCode
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -117,10 +231,7 @@ namespace AnyReadOnline.Controllers
                 return View(model);
             }
 
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
-            // will be locked out for a specified amount of time. 
-            // You can configure the account lockout settings in IdentityConfig
+            
             var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
@@ -137,54 +248,73 @@ namespace AnyReadOnline.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult Register()
+        [Authorize(Roles = "SuperAdmin")]
+        public ActionResult RegisterAdmin()
         {
-            return View();
+            CountryBLL countryBll = new CountryBLL();
+            List<Country> countries = countryBll.GetAll();
+            ViewBag.Countries = new SelectList(countries, "CountryID", "CountryName");
+            ViewBag.roles = new SelectList(roles, "RoleID", "RoleName");
+
+            return View(new Staff());
+        }
+        string GetRole(int id)
+        {
+            return roles.Where(x => x.RoleID == id).FirstOrDefault().RoleName;
         }
 
-        //
-        // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
+
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        [HttpPost]
+        [Authorize(Roles = "SuperAdmin")]
+        public ActionResult RegisterAdmin(Staff staff)
         {
-            if (ModelState.IsValid)
+
+            RegisterViewModel registerClient = new RegisterViewModel
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                Email = staff.Email,
+                Password = staff.Password,
+                ConfirmPassword = staff.Password,
+                Role = roles.Where(x => x.RoleID == staff.RoleId).FirstOrDefault().RoleName
+            };
+
+
+            try
+            {
+                IdentityHelper identity = new IdentityHelper(UserManager, SignInManager);
+                string uid = identity.Register(registerClient).Result;
+                if (uid != string.Empty)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    StaffBLL clientbll = new StaffBLL();
 
-                    return RedirectToAction("Index", "Home");
+                    if (clientbll.Add(staff) == 1)
+                    {
+
+                        return RedirectToAction("Index", "Admins");
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+
                 }
-                AddErrors(result);
+
+
+                return View();
             }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
-
-        //
-        // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
-        {
-            if (userId == null || code == null)
+            catch
             {
-                return View("Error");
+
+                CountryBLL countryBll = new CountryBLL();
+                List<Country> countries = countryBll.GetAll();
+                ViewBag.roles = new SelectList(roles, "RoleID", "RoleName");
+                ViewBag.Countries = new SelectList(countries, "CountryID", "CountryName");
+
+                return View(new Staff());
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
+
+
 
         //
         // GET: /Account/ForgotPassword
@@ -206,19 +336,16 @@ namespace AnyReadOnline.Controllers
                 var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                
+                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                 await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 

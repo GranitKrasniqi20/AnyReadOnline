@@ -9,6 +9,8 @@ using System.IO;
 using PagedList.Mvc;
 using PagedList;
 using AnyReadOnline.Models;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 
 namespace AnyReadOnline.Controllers
 {
@@ -19,6 +21,42 @@ namespace AnyReadOnline.Controllers
         private readonly GenreBLL genreBLL = new GenreBLL();
         private readonly PublishHouseBLL publishHouseBLL = new PublishHouseBLL();
         private readonly LanguageBLL languageBLL = new LanguageBLL();
+
+        public BooksController()
+        {
+
+        }
+        public BooksController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        {
+            UserManager = userManager;
+            SignInManager = signInManager;
+        }
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
 
         // GET: Books
         // [Authorize(Roles = "SuperAdmin,Admin")]
@@ -183,8 +221,38 @@ namespace AnyReadOnline.Controllers
             
         }
 
+
+        Client GetCurrenctClient()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                string userId = User.Identity.GetUserId();
+                if (User.IsInRole("Client"))
+                {
+                  ApplicationUser user=   UserManager.FindById(userId);
+                    ClientBLL clientbll = new ClientBLL();
+                  Client client=  clientbll.Get(user.UserName);
+
+
+                    if (client != null)
+                    {
+                        return client;
+                    }
+
+                    return null;
+                }
+                return null;
+            }
+            return null;
+
+
+
+        }
+
         public ActionResult AddToCart(int id)
         {
+
+            
             if (Session["cart"] == null)
             {
                 List<CartItemModel> cart = new List<CartItemModel>();
@@ -194,8 +262,8 @@ namespace AnyReadOnline.Controllers
                 {
                     book = cartItem,
                     Quantity = 1,
-                    ClientID = 0
-                });
+                    ClientID = GetCurrenctClient().UserID
+                }) ;
                 Session["cart"] = cart;
             }
             else
@@ -232,7 +300,6 @@ namespace AnyReadOnline.Controllers
                 
                 Session["cart"] = cart;
             }
-            //return View("ShoppingCart");
             return RedirectToAction("GoToCart");
         }
 

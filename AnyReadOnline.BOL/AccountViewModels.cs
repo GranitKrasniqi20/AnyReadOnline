@@ -52,9 +52,8 @@ namespace AnyReadOnline.BOL
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
         [EmailAddress]
-        public string Email { get; set; }
+        public string User { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -82,6 +81,9 @@ namespace AnyReadOnline.BOL
         [Display(Name = "Confirm password")]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public int UserID { get; set; }
+        public string Role { get; set; }
 
 
 

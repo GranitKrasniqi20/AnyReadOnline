@@ -1,65 +1,109 @@
-﻿@using AnyReadOnline.Models
-@model LoginViewModel
+﻿@model AnyReadOnline.BOL.LoginViewModel
+
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
 }
 
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/Site.css" />
+</head>
 
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+<body style="padding:0; margin:0;" style="background-image:url(../../images/anyread_home_cover_1.2.jpg);">
+
+    <div class="container-fluid bg-danger loginBg vh-100 vw-100 " style="padding:200px; background-image:url(../../images/anyread_home_cover_1.2.jpg);">
+
+
+        <div class="row CenterElement pt-3 RegisterFontFamily" style="width:35em; height:40em;  margin:0 auto;">
+            <div class="bg-light  center-block text-center" style="width:35em; height:25em; border-radius:1em ">
+                <div class="container ">
+
+                    <div class="row">
+                        <div class="col text-center ">
+                            <p class="mt-4 text-dark font-weight-bolder RegisterFontFamily">Join Our Platform!</p>
+                        </div>
+
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                    <div class="row">
+                        <div class="col">
+                            <hr style="width : 30em;" />
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+                <div class="row  d-flex align-content-center justify-content-center text-center">
+
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+
+                        <div class="container containerWidth containerHeight CenterElement">
+
+                            <div class="row  CenterElement">
+                                <div class="col">
+                                    @Html.LabelFor(model => model.User, htmlAttributes: new { @class = " " })
+                                    <br />
+                                    @Html.EditorFor(model => model.User, new { htmlAttributes = new { @class = "form-control my-0 CenterElement" } })
+                                    @Html.ValidationMessageFor(model => model.User, "", new { @class = "text-danger" })
+                                </div>
+
+
+                            </div>
+
+
+
+
+                            <div class="row  CenterElement">
+
+
+                                <div class="col CenterElement">
+                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control my-0 CenterElement" } })
+
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger " })
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col my-3">
+                                    <a class="text-danger" href="#">Don't have an account? Join Us Now</a>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Log In" class="btn btn-dark " />
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+
+
+
+
+
+
+</html>

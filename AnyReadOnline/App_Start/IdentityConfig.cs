@@ -11,15 +11,34 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using AnyReadOnline.BOL;
+using System.Net.Mail;
+using System.Net;
 
 namespace AnyReadOnline
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            string smtpserver = "smtp.gmail.com";
+            int port = 587;
+            bool EnableSsl = true;
+            using (SmtpClient client = new SmtpClient(smtpserver, port))
+            {
+
+                client.EnableSsl = EnableSsl;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("noreply.anyread@gmail.com", "anyread123");
+
+                await client.SendMailAsync("noreply@anyread.com",
+                                            message.Destination,
+                                            message.Subject,
+                                            message.Body);
+
+            }
+
+
         }
     }
 
@@ -78,6 +97,7 @@ namespace AnyReadOnline
             });
             manager.EmailService = new EmailService();
             manager.SmsService = new SmsService();
+
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {

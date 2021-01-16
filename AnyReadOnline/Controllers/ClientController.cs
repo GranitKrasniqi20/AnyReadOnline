@@ -14,16 +14,20 @@ namespace AnyReadOnline.Controllers
     public class ClientController : Controller
     {
 
-
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        List<Role> roles;
 
         public ClientController()
         {
+            RoleBLL roleBLL = new RoleBLL();
+            roles = roleBLL.GetAll();
         }
 
         public ClientController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
+            RoleBLL roleBLL = new RoleBLL();
+            roles = roleBLL.GetAll();
             UserManager = userManager;
             SignInManager = signInManager;
         }
@@ -67,54 +71,54 @@ namespace AnyReadOnline.Controllers
         }
 
         // GET: Client/Create
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
+        //[AllowAnonymous]
+        //public ActionResult Register()
+        //{
 
-            return View(new Client());
-        }
+        //    return View(new Client());
+        //}
 
-        // POST: Client/Create
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<ActionResult> Register(Client client)
-        {
+        //// POST: Client/Create
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public async Task<ActionResult> Register(Client client)
+        //{
 
-            RegisterViewModel registerClient = new RegisterViewModel();
+        //    RegisterViewModel registerClient = new RegisterViewModel();
             
 
-            registerClient.Email = client.Email;
-            registerClient.Password = client.Password;
-            registerClient.ConfirmPassword = client.Password;
+        //    registerClient.Email = client.Email;
+        //    registerClient.Password = client.Password;
+        //    registerClient.ConfirmPassword = client.Password;
             
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var user = new ApplicationUser { UserName = client.Email, Email = client.Email };
-                    var result = await UserManager.CreateAsync(user, client.Password);
-                    string uid = user.Id;
-                    if (result.Succeeded)
-                    {
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            var user = new ApplicationUser { UserName = client.Email, Email = client.Email };
+        //            var result = await UserManager.CreateAsync(user, client.Password);
+        //            string uid = user.Id;
+        //            if (result.Succeeded)
+        //            {
 
-                        ClientBLL clientbll = new ClientBLL();
-                        clientbll.Add(client);
-                        await UserManager.AddToRoleAsync(uid, "Client");
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+        //                ClientBLL clientbll = new ClientBLL();
+        //                clientbll.Add(client);
+        //                await UserManager.AddToRoleAsync(uid, "Client");
+        //                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                        //return RedirectToAction("Index", "Home");
-                        return Redirect("~/Home/Index");
-                    }
-                }
+        //                //return RedirectToAction("Index", "Home");
+        //                return Redirect("~/Home/Index");
+        //            }
+        //        }
 
-                //return RedirectToAction("Index");
-                return Redirect("~/Home/Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        //return RedirectToAction("Index");
+        //        return Redirect("~/Home/Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         ApplicationDbContext db = new ApplicationDbContext();
 
@@ -130,39 +134,38 @@ namespace AnyReadOnline.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-
             try
             {
-                string uid = db.Users.Where(x => x.Email == model.Email).FirstOrDefault().Id;
-                var role = UserManager.GetRoles(uid);
+                IdentityHelper identityHelper = new IdentityHelper(UserManager, SignInManager);
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, change to shouldLockout: true
 
-                if (role[0] == "Client")
+
+                if (identityHelper.GetRole(model.User) == "Client")
                 {
-                    switch (result)
+                    int isLoggedIn = await identityHelper.LogIn(model);
+
+                    switch (isLoggedIn)
                     {
-                        case SignInStatus.Success:
-                            return RedirectToLocal(returnUrl);
-                        case SignInStatus.LockedOut:
+
+                        case 1:
+                            return View("Index");
+                        case -1:
                             return View("Lockout");
-                        case SignInStatus.RequiresVerification:
-                            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                        case SignInStatus.Failure:
+                        case 0:
                         default:
                             ModelState.AddModelError("", "Invalid login attempt.");
                             return View(model);
                     }
                 }
+
+
+
+
+
             }
             catch (Exception)
             {
@@ -172,20 +175,7 @@ namespace AnyReadOnline.Controllers
         }
 
 
-        public ActionResult NotFound()
-        {
-            return View();
-        }
-
-        private ActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            return RedirectToAction("Index", "Home");
-        }
-
+       
 
         // GET: Client/Edit/5
         [Authorize(Roles = "Client")]
