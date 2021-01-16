@@ -56,7 +56,7 @@
                                     @if (item.Quantity > 1)
                                     {
                                         totalItemPrice = 0;
-                                        totalItemPrice = item.book.Price * item.Quantity;
+                                        totalItemPrice = Math.BigMul( (int)item.book.Price, item.Quantity);
                                         <td>€@totalItemPrice</td>
                                     }
                                     else if (item.Quantity == 1)
@@ -76,7 +76,9 @@
                     <h3 class="text-right mb-4">Total: €@total</h3>
                     <hr>
                     <div class="float-right mt-2 mb-5">
-                        <button type="button" class="btn btn-dark">Proceed to Checkout</button>
+                        <a href=" @Url.Action("BillingAddress", "Checkout" )" class="btn btn-dark">
+                            Proceed to checkout
+                        </a>
                     </div>
                 </div>
             </div>

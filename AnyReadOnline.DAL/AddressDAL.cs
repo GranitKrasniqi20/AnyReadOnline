@@ -201,65 +201,6 @@ namespace AnyReadOnline.DAL
             }
         }
 
-        public Address GetByClientID(int clientID)
-        {
-            try
-            {
-                using (SqlConnection sqlConnection = DbHelper.GetConnection())
-                {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_GetAddressByClientId", CommandType.StoredProcedure))
-                    {
-                        sqlCommand.Parameters.AddWithValue("@ClientID", clientID);
-
-                        using (SqlDataReader reader = sqlCommand.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                return ConvertToObject(reader);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-
-                throw new Exception();
-            }
-        }
-
-
-        public int Delete(int id)
-        {
-            try
-            {
-                using (SqlConnection sqlConnection = DbHelper.GetConnection())
-                {
-                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteAddress", CommandType.StoredProcedure))
-                    {
-                        sqlCommand.Parameters.AddWithValue("AddressID", id);
-
-                        if (sqlCommand.ExecuteNonQuery() > 0)
-                        {
-                            return 1;
-                        }
-                        else
-                        {
-                            return -1;
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw new Exception();
-            }
-        }
-
         public Address ConvertToObject(SqlDataReader sqlDataReader)
         {
             address = new Address();
@@ -338,6 +279,55 @@ namespace AnyReadOnline.DAL
 
             }
             return address;
+        }
+
+        public int Delete(int id)
+        {
+            try
+
+            {
+
+                using (SqlConnection sqlConnection = DbHelper.GetConnection())
+
+                {
+
+                    using (SqlCommand sqlCommand = DbHelper.SqlCommand(sqlConnection, "usp_DeleteAddress", CommandType.StoredProcedure))
+
+                    {
+
+                        sqlCommand.Parameters.AddWithValue("AddressID", id);
+
+
+
+                        if (sqlCommand.ExecuteNonQuery() > 0)
+
+                        {
+
+                            return 1;
+
+                        }
+
+                        else
+
+                        {
+
+                            return -1;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            catch (Exception)
+
+            {
+
+                throw new Exception();
+
+            }
         }
     }
 }
