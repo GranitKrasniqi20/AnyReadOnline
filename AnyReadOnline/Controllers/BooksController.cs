@@ -98,7 +98,7 @@ namespace AnyReadOnline.Controllers
             ViewBag.PublishHouses = publishHouseBLL.GetAll();
             ViewBag.Authors = authorBLL.GetAll();
 
-            return View();
+            return View(new Book());
         }
 
         // POST: Books/Create

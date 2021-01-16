@@ -9,6 +9,12 @@ namespace AnyReadOnline.BOL
 {
     public class Address : Audit
     {
+        //public Address()
+        //{
+        //    Client = new Client();
+        //    Country = new Country();
+        //}
+
         public int AddressID { get; set; }
         public int ClientID { get; set; }
         public virtual Client Client { get; set; }
@@ -22,8 +28,7 @@ namespace AnyReadOnline.BOL
         public string City { get; set; }
         public string PostalCode { get; set; }
         public string PhoneNumber { get; set; }
-
-
+        public string Email { get; set; }
     }
 
 

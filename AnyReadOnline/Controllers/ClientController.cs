@@ -55,6 +55,75 @@ namespace AnyReadOnline.Controllers
                 _userManager = value;
             }
         }
+
+        // GET: Client
+        [Authorize(Roles = "SuperAdmin,Admin")]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: Client/Details/5
+        [Authorize(Roles = "SuperAdmin,Admin")]
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: Client/Create
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+
+            return View(new Client());
+        }
+
+        // POST: Client/Create
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> Register(Client client)
+        {
+
+            RegisterViewModel registerClient = new RegisterViewModel();
+            
+
+            registerClient.Email = client.Email;
+            registerClient.Password = client.Password;
+            registerClient.ConfirmPassword = client.Password;
+            
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = new ApplicationUser { UserName = client.Email, Email = client.Email };
+                    var result = await UserManager.CreateAsync(user, client.Password);
+                    string uid = user.Id;
+                    if (result.Succeeded)
+                    {
+
+                        ClientBLL clientbll = new ClientBLL();
+                        clientbll.Add(client);
+                        await UserManager.AddToRoleAsync(uid, "Client");
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                        //return RedirectToAction("Index", "Home");
+                        return Redirect("~/Home/Index");
+                    }
+                }
+
+                //return RedirectToAction("Index");
+                return Redirect("~/Home/Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        ApplicationDbContext db = new ApplicationDbContext();
+
+
+        [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;

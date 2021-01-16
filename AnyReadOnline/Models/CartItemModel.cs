@@ -10,5 +10,7 @@ namespace AnyReadOnline.Models
     {
         public Book book;
         public int Quantity;
+        public int ClientID;
+
     }
 }
