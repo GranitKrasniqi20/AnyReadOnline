@@ -7,7 +7,7 @@
 <main>
     <div class="jumbotron jumbotron-fluid" id="category-banner-image">
         <div class="container">
-            <h1 class="display-4 text-center white-text">Categories</h1>
+            <h1 class="display-4 text-center white-text">@AnyReadOnline.Resources.HomeTexts.Categories</h1>
         </div>
     </div>
 
@@ -16,10 +16,10 @@
         <section class="my-5">
             <div class="row">
                 <div class="col">
-                    <h4>Featured Genres</h4>
+                    <h4>@AnyReadOnline.Resources.HomeTexts.FeaturedGenres</h4>
                 </div>
                 <div class="col text-right my-auto">
-                    <a href="@Url.Action("CategoryByGenre", "Genres")" class="text-danger">View All</a>
+                    <a href="@Url.Action(" CategoryByGenre", "Genres" )" class="text-danger">@AnyReadOnline.Resources.HomeTexts.ViewAll</a>
                 </div>
             </div>
             <div class="row my-3">
@@ -28,7 +28,7 @@
                     <div class="col">
                         <div class="category-box my-blue">
                             <a href="#" class="text-white"><h4>@item.GenreName</h4></a>
-                            <a href="#" class="text-white">Shop Now</a>
+                            <a href="#" class="text-white">@AnyReadOnline.Resources.HomeTexts.ShopNow</a>
                         </div>
                     </div>
                 }
@@ -38,10 +38,10 @@
         <section id="authorSection" class="my-5">
             <div class="row">
                 <div class="col">
-                    <h4>Favorite Authors</h4>
+                    <h4>@AnyReadOnline.Resources.HomeTexts.FavoriteAuthors</h4>
                 </div>
                 <div class="col text-right my-auto">
-                    <a href="@Url.Action("CategoryByAuthor", "Authors")" class="text-danger">View All</a>
+                    <a href="@Url.Action(" CategoryByAuthor", "Authors" )" class="text-danger">@AnyReadOnline.Resources.HomeTexts.ViewAll</a>
                 </div>
             </div>
             <div class="row my-3">

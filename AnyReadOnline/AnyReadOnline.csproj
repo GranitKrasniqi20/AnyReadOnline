@@ -213,12 +213,24 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MultiLanguagesController.cs" />
     <Compile Include="Controllers\PublishHousesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityHelper.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\HomeTexts.sq1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeTexts.sq.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\HomeTexts1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeTexts.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1930,6 +1942,12 @@
     <Content Include="fontawesome-free-5.15.1-web\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="obj\Debug\AnyReadOnline.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\AnyReadOnline.dll" />
+    <Content Include="obj\Debug\AnyReadOnline.pdb" />
+    <Content Include="obj\Debug\sq\AnyReadOnline.resources.dll" />
+    <Content Include="obj\Debug\TempPE\Resources.HomeTexts.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Resources.HomeTexts.sq.Designer.cs.dll" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2039,6 +2057,12 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="obj\Debug\AnyReadOnline.csproj.CopyComplete" />
+    <Content Include="obj\Debug\AnyReadOnline.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\AnyReadOnline.csproj.GenerateResource.cache" />
+    <Content Include="obj\Debug\AnyReadOnline.csprojAssemblyReference.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\Tsc.out" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -2142,6 +2166,9 @@
     <Content Include="Views\Addresses\Edit.cshtml" />
     <Content Include="Views\Addresses\Delete.cshtml" />
     <Content Include="Views\Client\MyProfile.cshtml" />
+    <Content Include="Views\Home\Categories.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\MultiLanguages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2177,6 +2204,18 @@
       <Project>{ef0ca07c-d6a2-448a-ba27-0c0640385de8}</Project>
       <Name>AnyReadOnline.BOL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="obj\Debug\AnyReadOnline.Resources.HomeTexts.resources" />
+    <EmbeddedResource Include="obj\Debug\AnyReadOnline.Resources.HomeTexts.sq.resources" />
+    <EmbeddedResource Include="Resources\HomeTexts.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeTexts1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\HomeTexts.sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeTexts.sq1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
