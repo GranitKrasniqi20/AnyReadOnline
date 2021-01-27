@@ -52,7 +52,8 @@ namespace AnyReadOnline.BLL
         {
 
             string uid = db.Users.Where(x => x.UserName == user).FirstOrDefault().Id;
-            return userManager.GetRoles(uid).FirstOrDefault();
+            string role = userManager.GetRoles(uid).FirstOrDefault();
+            return role;
         }
 
         public async Task<string> Register(RegisterViewModel model)
@@ -86,7 +87,8 @@ namespace AnyReadOnline.BLL
 
                 await userManager.AddToRoleAsync(uid, role);
 
-            return  await userManager.IsInRoleAsync(uid, role);
+            bool i =  await userManager.IsInRoleAsync(uid, role);
+            return i;
 
         }
     }

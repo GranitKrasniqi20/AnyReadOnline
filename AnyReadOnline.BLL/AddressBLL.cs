@@ -38,5 +38,11 @@ namespace AnyReadOnline.BLL
         {
             return addressDAL.Update(obj);
         }
+
+
+        public List<Address> GetByClientID(int userID)
+        {
+            return addressDAL.GetByClientID(userID);
+        }
     }
 }
