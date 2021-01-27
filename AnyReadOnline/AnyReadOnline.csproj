@@ -198,7 +198,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\FontAwesomeBundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -221,6 +220,16 @@
     <Compile Include="Models\IdentityHelper.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\HomeTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeTexts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\HomeTexts.sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeTexts.sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\HomeTexts.sq1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -244,9 +253,78 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\chart.js" />
-    <Content Include="Content\fontawesome\font-awesome.css" />
-    <Content Include="Content\fontawesome\font-awesome.min.css" />
-    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\img\23210502017.jpg" />
+    <Content Include="Content\img\2AdminCreateBookPage200420332.png" />
+    <Content Include="Content\img\2AdminCreateBookPage202425602.png" />
+    <Content Include="Content\img\2AdminCreateBookPage202850589.png" />
+    <Content Include="Content\img\2AdminCreateBookPage202850589200648430.png" />
+    <Content Include="Content\img\2AdminCreateBookPage203157933.png" />
+    <Content Include="Content\img\2AdminCreateBookPage204830575.png" />
+    <Content Include="Content\img\2AdminCreateBookPage205238793.png" />
+    <Content Include="Content\img\2AdminCreateBookPage205636412.png" />
+    <Content Include="Content\img\AdminCreateBookPage205958873.png" />
+    <Content Include="Content\img\anyread_home_cover_1.2.jpg" />
+    <Content Include="Content\img\anyread_home_cover_2.1.jpg" />
+    <Content Include="Content\img\anyread_home_cover_2.2.jpg" />
+    <Content Include="Content\img\anyread_home_cover_3.1.jpg" />
+    <Content Include="Content\img\anyread_home_cover_3.2.jpg" />
+    <Content Include="Content\img\anyread_name.png" />
+    <Content Include="Content\img\anyread_name_white.png" />
+    <Content Include="Content\img\as202351046.png" />
+    <Content Include="Content\img\b1200647059.png" />
+    <Content Include="Content\img\b1202551685.png" />
+    <Content Include="Content\img\b1203441551.png" />
+    <Content Include="Content\img\b23201420758.png" />
+    <Content Include="Content\img\bio_leonardo_davinci.jpg" />
+    <Content Include="Content\img\bio_mamba_mentality.jpg" />
+    <Content Include="Content\img\bio_mamba_mentality202333902.jpg" />
+    <Content Include="Content\img\bio_mamba_mentality203314240.jpg" />
+    <Content Include="Content\img\bio_napoleon_bonaparta.jpg" />
+    <Content Include="Content\img\bio_napoleon_bonaparta212351918.jpg" />
+    <Content Include="Content\img\bio_obama.jpg" />
+    <Content Include="Content\img\bio_steve_jobs.jpg" />
+    <Content Include="Content\img\bio_steve_jobs202527184.jpg" />
+    <Content Include="Content\img\bp200459744.jpg" />
+    <Content Include="Content\img\bp200708634.jpg" />
+    <Content Include="Content\img\bs-img-1.jpg" />
+    <Content Include="Content\img\bs-img-2.jpg" />
+    <Content Include="Content\img\bs-img-3.jpg" />
+    <Content Include="Content\img\bts1200146182.jpg" />
+    <Content Include="Content\img\bts1200207158.jpg" />
+    <Content Include="Content\img\bts2203055330.jpg" />
+    <Content Include="Content\img\cs_basics_c#.png" />
+    <Content Include="Content\img\cs_c#_programing_lang.jpg" />
+    <Content Include="Content\img\cs_code.jpg" />
+    <Content Include="Content\img\cs_code200731370.jpg" />
+    <Content Include="Content\img\cs_learning_sql.jpg" />
+    <Content Include="Content\img\cs_understanding_crypto.jpg" />
+    <Content Include="Content\img\dale_carnegie.jpg" />
+    <Content Include="Content\img\default_profile.jpg" />
+    <Content Include="Content\img\djali 2201259591.jpg" />
+    <Content Include="Content\img\djali201028564.jpg" />
+    <Content Include="Content\img\djali204227133.jpg" />
+    <Content Include="Content\img\djali205234696.jpg" />
+    <Content Include="Content\img\download1200035539.jpg" />
+    <Content Include="Content\img\fic_embodied_hope.jpg" />
+    <Content Include="Content\img\fic_ice_and_fire.jpg" />
+    <Content Include="Content\img\fic_lotr_1.jpg" />
+    <Content Include="Content\img\fic_tess_road.jpg" />
+    <Content Include="Content\img\george_rr_martin.jpg" />
+    <Content Include="Content\img\gk205429718.jpg" />
+    <Content Include="Content\img\his_inferno_ww2.jpg" />
+    <Content Include="Content\img\ismail_kadare.jpg" />
+    <Content Include="Content\img\kelly_kapic.jpg" />
+    <Content Include="Content\img\libraryPC201228734.jpg" />
+    <Content Include="Content\img\naim_frasheri.jpg" />
+    <Content Include="Content\img\ps_thinking_fast_and_slow.jpg" />
+    <Content Include="Content\img\sabri_hamiti.jpg" />
+    <Content Include="Content\img\sd_48_laws_power.jpg" />
+    <Content Include="Content\img\sd_art_of_public_speaking.jpg" />
+    <Content Include="Content\img\useCaseTi2211631642.PNG" />
+    <Content Include="Content\img\useCaseTi2211703271.PNG" />
+    <Content Include="Content\img\useCaseTi2211705540.PNG" />
+    <Content Include="Content\img\vs203620874.png" />
+    <Content Include="Content\img\walter_isaacson.jpg" />
     <Content Include="Content\LineChart.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -1954,6 +2032,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_home_cover_1.2.jpg">
       <Link>Content\img\anyread_home_cover_1.2.jpg</Link>
     </Content>
@@ -2166,6 +2245,7 @@
     <Content Include="Views\Addresses\Edit.cshtml" />
     <Content Include="Views\Addresses\Delete.cshtml" />
     <Content Include="Views\Client\MyProfile.cshtml" />
+    <Content Include="Views\MultiLanguages\Index.cshtml" />
     <Content Include="Views\Home\Categories.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\MultiLanguages\Index.cshtml" />
@@ -2180,8 +2260,6 @@
     <Content Include="fontawesome-free-5.15.1-web\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.5.1.min.map" />
@@ -2204,6 +2282,16 @@
       <Project>{ef0ca07c-d6a2-448a-ba27-0c0640385de8}</Project>
       <Name>AnyReadOnline.BOL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\HomeTexts.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeTexts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\HomeTexts.sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeTexts.sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="obj\Debug\AnyReadOnline.Resources.HomeTexts.resources" />

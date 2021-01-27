@@ -14,23 +14,25 @@ namespace AnyReadOnline.DAL
     {
         public static string ConnectionStringName()
         {
-            string pathGranit = "PC-GRANIT";
-            string pathBeis = "BEISPRESHEV9DEA";
-            string pathEndrit = "DESKTOP-CMMTF7M";
+            //string pathGranit = "PC-GRANIT";
+            //string pathBeis = "BEISPRESHEV9DEA";
+            //string pathEndrit = "DESKTOP-CMMTF7M";
 
-            if (string.Equals(Environment.MachineName, pathGranit))
-            {
-                return "DbConnectionGranit";
-            }
-            if (string.Equals(Environment.MachineName, pathBeis))
-            {
-                return "DbConnectionBeis";
-            }
-            if (string.Equals(Environment.MachineName, pathEndrit))
-            {
-                return "DbConnectionEndrit";
-            }
-            else return "";//ose throw new Exception;
+            //if (string.Equals(Environment.MachineName, pathGranit))
+            //{
+            //    return "DbConnectionGranit";
+            //}
+            //if (string.Equals(Environment.MachineName, pathBeis))
+            //{
+            //    return "DbConnectionBeis";
+            //}
+            //if (string.Equals(Environment.MachineName, pathEndrit))
+            //{
+            //    return "DbConnectionEndrit";
+            //}
+            //else return "";//ose throw new Exception;
+
+            return "DbConnectionEndrit";
         }
 
         private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings[ConnectionStringName()].ConnectionString;

@@ -34,14 +34,15 @@ namespace AnyReadOnline.BLL
             return addressDAL.GetAll().ToList();
         }
 
-        public List<Address> GetByClientID(int clientID)
-        {
-            return addressDAL.GetByClientID(clientID);
-        }
-
         public int Update(Address obj)
         {
             return addressDAL.Update(obj);
+        }
+
+
+        public List<Address> GetByClientID(int userID)
+        {
+            return addressDAL.GetByClientID(userID);
         }
     }
 }

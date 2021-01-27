@@ -30,7 +30,6 @@ namespace AnyReadOnline.Controllers
         private AddressBLL addressBLL = new AddressBLL();
         private CountryBLL countryBLL = new CountryBLL();
 
-        /*private CountryBLL countryBLL=new CountryBLL();*/
 
         // GET: Addresses
         public ActionResult Index()

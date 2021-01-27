@@ -152,7 +152,7 @@ namespace AnyReadOnline.Controllers
                     {
 
                         case 1:
-                            return View("Index");
+                            return RedirectToAction("Index","Home");
                         case -1:
                             return View("Lockout");
                         case 0:
