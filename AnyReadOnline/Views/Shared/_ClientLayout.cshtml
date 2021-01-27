@@ -40,16 +40,6 @@
                         @*<li class="nav-item"><a href="@Url.Action()" class="language-selection text-decoration-none text-danger font-weight-bold mx-2">EN</a></li>*@
                         <li class="nav-item"><a href="@Url.Action("Index", "MultiLanguages" )" class="language-selection text-decoration-none text-danger font-weight-bold mx-2">EN</a></li>
 
-                        <li>
-                            @using (Html.BeginForm("Change", "MultiLanguages", FormMethod.Post))
-                            {
-                                @*<label for="Author">Author</label>*@
-                                <select class="form-control-sm" name="lngName">
-                                    <option value="en">English</option>
-                                    <option value="sq">Albanian</option>
-                                </select>
-                            }
-                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item"><a href="@Url.Action("MyProfile", "Client")" class="text-decoration-none white-text font-weight-bold mx-2">@User.Identity.Name</a></li>
