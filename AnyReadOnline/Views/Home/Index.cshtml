@@ -18,8 +18,8 @@
                     <img src="~/Content/img/anyread_home_cover_1.2.jpg" class="d-block w-100" alt="..." />
                     <div class="container">
                         <div class="carousel-caption d-none d-md-block positioning-caption white-text">
-                            <h1>Find the book you're looking for!</h1>
-                            <button type="button" class="btn btn-white my-4">Shop Now</button>
+                            <h1>@AnyReadOnline.Resources.HomeTexts.Home1</h1>
+                            <button type="button" class="btn btn-white my-4">@AnyReadOnline.Resources.HomeTexts.ShopNow</button>
                         </div>
                     </div>
                 </div>
@@ -27,8 +27,8 @@
                     <img src="~/Content/img/anyread_home_cover_2.2.jpg" class="d-block w-100" alt="..." />
                     <div class="container">
                         <div class="carousel-caption d-none d-md-block positioning-caption white-text">
-                            <h1>Search our library by category!</h1>
-                            <button type="button" class="btn btn-white my-4">Shop Now</button>
+                            <h1>@AnyReadOnline.Resources.HomeTexts.Home2</h1>
+                            <button type="button" class="btn btn-white my-4">@AnyReadOnline.Resources.HomeTexts.ShopNow</button>
                         </div>
                     </div>
                 </div>
@@ -36,8 +36,8 @@
                     <img src="~/Content/img/anyread_home_cover_3.2.jpg" class="d-block w-100" alt="..." />
                     <div class="container">
                         <div class="carousel-caption d-none d-md-block positioning-caption black-text">
-                            <h1>Large collection of Books!</h1>
-                            <button type="button" class="btn btn-black my-4">Shop Now</button>
+                            <h1>@AnyReadOnline.Resources.HomeTexts.Home3</h1>
+                            <button type="button" class="btn btn-black my-4">@AnyReadOnline.Resources.HomeTexts.ShopNow</button>
                         </div>
                     </div>
                 </div>
@@ -58,10 +58,10 @@
         <section class="my-5">
             <div class="row">
                 <div class="col">
-                    <h4>Featured Categories</h4>
+                    <h4>@AnyReadOnline.Resources.HomeTexts.FeaturedCategories</h4>
                 </div>
                 <div class="col text-right my-auto">
-                    <a href="@Url.Action("CategoryByGenre", "Genres")" class="text-danger">View All</a>
+                    <a href="@Url.Action("CategoryByGenre", "Genres")" class="text-danger">@AnyReadOnline.Resources.HomeTexts.ViewAll</a>
                 </div>
             </div>
             <div class="row my-3">
@@ -70,7 +70,7 @@
                 <div class="col">
                     <div class="category-box my-blue">
                         <a href="#" class="text-white"><h4>@item.GenreName</h4></a>
-                        <a href="#" class="text-white">Shop Now</a>
+                        <a href="#" class="text-white">@AnyReadOnline.Resources.HomeTexts.ShopNow</a>
                     </div>
                 </div>
                 }
@@ -80,10 +80,10 @@
         <section class="my-5">
             <div class="row">
                 <div class="col">
-                    <h4>Bestselling Books</h4>
+                    <h4>@AnyReadOnline.Resources.HomeTexts.BestsellingBooks</h4>
                 </div>
                 <div class="col text-right my-auto">
-                    <a href="#" class="text-danger">View All</a>
+                    <a href="#" class="text-danger">@AnyReadOnline.Resources.HomeTexts.ViewAll</a>
                 </div>
             </div>
             <div class="row my-3">
@@ -101,14 +101,14 @@
                             {
                                 <button type="submit" class="orange-text" style="border: none; background: none;">
                                     <i class="fas fa-shopping-cart">
-                                        <span class="ml-2" style="font-family: sans-serif; font-weight:600;">Available</span>
+                                        <span class="ml-2" style="font-family: sans-serif; font-weight:600;">@AnyReadOnline.Resources.HomeTexts.Available</span>
                                     </i>
                                 </button>
                             }
                         }
                         else
                         {
-                            <p class="text-black">Not Available</p>
+                    <p class="text-black">@AnyReadOnline.Resources.HomeTexts.NotAvailable</p>
                         }
                     </div>
                 </div>
@@ -119,10 +119,10 @@
         <section class="my-5">
             <div class="row">
                 <div class="col">
-                    <h4>Newest Releases</h4>
+                    <h4>@AnyReadOnline.Resources.HomeTexts.NewestReleases</h4>
                 </div>
                 <div class="col text-right my-auto">
-                    <a href="#" class="text-danger">View All</a>
+                    <a href="#" class="text-danger">@AnyReadOnline.Resources.HomeTexts.ViewAll</a>
                 </div>
             </div>
             <div class="row my-3">
@@ -138,13 +138,13 @@
                             {
                                 <button type="submit" class="orange-text" style="border: none; background: none;">
                                     <i class="fas fa-shopping-cart">
-                                        <span class="ml-2" style="font-family: sans-serif; font-weight:600;">Available</span>
+                                        <span class="ml-2" style="font-family: sans-serif; font-weight:600;">@AnyReadOnline.Resources.HomeTexts.Available</span>
                                     </i>
                                 </button>
                             }
                             else
                             {
-                                <p class="text-black">Not Available</p>
+                        <p class="text-black">@AnyReadOnline.Resources.HomeTexts.NotAvailable</p>
                             }
                         </div>
                     </div>
@@ -156,10 +156,10 @@
         <section id="authorSection" class="my-5">
             <div class="row">
                 <div class="col">
-                    <h4>Favorite Authors</h4>
+                    <h4>@AnyReadOnline.Resources.HomeTexts.FavoriteAuthors</h4>
                 </div>
                 <div class="col text-right my-auto">
-                    <a href="@Url.Action("CategoryByAuthor", "Authors")" class="text-danger">View All</a>
+                    <a href="@Url.Action("CategoryByAuthor", "Authors")" class="text-danger">@AnyReadOnline.Resources.HomeTexts.ViewAll</a>
                 </div>
             </div>
             <div class="row my-3">

@@ -164,6 +164,7 @@ namespace AnyReadOnline.Controllers
         // [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Delete(int id)
         {
+            ViewBag.MyAuthor = bookBLL.Get(id);
             return View(bookBLL.Get(id));
         }
 
@@ -172,6 +173,15 @@ namespace AnyReadOnline.Controllers
         // [Authorize(Roles = "SuperAdmin,Admin")]
         public ActionResult Delete(int id, Book book)
         {
+           /* var GetItem = new Book();
+            foreach (var item in authorBLL.GetAll())
+            {
+                if (item.AuthorID == book.Author.AuthorID)
+                {
+                    GetItem.AuthorID = item.AuthorID;
+                    break;
+                }
+            }*/
             try
             {
                 if (bookBLL.Delete(id) > 0)
