@@ -34,8 +34,22 @@
                     </a>
                 </div>
                 <div class="col">
+
                     <ul class="nav justify-content-end">
-                        <li class="nav-item"><a href="#" class="language-selection text-decoration-none text-danger font-weight-bold mx-2">EN</a></li>
+                        @*<li>@Html.ActionLink("English", "Change", "MultiLanguages", new { lngName = "en" }, null)</li>*@
+                        @*<li class="nav-item"><a href="@Url.Action()" class="language-selection text-decoration-none text-danger font-weight-bold mx-2">EN</a></li>*@
+                        <li class="nav-item"><a href="@Url.Action("Index", "MultiLanguages" )" class="language-selection text-decoration-none text-danger font-weight-bold mx-2">EN</a></li>
+
+                        <li>
+                            @using (Html.BeginForm("Change", "MultiLanguages", FormMethod.Post))
+                            {
+                                @*<label for="Author">Author</label>*@
+                                <select class="form-control-sm" name="lngName">
+                                    <option value="en">English</option>
+                                    <option value="sq">Albanian</option>
+                                </select>
+                            }
+                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item"><a href="@Url.Action("MyProfile", "Client")" class="text-decoration-none white-text font-weight-bold mx-2">@User.Identity.Name</a></li>
@@ -54,7 +68,8 @@
         <nav id="lowerNav" class="navbar navbar-light">
             <div class="container">
                 <div class="col-6">
-                    @using (Html.BeginForm("Searching", "Home", FormMethod.Get, new { @class = "form-group my-auto" }))
+                    @using (Html.BeginForm("Searching", "Home", FormMethod.Get, new { @class = "form-group my-auto"
+                    }))
                     {
                         <input class="form-control" name="text" type="search" placeholder=@AnyReadOnline.Resources.HomeTexts.Search aria-label="Search">
                     }
@@ -64,7 +79,7 @@
                         <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="orange-text font-weight-bold text-decoration-none">@AnyReadOnline.Resources.HomeTexts.Home</a></li>
                         <li class="nav-item"><a href="@Url.Action("Categories", "Home")" class="orange-text font-weight-bold text-decoration-none">@AnyReadOnline.Resources.HomeTexts.Categories</a></li>
                         <li class="nav-item"><a href="@Url.Action("Searching", "Home")" class="orange-text font-weight-bold text-decoration-none">@AnyReadOnline.Resources.HomeTexts.Shop</a></li>
-                        <li class="nav-item"><a href="#" class="orange-text font-weight-bold text-decoration-none">@AnyReadOnline.Resources.HomeTexts.Blog</a></li>
+                        <li class="nav-item"><a href="#" class="orange-text font-weight-bold text-decoration-none">Blog</a></li>
                         <li class="nav-item"><a href="@Url.Action("About", "Home")" class="orange-text font-weight-bold text-decoration-none">@AnyReadOnline.Resources.HomeTexts.AboutUs</a></li>
                         <li class="nav-item"><a href="@Url.Action("Index", "MultiLanguages")" class="orange-text font-weight-bold text-decoration-none">@AnyReadOnline.Resources.HomeTexts.Language</a></li>
                     </ul>

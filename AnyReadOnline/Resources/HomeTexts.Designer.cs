@@ -79,6 +79,15 @@ namespace AnyReadOnline.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Authors.
+        /// </summary>
+        public static string Authors {
+            get {
+                return ResourceManager.GetString("Authors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Available.
         /// </summary>
         public static string Available {
@@ -120,6 +129,24 @@ namespace AnyReadOnline.Resources {
         public static string Categories {
             get {
                 return ResourceManager.GetString("Categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your application description page..
+        /// </summary>
+        public static string Categories1 {
+            get {
+                return ResourceManager.GetString("Categories1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use this area to provide additional information..
+        /// </summary>
+        public static string Categories2 {
+            get {
+                return ResourceManager.GetString("Categories2", resourceCulture);
             }
         }
         
@@ -174,6 +201,24 @@ namespace AnyReadOnline.Resources {
         public static string FeaturedCategories {
             get {
                 return ResourceManager.GetString("FeaturedCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Featured Genres.
+        /// </summary>
+        public static string FeaturedGenres {
+            get {
+                return ResourceManager.GetString("FeaturedGenres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finance.
+        /// </summary>
+        public static string Finance {
+            get {
+                return ResourceManager.GetString("Finance", resourceCulture);
             }
         }
         
@@ -268,6 +313,15 @@ namespace AnyReadOnline.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to out of.
+        /// </summary>
+        public static string OutOf {
+            get {
+                return ResourceManager.GetString("OutOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Policy.
         /// </summary>
         public static string Policy {
@@ -331,6 +385,33 @@ namespace AnyReadOnline.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        public static string Select {
+            get {
+                return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Sorting.
+        /// </summary>
+        public static string SelectSorting {
+            get {
+                return ResourceManager.GetString("SelectSorting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Self-Development.
+        /// </summary>
+        public static string Self_Development {
+            get {
+                return ResourceManager.GetString("Self-Development", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shop.
         /// </summary>
         public static string Shop {
@@ -358,11 +439,47 @@ namespace AnyReadOnline.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sort by Alphabet.
+        /// </summary>
+        public static string SortByAlphabet {
+            get {
+                return ResourceManager.GetString("SortByAlphabet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort by Latest.
+        /// </summary>
+        public static string SortByLatest {
+            get {
+                return ResourceManager.GetString("SortByLatest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort by Price.
+        /// </summary>
+        public static string SortByPrice {
+            get {
+                return ResourceManager.GetString("SortByPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Terms of Use.
         /// </summary>
         public static string TermsOfUse {
             get {
                 return ResourceManager.GetString("TermsOfUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thriller.
+        /// </summary>
+        public static string Thriller {
+            get {
+                return ResourceManager.GetString("Thriller", resourceCulture);
             }
         }
         

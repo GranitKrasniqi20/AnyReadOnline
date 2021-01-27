@@ -123,6 +123,9 @@
   <data name="Accessibility" xml:space="preserve">
     <value>Accessibility</value>
   </data>
+  <data name="Authors" xml:space="preserve">
+    <value>Authors</value>
+  </data>
   <data name="Available" xml:space="preserve">
     <value>Available</value>
   </data>
@@ -137,6 +140,12 @@
   </data>
   <data name="Categories" xml:space="preserve">
     <value>Categories</value>
+  </data>
+  <data name="Categories1" xml:space="preserve">
+    <value>Your application description page.</value>
+  </data>
+  <data name="Categories2" xml:space="preserve">
+    <value>Use this area to provide additional information.</value>
   </data>
   <data name="ComputerScience" xml:space="preserve">
     <value>Computer Science</value>
@@ -155,6 +164,12 @@
   </data>
   <data name="FeaturedCategories" xml:space="preserve">
     <value>Featured Categories</value>
+  </data>
+  <data name="FeaturedGenres" xml:space="preserve">
+    <value>Featured Genres</value>
+  </data>
+  <data name="Finance" xml:space="preserve">
+    <value>Finance</value>
   </data>
   <data name="HelpCenter" xml:space="preserve">
     <value>Help Center</value>
@@ -186,6 +201,9 @@
   <data name="NotAvailable" xml:space="preserve">
     <value>Not Available</value>
   </data>
+  <data name="OutOf" xml:space="preserve">
+    <value>out of</value>
+  </data>
   <data name="Policy" xml:space="preserve">
     <value>Policy</value>
   </data>
@@ -207,6 +225,15 @@
   <data name="Security" xml:space="preserve">
     <value>Security</value>
   </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectSorting" xml:space="preserve">
+    <value>Select Sorting</value>
+  </data>
+  <data name="Self-Development" xml:space="preserve">
+    <value>Self-Development</value>
+  </data>
   <data name="Shop" xml:space="preserve">
     <value>Shop</value>
   </data>
@@ -216,8 +243,20 @@
   <data name="SignJoin" xml:space="preserve">
     <value>Sign In / Join</value>
   </data>
+  <data name="SortByAlphabet" xml:space="preserve">
+    <value>Sort by Alphabet</value>
+  </data>
+  <data name="SortByLatest" xml:space="preserve">
+    <value>Sort by Latest</value>
+  </data>
+  <data name="SortByPrice" xml:space="preserve">
+    <value>Sort by Price</value>
+  </data>
   <data name="TermsOfUse" xml:space="preserve">
     <value>Terms of Use</value>
+  </data>
+  <data name="Thriller" xml:space="preserve">
+    <value>Thriller</value>
   </data>
   <data name="ViewAll" xml:space="preserve">
     <value>View All</value>

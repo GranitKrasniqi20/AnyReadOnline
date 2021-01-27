@@ -123,6 +123,9 @@
   <data name="Accessibility" xml:space="preserve">
     <value>Qasja</value>
   </data>
+  <data name="Authors" xml:space="preserve">
+    <value>Autoret</value>
+  </data>
   <data name="Available" xml:space="preserve">
     <value>I Disponushem</value>
   </data>
@@ -137,6 +140,12 @@
   </data>
   <data name="Categories" xml:space="preserve">
     <value>Kategorite</value>
+  </data>
+  <data name="Categories1" xml:space="preserve">
+    <value>Faqja shpjeguese e Aplikacionit tuaj.</value>
+  </data>
+  <data name="Categories2" xml:space="preserve">
+    <value>Perdorni kete hapsire per te shtuar Informata te reja.</value>
   </data>
   <data name="ComputerScience" xml:space="preserve">
     <value>Shkenca Kompjuterike</value>
@@ -153,8 +162,14 @@
   <data name="FavoriteAuthors" xml:space="preserve">
     <value>Autoret Favorit</value>
   </data>
+  <data name="FavoriteGenres" xml:space="preserve">
+    <value>Zhanret Favorite</value>
+  </data>
   <data name="FeaturedCategories" xml:space="preserve">
     <value>Kategorite e Paraqitura</value>
+  </data>
+  <data name="Finance" xml:space="preserve">
+    <value>Financa</value>
   </data>
   <data name="HelpCenter" xml:space="preserve">
     <value>Qendra e Ndihmes</value>
@@ -186,6 +201,9 @@
   <data name="NotAvailable" xml:space="preserve">
     <value>I Padisponueshem</value>
   </data>
+  <data name="OutOf" xml:space="preserve">
+    <value>nga</value>
+  </data>
   <data name="Policy" xml:space="preserve">
     <value>Politikat</value>
   </data>
@@ -207,6 +225,15 @@
   <data name="Security" xml:space="preserve">
     <value>Siguria</value>
   </data>
+  <data name="Select" xml:space="preserve">
+    <value>Selekto</value>
+  </data>
+  <data name="SelectSorting" xml:space="preserve">
+    <value>Selekto Radhitjen</value>
+  </data>
+  <data name="Self-Development" xml:space="preserve">
+    <value>Vete-Zhvillim</value>
+  </data>
   <data name="Shop" xml:space="preserve">
     <value>Blej</value>
   </data>
@@ -216,8 +243,20 @@
   <data name="SignJoin" xml:space="preserve">
     <value>Hyr / Bashkohu</value>
   </data>
+  <data name="SortByAlphabet" xml:space="preserve">
+    <value>Radhit sipas Alfabetit</value>
+  </data>
+  <data name="SortByLatest" xml:space="preserve">
+    <value>Radhit nga i fundit</value>
+  </data>
+  <data name="SortByPrice" xml:space="preserve">
+    <value>Radhit sipas Qmimit</value>
+  </data>
   <data name="TermsOfUse" xml:space="preserve">
     <value>Termat e Perdorimit</value>
+  </data>
+  <data name="Thriller" xml:space="preserve">
+    <value>Triller</value>
   </data>
   <data name="ViewAll" xml:space="preserve">
     <value>Shiqo te Gjitha</value>

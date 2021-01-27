@@ -229,6 +229,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityHelper.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\HomeTexts.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -2020,6 +2021,12 @@
     <Content Include="fontawesome-free-5.15.1-web\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="obj\Debug\AnyReadOnline.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\AnyReadOnline.dll" />
+    <Content Include="obj\Debug\AnyReadOnline.pdb" />
+    <Content Include="obj\Debug\sq\AnyReadOnline.resources.dll" />
+    <Content Include="obj\Debug\TempPE\Resources.HomeTexts.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Resources.HomeTexts.sq.Designer.cs.dll" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2027,6 +2034,115 @@
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_home_cover_1.2.jpg">
+      <Link>Content\img\anyread_home_cover_1.2.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_home_cover_2.1.jpg">
+      <Link>Content\img\anyread_home_cover_2.1.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_home_cover_2.2.jpg">
+      <Link>Content\img\anyread_home_cover_2.2.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_home_cover_3.1.jpg">
+      <Link>Content\img\anyread_home_cover_3.1.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_home_cover_3.2.jpg">
+      <Link>Content\img\anyread_home_cover_3.2.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_name.png">
+      <Link>Content\img\anyread_name.png</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\anyread_name_white.png">
+      <Link>Content\img\anyread_name_white.png</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bio_leonardo_davinci.jpg">
+      <Link>Content\img\bio_leonardo_davinci.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bio_mamba_mentality.jpg">
+      <Link>Content\img\bio_mamba_mentality.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bio_napoleon_bonaparta.jpg">
+      <Link>Content\img\bio_napoleon_bonaparta.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bio_obama.jpg">
+      <Link>Content\img\bio_obama.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bio_steve_jobs.jpg">
+      <Link>Content\img\bio_steve_jobs.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bs-img-1.jpg">
+      <Link>Content\img\bs-img-1.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bs-img-2.jpg">
+      <Link>Content\img\bs-img-2.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\bs-img-3.jpg">
+      <Link>Content\img\bs-img-3.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\cs_basics_c#.png">
+      <Link>Content\img\cs_basics_c#.png</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\cs_c#_programing_lang.jpg">
+      <Link>Content\img\cs_c#_programing_lang.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\cs_code.jpg">
+      <Link>Content\img\cs_code.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\cs_learning_sql.jpg">
+      <Link>Content\img\cs_learning_sql.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\cs_understanding_crypto.jpg">
+      <Link>Content\img\cs_understanding_crypto.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\dale_carnegie.jpg">
+      <Link>Content\img\dale_carnegie.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\fic_embodied_hope.jpg">
+      <Link>Content\img\fic_embodied_hope.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\fic_ice_and_fire.jpg">
+      <Link>Content\img\fic_ice_and_fire.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\fic_lotr_1.jpg">
+      <Link>Content\img\fic_lotr_1.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\fic_tess_road.jpg">
+      <Link>Content\img\fic_tess_road.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\george_rr_martin.jpg">
+      <Link>Content\img\george_rr_martin.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\his_inferno_ww2.jpg">
+      <Link>Content\img\his_inferno_ww2.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\kelly_kapic.jpg">
+      <Link>Content\img\kelly_kapic.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\ps_thinking_fast_and_slow.jpg">
+      <Link>Content\img\ps_thinking_fast_and_slow.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\sd_48_laws_power.jpg">
+      <Link>Content\img\sd_48_laws_power.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\sd_art_of_public_speaking.jpg">
+      <Link>Content\img\sd_art_of_public_speaking.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\img\walter_isaacson.jpg">
+      <Link>Content\img\walter_isaacson.jpg</Link>
+    </Content>
+    <Content Include="\\Mac\Home\Documents\Riinvest Docs\Semestri 5\TI2\front-end-design\main.css">
+      <Link>Content\main.css</Link>
+    </Content>
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="obj\Debug\AnyReadOnline.csproj.CopyComplete" />
+    <Content Include="obj\Debug\AnyReadOnline.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\AnyReadOnline.csproj.GenerateResource.cache" />
+    <Content Include="obj\Debug\AnyReadOnline.csprojAssemblyReference.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\Tsc.out" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -2131,6 +2247,9 @@
     <Content Include="Views\Addresses\Delete.cshtml" />
     <Content Include="Views\Client\MyProfile.cshtml" />
     <Content Include="Views\MultiLanguages\Index.cshtml" />
+    <Content Include="Views\Home\Categories.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\MultiLanguages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2174,6 +2293,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>HomeTexts.sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="obj\Debug\AnyReadOnline.Resources.HomeTexts.resources" />
+    <EmbeddedResource Include="obj\Debug\AnyReadOnline.Resources.HomeTexts.sq.resources" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

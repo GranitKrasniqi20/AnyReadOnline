@@ -25,7 +25,7 @@ namespace AnyReadOnline
         {
             HttpCookie cookie = HttpContext.Current.Request.Cookies["LanguageCookie"];
 
-            if (cookie != null && cookie.Value != null)
+            if(cookie!= null && cookie.Value!= null)
             {
                 Thread.CurrentThread.CurrentCulture = new CultureInfo(cookie.Value);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(cookie.Value);

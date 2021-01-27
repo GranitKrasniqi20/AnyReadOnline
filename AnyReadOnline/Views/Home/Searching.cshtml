@@ -20,7 +20,7 @@
                             <div class="card-header" id="headingOne">
                                 <h2 class="mb-0">
                                     <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Categories
+                                        @AnyReadOnline.Resources.HomeTexts.Categories
                                     </button>
                                 </h2>
                             </div>
@@ -40,7 +40,7 @@
                             <div class="card-header" id="headingTwo">
                                 <h2 class="mb-0">
                                     <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Author
+                                        @AnyReadOnline.Resources.HomeTexts.Authors
                                     </button>
                                 </h2>
                             </div>
@@ -59,7 +59,7 @@
                             <div class="card-header" id="headingThree">
                                 <h2 class="mb-0">
                                     <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Language
+                                        @AnyReadOnline.Resources.HomeTexts.Language
                                     </button>
                                 </h2>
                             </div>
@@ -79,10 +79,10 @@
                 <div class="col-8 my-5">
                     <div class="row">
                         <div class="col d-flex">
-                            <p class="my-auto">Select 3 out of @ViewBag.booksCount</p>
+                            <p class="my-auto">@AnyReadOnline.Resources.HomeTexts.Select 3 @AnyReadOnline.Resources.HomeTexts.OutOf @ViewBag.booksCount</p>
                         </div>
                         <div class="col text-right">
-                            <p class="text-">Select Sorting:</p>
+                            <p class="text-">@AnyReadOnline.Resources.HomeTexts.SelectSorting:</p>
                         </div>
                     </div>
                     <div class="row mb-1">
@@ -109,9 +109,9 @@
                                         }, "Select Sorting")
                                     }*@
                                 <select id="mySelect">
-                                    <option value="latest">Sort by Latest</option>
-                                    <option value="alphabet">Sort by Alphabet</option>
-                                    <option value="price">Sort by Price</option>
+                                    <option value="latest">@AnyReadOnline.Resources.HomeTexts.SortByLatest</option>
+                                    <option value="alphabet">@AnyReadOnline.Resources.HomeTexts.SortByAlphabet</option>
+                                    <option value="price">@AnyReadOnline.Resources.HomeTexts.SortByPrice</option>
                                 </select>
                             </div>
                         </div>
@@ -146,7 +146,7 @@
                                             else
                                             {
                                                 <div class="search-cart-btn-height d-flex align-items-center">
-                                                    <p class="text-black">Not Available</p>
+                                                    <p class="text-black">@AnyReadOnline.Resources.HomeTexts.NotAvailable</p>
                                                 </div>
                                             }
                                             
