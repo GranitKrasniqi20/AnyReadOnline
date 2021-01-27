@@ -57,12 +57,17 @@
                         View items that you bought from the store
                     </p>
                     <a href="#" class="btn my-orange text-white font-weight-bold">Open</a>
+
                     @*<button type="button" class="btn my-orange text-white font-weight-bold">Open</button>*@
                 </div>
             </div>
             <div class="row my-5">
-                <div class="col">
-                    <h4 class="text-center"><a href="#" class="orange-text">Log Out</a></h4>
+                <div class="col d-flex align-items-center justify-content-center" >
+
+                    <a href=" @Url.Action("LogOff", "Account")" class="btn font-weight-bold orange-text text-center " style="background-color: #EAEAEA; border: 2px solid #DBDBDB;">
+                        <h4 class=" orange-text">Log Out</h4>
+                    </a>
+                    
                 </div>
             </div>
         </div>
