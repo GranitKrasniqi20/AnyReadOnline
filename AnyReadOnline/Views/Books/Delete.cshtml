@@ -43,7 +43,8 @@
             <img @*class="d-block"*@ width="315" height="440" src="@Url.Content(Model.ImagePath)" alt="Error ..">
         </div>
         <div class="col-6">
-            <h4>@Model.Author.FirstName @Model.Author.LastName</h4><br />
+            @*<h4>@Model.ViewBag.MyAuthor.LastName @Model.ViewBag.MyAuthor.LastName</h4><br />*@
+            
             <p>@Model.Description</p><br /><br />
 
             <div style="font-weight:bold;">

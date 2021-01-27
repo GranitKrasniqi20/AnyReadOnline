@@ -42,7 +42,7 @@
                         }
                         else
                         {
-                            <li class="nav-item"><a href="@Url.Action("Login", "Client")" class="text-decoration-none white-text font-weight-bold mx-2">Log In</a></li>
+                            <li class="nav-item"><a href="@Url.Action("Login", "Client")" class="text-decoration-none white-text font-weight-bold mx-2">@AnyReadOnline.Resources.HomeTexts.LogIn</a></li>
                         }
 
                         <li class="nav-item"><a href="@Url.Action("GoToCart", "Books")" class="text-decoration-none white-text font-weight-bold mx-2"><i class="fas fa-shopping-cart"></i></a></li>
@@ -56,16 +56,17 @@
                 <div class="col-6">
                     @using (Html.BeginForm("Searching", "Home", FormMethod.Get, new { @class = "form-group my-auto" }))
                     {
-                        <input class="form-control" name="text" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control" name="text" type="search" placeholder=@AnyReadOnline.Resources.HomeTexts.Search aria-label="Search">
                     }
                 </div>
                 <div class="col-6">
                     <ul class="nav justify-content-end">
-                        <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="orange-text font-weight-bold text-decoration-none">Home</a></li>
-                        <li class="nav-item"><a href="@Url.Action("Categories", "Home")" class="orange-text font-weight-bold text-decoration-none">Categories</a></li>
-                        <li class="nav-item"><a href="@Url.Action("Searching", "Home")" class="orange-text font-weight-bold text-decoration-none">Shop</a></li>
-                        <li class="nav-item"><a href="#" class="orange-text font-weight-bold text-decoration-none">Blog</a></li>
-                        <li class="nav-item"><a href="@Url.Action("Index", "Searching")" class="orange-text font-weight-bold text-decoration-none">About Us</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="orange-text font-weight-bold text-decoration-none">@AnyReadOnline.Resources.HomeTexts.Home</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Categories", "Home")" class="orange-text font-weight-bold text-decoration-none">@AnyReadOnline.Resources.HomeTexts.Categories</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Searching", "Home")" class="orange-text font-weight-bold text-decoration-none">@AnyReadOnline.Resources.HomeTexts.Shop</a></li>
+                        <li class="nav-item"><a href="#" class="orange-text font-weight-bold text-decoration-none">@AnyReadOnline.Resources.HomeTexts.Blog</a></li>
+                        <li class="nav-item"><a href="@Url.Action("About", "Home")" class="orange-text font-weight-bold text-decoration-none">@AnyReadOnline.Resources.HomeTexts.AboutUs</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Index", "MultiLanguages")" class="orange-text font-weight-bold text-decoration-none">@AnyReadOnline.Resources.HomeTexts.Language</a></li>
                     </ul>
                 </div>
             </div>
@@ -92,27 +93,27 @@
                     </p>
                 </div>
                 <div class="col">
-                    <h4 class="pb-4">Explore</h4>
-                    <p><a href="#" class="text-decoration-none black-text">Home</a></p>
-                    <p><a href="#" class="text-decoration-none black-text">Categories</a></p>
-                    <p><a href="#" class="text-decoration-none black-text">Shop</a></p>
-                    <p><a href="#" class="text-decoration-none black-text">Blog</a></p>
-                    <p><a href="#" class="text-decoration-none black-text">About Us</a></p>
+                    <h4 class="pb-4">@AnyReadOnline.Resources.HomeTexts.Explore</h4>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.Home</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.Categories</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.Shop</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.Blog</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.AboutUs</a></p>
                 </div>
                 <div class="col">
-                    <h4 class="pb-4">Customer Service</h4>
-                    <p><a href="#" class="text-decoration-none black-text">Help Center</a></p>
-                    <p><a href="#" class="text-decoration-none black-text">Returns</a></p>
-                    <p><a href="#" class="text-decoration-none black-text">Accessibility</a></p>
-                    <p><a href="#" class="text-decoration-none black-text">Contact Us</a></p>
-                    <p><a href="#" class="text-decoration-none black-text">Sign In / Join</a></p>
+                    <h4 class="pb-4">@AnyReadOnline.Resources.HomeTexts.CustomerService</h4>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.HelpCenter</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.Returns</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.Accessibility</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.ContactUs</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.SignJoin</a></p>
                 </div>
                 <div class="col">
-                    <h4 class="pb-4">Policy</h4>
-                    <p><a href="#" class="text-decoration-none black-text">Return Policy</a></p>
-                    <p><a href="#" class="text-decoration-none black-text">Terms of Use</a></p>
-                    <p><a href="#" class="text-decoration-none black-text">Security</a></p>
-                    <p><a href="#" class="text-decoration-none black-text">Privacy</a></p>
+                    <h4 class="pb-4">@AnyReadOnline.Resources.HomeTexts.Policy</h4>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.ReturnPolicy</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.TermsOfUse</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.Security</a></p>
+                    <p><a href="#" class="text-decoration-none black-text">@AnyReadOnline.Resources.HomeTexts.Privacy</a></p>
                 </div>
             </div>
         </div>
