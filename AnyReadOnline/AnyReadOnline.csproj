@@ -230,16 +230,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HomeTexts.sq.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\HomeTexts.sq1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeTexts.sq.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\HomeTexts1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeTexts.resx</DependentUpon>
-    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
