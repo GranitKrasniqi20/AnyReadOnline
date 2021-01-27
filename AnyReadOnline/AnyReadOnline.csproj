@@ -2296,14 +2296,6 @@
   <ItemGroup>
     <EmbeddedResource Include="obj\Debug\AnyReadOnline.Resources.HomeTexts.resources" />
     <EmbeddedResource Include="obj\Debug\AnyReadOnline.Resources.HomeTexts.sq.resources" />
-    <EmbeddedResource Include="Resources\HomeTexts.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>HomeTexts1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\HomeTexts.sq.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>HomeTexts.sq1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
